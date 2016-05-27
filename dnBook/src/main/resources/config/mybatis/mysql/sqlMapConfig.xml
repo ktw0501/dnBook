@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="member" type="kr.co.dnBook.vo.MemberVO"/>
+		<typeAlias alias="board" type="kr.co.dnBook.vo.BoardVO"/>
+		<typeAlias alias="boardComment" type="kr.co.dnBook.vo.BoardCommentVO"/>
+		<typeAlias alias="boardFile" type="kr.co.dnBook.vo.BoardFileVO"/>
+		<typeAlias alias="book" type="kr.co.dnBook.vo.BookVO"/>
+		<typeAlias alias="rent" type="kr.co.dnBook.vo.RentVO"/>
+		<typeAlias alias="wish" type="kr.co.dnBook.vo.WishVO"/>
+		<typeAlias alias="sales" type="kr.co.dnBook.vo.SalesVO"/>
+		<typeAlias alias="category" type="kr.co.dnBook.vo.CategoryVO"/>
+		<typeAlias alias="bookRecom" type="kr.co.dnBook.vo.BookRecomVO"/>
+		<typeAlias alias="page" type="kr.co.dnBook.vo.PageVO"/>
+		<typeAlias alias="boardSearch" type="kr.co.dnBook.vo.BoardSearchVO"/>
+	</typeAliases>
+</configuration>

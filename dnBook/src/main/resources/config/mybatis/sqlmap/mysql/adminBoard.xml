@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.dnBook.mapper.AdminBoardMapper">
+    
+    <!-- 게시물 목록 -->
+    <select id="selectBoard" parameterType="boardSearch" resultType="board">
+		select no, title, writer, reg_date as regDate, page_view_cnt as pageViewCnt,                            
+		       (SELECT COUNT(*) FROM T81_BOARD_COMMENT WHERE NO = t.no) AS commentCnt 
+		  from ( select rownum rnum, a.*                          
+				     from ( select *                              
+				 		    from t81_board                        
+				           order by no desc ) a                   
+		       ) t                                                
+		 where rnum &gt;= #{start}                                        
+		   and rnum &lt;= #{end}                                              
+    </select>
+    
+ 
+
+    <!-- 게시물 번호 -->
+    <select id="selectSeqBoard" resultType="int">
+		select s81_board_no.nextVal 
+		  from dual     
+    </select>
+
+    <!-- 이전글 가져오기 -->
+    <select id="selectPrevBoard" parameterType="int" resultType="board">
+		select NO, title
+		  from t81_board    
+		 WHERE NO = (SELECT max(no) FROM T81_BOARD WHERE NO &lt; #{no})
+    </select>
+
+    <!-- 다음글 가져오기 -->
+    <select id="selectNextBoard" parameterType="int" resultType="board">
+		select NO, title
+		  from t81_board    
+		 WHERE NO = (SELECT min(no) FROM T81_BOARD WHERE NO &gt; #{no})
+    </select>
+        
+   
+    
+    <!-- 게시물 수 -->
+    <select id="selectBoardCount" resultType="int">
+		select count(*)
+		  from t81_board        
+    </select>    
+    
+    
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
