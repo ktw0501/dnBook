@@ -4,11 +4,11 @@ import kr.co.dnBook.vo.BookVO;
 
 public interface AdminBookService {
 	
-	public void deleteBook(String bookCode) throws Exception;
+	public void deleteBook(int bookCode) throws Exception;
 	
-	public void deleteReview(String bookCode) throws Exception;
+	public void deleteReview(int bookCode) throws Exception;
 
-	public void deleteRecom(String reviewNo) throws Exception;
+	public void deleteRecom(int reviewNo) throws Exception;
 	
 	public void insertBook(BookVO book)throws Exception;
 	

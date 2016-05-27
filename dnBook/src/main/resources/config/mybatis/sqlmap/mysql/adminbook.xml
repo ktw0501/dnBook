@@ -3,9 +3,9 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.dnBook.mapper.AdminBookMapper">
 
-	<insert id="insertBook" parameterMap="book">
+	<insert id="insertBook" parameterType="book">
 		insert 	into t_book 
-		values	(#{bookCode},시퀀스(글번호),#{coverImg},#{title},#{publisher},#{author},
+		values	(#{bookCode},#{coverImg},#{title},#{publisher},#{author},
 				#{translator},#{description},#{price},#{rentPrice},#{rentalDirPath},
 				#{pdfPath},#{pubDate},#{categoryCode})
 	</insert>
@@ -25,12 +25,12 @@
 		where	#{bookCode}
 	</delete>
 	<select id="selectBook" resultType="book">
-		select	book_code as bookCode, board_no as boardNo, cover_img as coverImg,
+		select	book_code as bookCode, cover_img as coverImg,
 				title, publisher, author, translator, price, rental_price as rentalPrice,
 				pub_date as pubDate, cetegory_code as categoryCode
 		from	t_book
 	</select>
-	<delete id="deleteReview" parameterType="String">
+	<delete id="deleteReview" parameterType="string">
 		delete
 		from	t_review
 		where	#{bookCode}

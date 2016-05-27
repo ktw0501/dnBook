@@ -13,7 +13,7 @@ public class AdminBookMapperImpl implements AdminBookMapper{
 	@Autowired
 	private SqlSessionTemplate sessionTemplate;
 
-	private static final String NAMESPACE = "kr.co.mlec.board.BookMapper";
+	private static final String NAMESPACE ="kr.co.dnBook.mapper.AdminBookMapper";
 	
 	public void insertBook(BookVO book) throws Exception {
 	}
@@ -21,7 +21,7 @@ public class AdminBookMapperImpl implements AdminBookMapper{
 	public void updateBook(BookVO book) throws Exception {
 	}
 
-	public void deleteBook(String bookCode) throws Exception {
+	public void deleteBook(int bookCode) throws Exception {
 	}
 	
 	
