@@ -2,12 +2,14 @@ package kr.co.dnBook.mapper;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import kr.co.dnBook.vo.BoardFileVO;
 import kr.co.dnBook.vo.BoardVO;
 import kr.co.dnBook.vo.BookRecomVO;
 
-public class UserBookMapperImpl {
+@Repository
+public class UserBookMapperImpl implements UserBookMapper{
 	@Autowired
 	private SqlSessionTemplate session;
 	
