@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script src="../js/jquery-2.2.3.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <style>
 
@@ -29,7 +29,7 @@
 
 .subLnb{
 	width:1050px;
-	height: 400px;
+	height: 180px;
 }
 
 .button {
@@ -38,7 +38,7 @@
 		font:12px 굴림;      /*--폰트 정의---*/
 		font-weight:bold;   /*--폰트 굵기---*/
 		color:#00498c;    /*--폰트 색깔---*/
-		width:180;height:30;  /*--버튼 크기---*/
+		width:180px;height:30px;  /*--버튼 크기---*/
 
 </style>
 

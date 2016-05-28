@@ -5,11 +5,18 @@ public class MemberVO {
 	private String pass;
 	private String name;
 	private String address;
+	private String detailAddress;
 	private String email;
 	private String postCode;
 	private String tel;
 	
 	
+	public String getDetailAddress() {
+		return detailAddress;
+	}
+	public void setDetailAddress(String detailAddress) {
+		this.detailAddress = detailAddress;
+	}
 	public String getId() {
 		return id;
 	}

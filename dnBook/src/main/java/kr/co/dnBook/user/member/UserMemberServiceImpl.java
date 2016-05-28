@@ -7,11 +7,15 @@ import kr.co.dnBook.mapper.UserMemberMapper;
 import kr.co.dnBook.vo.MemberVO;
 
 @Service                                
-public class MemberServiceImpl implements MemberService{
+public class UserMemberServiceImpl implements UserMemberService{
 	@Autowired
 	private UserMemberMapper dao;
 	public void insertMember(MemberVO member) throws Exception {
 		dao.insertMember(member);
+	}
+	@Override
+	public String duplCheck(String id) throws Exception {
+		return dao.selectId(id);
 	}
 
 		
