@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.co.dnBook.admin.board.repository.mapper.MemberMapper">
+<mapper namespace="kr.co.dnBook.mapper">
     <insert id="insertMember" parameterType="member">
     	insert into t_member(
     		id, pass, name, address, email, post_code, tel
@@ -9,6 +9,11 @@
     		#{id}, #{pass}, #{name}, #{address}, #{email}, #{postCode}, #{tel}
     	)
     </insert>
+    <select id="selectId" parameterType="string" resultType="string">
+    	select id
+    	  from t_member
+    	 where id = #{id}  
+    </select>
 </mapper>
 
 

@@ -21,10 +21,6 @@ public class PageVO {
 		
 	}
 	
-	
-	
-	
-	
 	public int getPageNo() {
 		return pageNo;
 	}

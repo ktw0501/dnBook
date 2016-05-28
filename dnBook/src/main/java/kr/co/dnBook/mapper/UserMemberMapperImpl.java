@@ -11,9 +11,14 @@ public class UserMemberMapperImpl implements UserMemberMapper {
 	@Autowired
 	private SqlSessionTemplate session;
 	
-	private static final String MEMBER_DAO_NAMESPACE = "kr.co.dnBook.admin.board.repository.mapper.MemberMapper";
+	private static final String MEMBER_DAO_NAMESPACE = "kr.co.dnBook.mapper";
 	
 	public void insertMember(MemberVO member) throws Exception {
 		session.insert(MEMBER_DAO_NAMESPACE + ".insertMember", member);
+	}
+
+	@Override
+	public String selectId(String id) throws Exception {
+		return session.selectOne(MEMBER_DAO_NAMESPACE + ".selectId", id);
 	}
 }

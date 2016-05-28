@@ -13,15 +13,15 @@ public class AdminBookServiceImpl implements AdminBookService{
 	private AdminBookMapper mapper;
 
 	@Override
-	public void deleteBook(String bookCode) throws Exception {
+	public void deleteBook(int bookCode) throws Exception {
 	}
 
 	@Override
-	public void deleteReview(String bookCode) throws Exception {
+	public void deleteReview(int bookCode) throws Exception {
 	}
 
 	@Override
-	public void deleteRecom(String reviewNo) throws Exception {
+	public void deleteRecom(int reviewNo) throws Exception {
 	}
 
 	@Override

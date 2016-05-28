@@ -5,11 +5,13 @@ public class MemberVO {
 	private String pass;
 	private String name;
 	private String address;
+	private String detailAddress;
 	private String email;
 	private String postCode;
 	private String tel;
-	
-	
+	private int status;
+
+
 	public String getId() {
 		return id;
 	}
@@ -34,6 +36,12 @@ public class MemberVO {
 	public void setAddress(String address) {
 		this.address = address;
 	}
+	public String getDetailAddress() {
+		return detailAddress;
+	}
+	public void setDetailAddress(String detailAddress) {
+		this.detailAddress = detailAddress;
+	}
 	public String getEmail() {
 		return email;
 	}
@@ -51,6 +59,12 @@ public class MemberVO {
 	}
 	public void setTel(String tel) {
 		this.tel = tel;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
 	}
 	
 }
