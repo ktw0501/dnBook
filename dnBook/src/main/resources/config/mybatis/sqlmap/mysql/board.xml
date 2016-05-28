@@ -12,9 +12,9 @@
 		<result column="reg_date" property="regDate" />
 	</resultMap>
 	<select id="selectList" parameterType="boardSearch" resultMap="boardMapper">
-		select board_no, title, reg_date from t_board
+		select board_no, title, reg_date, view_count from t_board
 		 where board_type = #{boardType}
-		 limit (#{start}, 5)
+		 limit #{start}, 5
 	</select>
 	
 	<select id="selectTotalCount" parameterType="boardSearch" resultType="int">
@@ -24,9 +24,55 @@
 	</select>
 	
 	<select id="selectBoardDetail" parameterType="int" resultMap="boardMapper">
-	
+		select *
+		  from t_board
+		 where board_no = #{no}
 	</select>
 	
+	<select id="selectNext" parameterType="board" resultMap="boardMapper">
+		select board_no, title
+		  from t_board
+		 where board_type = #{boardType} and board_no &gt; #{boardNo}
+		 limit 0, 1
+	</select>
+	
+	<select id="selectPrev" parameterType="board" resultMap="boardMapper">
+		select board_no, title
+		  from t_board
+		 where board_type = #{boardType} and board_no &lt; #{boardNo}
+		 order by desc
+		 limit 0, 1
+	</select>
+	
+	<resultMap type="boardComment" id="boardCommentMap">
+		<result column="comment_no" property="commentNo" />
+		<result column="content" property="content" />
+		<result column="id" property="id" />
+		<result column="board_no" property="boardNo" />
+		<result column="reg_date" property="regDate" />
+	</resultMap>
+	
+	<select id="selectCommentList" parameterType="boardComment" resultMap="boardCommentMap">
+		select * from t_comment
+		 where board_no = #{boardNo}
+		 order by desc
+	</select>
+	
+	<insert id="insertComment" parameterType="boardComment">
+		insert into t_comment (id, content, board_no)
+		values (#{id}, #{content}, #{boardNo})
+	</insert>
+	
+	<update id="updateComment" parameterType="boardComment">
+		update t_comment
+		   set content = #{content}
+		 where comment_no = #{commentNo}  
+	</update>
+	
+	<delete id="deleteComment" parameterType="int">
+		delete t_comment
+		 where comment_no = #{commentNo}
+	</delete>
     
 </mapper>
 
