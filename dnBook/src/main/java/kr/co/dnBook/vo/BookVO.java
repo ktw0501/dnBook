@@ -2,7 +2,7 @@ package kr.co.dnBook.vo;
 
 public class BookVO {
 	
-	private int BookCode;
+	private int bookCode;
 	private String coverImg;
 	private String title;
 	private String publisher;
@@ -16,10 +16,10 @@ public class BookVO {
 	private String pubDate;
 	private String categoryCode;
 	public int getBookCode() {
-		return BookCode;
+		return bookCode;
 	}
 	public void setBookCode(int bookCode) {
-		BookCode = bookCode;
+		bookCode = bookCode;
 	}
 	public String getCoverImg() {
 		return coverImg;
