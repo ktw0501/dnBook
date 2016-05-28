@@ -22,4 +22,6 @@ public class UserBoardServiceImpl implements UserBoardService {
 		result.put("page", page);
 		return result;
 	}
+	
+	
 }

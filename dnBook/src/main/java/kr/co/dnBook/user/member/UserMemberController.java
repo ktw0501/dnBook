@@ -40,7 +40,6 @@ public class UserMemberController {
 	@RequestMapping("/join.do")
 	public String join(MemberVO member) throws Exception {
 		memberService.insertMember(member);
-		System.out.println(member.getAddress() + "," + member.getDetailAddress());
 		return "redirect:/main.do";
 	}
 	@RequestMapping("/duplCheck.json")

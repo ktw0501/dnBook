@@ -33,7 +33,7 @@ public class UserBoardController {
 	}
 	
 	@RequestMapping("detail.do")
-	public BoardVO boardDetail() {
+	public BoardVO boardDetail(int no) {
 		
 		return null;
 	}
