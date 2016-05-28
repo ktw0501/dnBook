@@ -5,7 +5,7 @@
     
     <!-- 회원 상세 -->
     <select id="selectOneMember" parameterType="string" resultType="member">
-		select id, name, address, detail_address as detailAddress, email, post_code as postCode, status   
+		select id, name, address, detail_address as detailAddress, email, post_code as postCode, tel, status   
 		  from t_member 
 		 where id = #{id}      
     </select>

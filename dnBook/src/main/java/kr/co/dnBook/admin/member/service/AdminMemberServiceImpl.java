@@ -8,6 +8,7 @@ import kr.co.dnBook.vo.MemberVO;
 
 
 
+
 @Service
 public class AdminMemberServiceImpl implements AdminMemberService{
 	
@@ -23,6 +24,12 @@ public class AdminMemberServiceImpl implements AdminMemberService{
 	@Override
 	public MemberVO updateFormMember(String id) throws Exception {
 		return dao.selectOneMember(id);
+	}
+
+	@Override
+	public MemberVO detailMember(String id) throws Exception {
+		MemberVO member = dao.selectOneMember(id);
+		return member;
 	}
 	
 

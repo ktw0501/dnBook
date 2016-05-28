@@ -16,8 +16,8 @@
 		페이지 내용<br />
 		페이지 내용<br />
 		페이지 내용<br />
-		<a href="${pageContext.request.contextPath}/admin/board/list.do">이벤트 게시판</a>
-		<a href="${pageContext.request.contextPath}/admin/member/list.do">회원관리 리스트</a>
+		<a href="${pageContext.request.contextPath}/admin/board/list.do">이벤트 게시판</a><br/>
+		<a href="${pageContext.request.contextPath}/admin/member/detail.do?id=a">회원상세로</a>
 	</div>
 	<div class="footer">
 		<%@ include file="/WEB-INF/jsp/include/bottom.jsp" %>
