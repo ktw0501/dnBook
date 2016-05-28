@@ -2,15 +2,35 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.dnBook.mapper.UserBookMapper">
-    <select id="selectBook" resultType="book">
+    <resultMap type="book" id="bookMap">
+    	<result column="book_code" property="bookCode"/>
+    	<result column="board_no" property="boardNo"/>
+    	<result column="cover_img" property="coverImg"/>
+    	<result column="title" property="title"/>
+    	<result column="publisher" property="publisher"/>
+    	<result column="author" property="author"/>
+    	<result column="translator" property="translator"/>
+    	<result column="description" property="description"/>
+    	<result column="price" property="price"/>
+    	<result column="rent_price" property="rentPrice"/>
+    	<result column="rental_dir_path" property="rentalDirPath"/>
+    	<result column="pdf_path" property="pdfPath"/>
+    	<result column="pub_date" property="pubDate"/>
+    	<result column="category_code" property="categoryCode"/>
+    </resultMap>
+    
+    <select id="selectBook" resultMap="bookMap">
     	select *
     	  from t_book
     </select>
-    <select id="detailBook" parameterType="int" resultType="book">
-    	select *
-    	  from t_book
-    	 where book_code = #{bookCode}
+
+    <!-- 게시물 상세 -->
+    <select id="selectOneBoook" parameterType="int" resultMap="bookMap">
+		select *
+		  from t_book 
+		 where book_code = #{bookCode}    
     </select>
+    
 </mapper>
 
 

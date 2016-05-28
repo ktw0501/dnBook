@@ -22,9 +22,7 @@ public class UserBookController {
 	@RequestMapping("/detailBook.do")
 	public void detailBook(HttpSession session, BookRecomVO bookRecomVO, Model model) throws Exception {
 		MemberVO user = (MemberVO)session.getAttribute("user");
-
 		bookRecomVO.setId(user.getId());
-		
 		Map<String, Object> result = UserBookService.detailBook(bookRecomVO);
 		model.addAttribute("board", result.get("board"));
 		model.addAttribute("recomCount", result.get("recomCount"));
