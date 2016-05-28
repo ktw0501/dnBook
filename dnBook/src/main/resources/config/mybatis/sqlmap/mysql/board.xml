@@ -23,7 +23,7 @@
 		 where board_type = #{boardType}
 	</select>
 	
-	<select id="selectBoardDetail" parameterType="int" resultType="boardMapper">
+	<select id="selectBoardDetail" parameterType="int" resultMap="boardMapper">
 	
 	</select>
 	
