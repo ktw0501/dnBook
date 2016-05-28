@@ -2,7 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.dnBook.mapper.UserSalesMapper">
-
+	<resultMap type="sales" id="salesMap">
+		<result column="id" property="id" />	
+		<result column="book_code" property="bookCode" />	
+		<result column="sales_date" property="salesDate" />	
+		<result column="cover_img" property="coverImg" />	
+		<result column="title" property="title" />	
+		<result column="author" property="author" />	
+		<result column="price" property="price" />	
+	</resultMap>
+	<select id="selectSales" parameterType="String" resultMap="salesMap">
+		select b.cover_img, b.title, b.author, b.price, s.sales_date
+		  from book as b, sales as s
+		 where b.book_code = s.book_code and id=#{id}
+	</select>
     
 </mapper>
 

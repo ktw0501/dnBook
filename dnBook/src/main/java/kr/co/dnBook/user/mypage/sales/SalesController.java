@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import kr.co.dnBook.vo.MemberVO;
 
 @Controller
+@RequestMapping("member")
 public class SalesController {
 	
 	@Autowired
@@ -19,9 +20,10 @@ public class SalesController {
 	
 	@RequestMapping("/salesList.do")
 	public void selectSalesBoard(HttpSession session,Model model) throws Exception{
-		MemberVO user = (MemberVO)session.getAttribute("user");
+//		MemberVO user = (MemberVO)session.getAttribute("user");
 		
-		Map<String, Object> result = salesService.salesListBoard(user.getId());
+//		Map<String, Object> result = salesService.salesListBoard(user.getId());
+		Map<String, Object> result = salesService.salesListBoard("TEST");
 		model.addAttribute("sales", result.get("sales"));
 		
 	}

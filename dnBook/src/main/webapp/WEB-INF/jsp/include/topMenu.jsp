@@ -47,6 +47,7 @@
 		<ul class="nav navbar-nav navbar-right">
 	        <li>
 	       		<a href="#">로그인</a>
+	       		<a href="${pageContext.request.contextPath}/member/salesList.do">마이페이지</a>
 	        </li>
 	        <li>
 	       		<a href="${pageContext.request.contextPath}/member/joinForm.do">회원가입</a>
