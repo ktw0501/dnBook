@@ -1,7 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="board.BoardDAO">
+<mapper namespace="kr.co.dnBook.mapper.UserBoardMapper">
+	<resultMap type="board" id="boardMapper">
+		<result column="board_no" property="boardNo" />
+		<result column="id" property="id" />
+		<result column="board_type" property="boardType" />
+		<result column="title" property="title" />
+		<result column="content" property="content" />
+		<result column="view_count" property="viewCount" />
+		<result column="reg_date" property="regDate" />
+	</resultMap>
+	<select id="selectList" parameterType="boardSearch" resultMap="boardMapper">
+		select * from t_board
+		 where board_type = #{boardType}
+		 limit (#{start}, 5)
+	</select>
+	
+	<select id="selectTotalCount" parameterType="boardSearch" resultType="int">
+		select count(*)
+		  from t_board
+		 where board_type = #{boardType}
+	</select>
+	
     
 </mapper>
 
