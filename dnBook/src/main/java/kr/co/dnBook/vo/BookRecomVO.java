@@ -1,14 +1,14 @@
 package kr.co.dnBook.vo;
 
 public class BookRecomVO {
-	private int recomNo;
+	private int bookCode;
 	private String id;
 	
-	public int getRecomNo() {
-		return recomNo;
+	public int getBookCode() {
+		return bookCode;
 	}
-	public void setRecomNo(int recomNo) {
-		this.recomNo = recomNo;
+	public void setBookCode(int bookCode) {
+		this.bookCode = bookCode;
 	}
 	public String getId() {
 		return id;

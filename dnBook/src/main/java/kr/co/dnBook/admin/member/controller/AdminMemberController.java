@@ -10,13 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import kr.co.dnBook.admin.member.service.AdminMemberService;
 import kr.co.dnBook.vo.MemberVO;
 
-
-
-
-
-
-
-
 @Controller
 @RequestMapping("/admin/member")
 public class AdminMemberController {
