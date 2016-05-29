@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Map;
 
 import kr.co.dnBook.vo.BookRecomVO;
+import kr.co.dnBook.vo.BookSearchVO;
 import kr.co.dnBook.vo.ReviewVO;
 import kr.co.dnBook.vo.WishVO;
 
 public interface UserBookService {
-
+	public Map<String, Object> listBook(BookSearchVO bookSearch) throws Exception;
+	//---------------------------------------------------------------------------------
 	public Map<String, Object> detailBook(BookRecomVO bookRecomVO) throws Exception;
 	public void registWish(WishVO wishVO) throws Exception;
 	public void deleteWish(WishVO wishVO) throws Exception;

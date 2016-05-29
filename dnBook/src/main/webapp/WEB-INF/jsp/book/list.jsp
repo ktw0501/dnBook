@@ -31,18 +31,20 @@
 </head>
 <body>
 	<div class="container">
+	
 		<div class="search">
 			상품명순 | 판매량순 | 등록일순 | 저가격순 | 고가격순
 		</div>
 		<div class="list">
-			<c:forEach var="book" items="${list}">
+		${list[0].title}${list[0].author}${list[0].price}
+			<c:forEach var="vo" items="${list}">
 				<div>
-					<div id="img"  class="book">${book.coverImg}</div>
+					<div id="img"  class="book">${vo.coverImg}</div>
 					<div id="bookInfo"  class="book">
-						<div><a href="detailBook.do?bookCode=${book.bookCode}">${book.title}</a></div>
-						<div>${book.author}(지은이) | ${book.publisher} | ${book.pubDate}</div>
-						<div>${book.price}원</div>
-						<div>${book.description}</div>
+						<div><a href="detail.do?bookCode=${vo.bookCode}">${vo.title}</a></div>
+						<div>${vo.author}(지은이) | ${vo.publisher} | ${vo.pubDate}</div>
+						<div>${vo.price}원</div>
+						<div>${vo.description}</div>
 					</div>
 					<div id="choice"  class="book">
 						<div>찜</div>

@@ -19,7 +19,7 @@ public class BookVO {
 		return bookCode;
 	}
 	public void setBookCode(int bookCode) {
-		bookCode = bookCode;
+		this.bookCode = bookCode;
 	}
 	public String getCoverImg() {
 		return coverImg;

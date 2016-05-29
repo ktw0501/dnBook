@@ -62,7 +62,7 @@
 		동네책방
 	</div>
 	<div class="menubar">
-		<button type="button" class="button">국내도서</button>
+		<button type="button" class="button"><a href="${pageContext.request.contextPath}/book/list.do">국내도서</a></button>
 		<button type="button" class="button">외국도서</button>
 		<button type="button" class="button">베스트셀러</button>
 		<button type="button" class="button">신간도서</button>

@@ -4,7 +4,6 @@
 <mapper namespace="kr.co.dnBook.mapper.UserBookMapper">
     <resultMap type="book" id="bookMap">
     	<result column="book_code" property="bookCode"/>
-    	<result column="board_no" property="boardNo"/>
     	<result column="cover_img" property="coverImg"/>
     	<result column="title" property="title"/>
     	<result column="publisher" property="publisher"/>
@@ -18,6 +17,18 @@
     	<result column="pub_date" property="pubDate"/>
     	<result column="category_code" property="categoryCode"/>
     </resultMap>
+
+	<select id="selectList" parameterType="bookSearch" resultMap="bookMap">
+		select *
+		  from t_book 
+		 order by book_code desc
+		 limit #{start}, 5
+	</select>
+	
+	<select id="selectTotalCount" parameterType="bookSearch" resultType="int">
+		select count(*)
+		  from t_book
+	</select>
     
     <select id="selectBook" resultMap="bookMap">
     	select *
@@ -25,7 +36,7 @@
     </select>
 
     <!-- 게시물 상세 -->
-    <select id="selectOneBoook" parameterType="int" resultMap="bookMap">
+    <select id="selectOneBook" parameterType="int" resultMap="bookMap">
 		select *
 		  from t_book 
 		 where book_code = #{bookCode}    
@@ -36,7 +47,8 @@
     	<result column="recom_no" property="recomNo"/>
     	<result column="id" property="id"/>
     </resultMap>
-    <select id="selectRecomCount" resultType="int" parameterType="bookRecomMap">
+    
+    <select id="selectRecomCount" resultType="int" resultMap="bookRecomMap">
 		select count(*)
 		  from t_book_recom
 		 WHERE id = #{id}
@@ -44,11 +56,7 @@
     </select>
 
     <!-- 장바구니 -->
-    <resultMap type="Wish" id="WishMap">
-    	<result column="book_code" property="bookCode"/>
-    	<result column="id" property="id"/>
-    </resultMap>
-    <insert id="insertWish" parameterType="WishMap">
+    <insert id="insertWish" parameterType="Wish">
 	    insert into t_Wish (       
 		    bookCode, id
 		) values (
@@ -56,7 +64,7 @@
 		)
     </insert>    
     <!-- 추천 삭제 -->
-    <insert id="deleteWish" parameterType="WishMap">
+    <insert id="deleteWish" parameterType="Wish">
 	    delete 
 	      from t_Wish 			
 	     where bookCode = #{bookCode}
@@ -67,14 +75,14 @@
     
      <!-- 게시물 댓글 조회 -->
     <select id="selectReview" parameterType="int" resultType="review">
-		select comment_no as commentNo, bookCode, id, content, reg_date as regDate
+		select comment_no as commentNo, bookCode, id, content, DATE_FORMAT(reg_date, '%Y-%c-%e %T') as regDate
 		  from t_comment				
 		 where no = #{no}      
     </select>
 
     <!-- 댓글 조회 -->
     <select id="selectReviewByPk" parameterType="int" resultType="review">
-		select review_no as reviewNo, bookCode, id, content, reg_date as regDate
+		select review_no as reviewNo, bookCode, id, content, DATE_FORMAT(reg_date, '%Y-%c-%e %T') as regDate
 		  from t_comment			
 		 where review_no = #{reviewNo}      
     </select>

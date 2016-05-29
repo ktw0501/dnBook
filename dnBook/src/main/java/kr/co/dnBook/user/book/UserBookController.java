@@ -9,34 +9,51 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kr.co.dnBook.vo.BoardVO;
 import kr.co.dnBook.vo.BookRecomVO;
+import kr.co.dnBook.vo.BookSearchVO;
+import kr.co.dnBook.vo.BookVO;
 import kr.co.dnBook.vo.MemberVO;
+import kr.co.dnBook.vo.PageVO;
 import kr.co.dnBook.vo.ReviewVO;
 import kr.co.dnBook.vo.WishVO;
 
 @Controller
-@RequestMapping("/board")
+@RequestMapping("/book/")
 public class UserBookController {
 
 	@Autowired
 	private UserBookService UserBookService;
 //리스트-----------------------------------------------------------------------------------------------------------
-
+	@RequestMapping("list.do")
+	public void listBook(Model model, @RequestParam(value="pageNo", required=false, defaultValue="1")int pageNo) throws Exception {
+		BookSearchVO bookSearch = new BookSearchVO(pageNo);
+		Map<String, Object> result = UserBookService.listBook(bookSearch);
+		
+		List<BookVO> list = (List<BookVO>) result.get("list");
+		model.addAttribute("list", list);
+		
+		PageVO page = (PageVO) result.get("page");
+		model.addAttribute("page", page);
+		
+		System.out.println(list.size());
+	}
 //-----------------------------------------------------------------------------------------------------------리스트
 //detailBook-----------------------------------------------------------------------------------------------------
-	@RequestMapping("/detailBook.do")
+	@RequestMapping("detail.do")
 	public void detailBook(HttpSession session, BookRecomVO bookRecomVO, Model model) throws Exception {
-		MemberVO user = (MemberVO)session.getAttribute("user");
-		bookRecomVO.setId(user.getId());
+//		MemberVO user = (MemberVO)session.getAttribute("user");
+//		bookRecomVO.setId(user.getId());
+		bookRecomVO.setId("a");
 		Map<String, Object> result = UserBookService.detailBook(bookRecomVO);
 		model.addAttribute("board", result.get("board"));
 		model.addAttribute("recomCount", result.get("recomCount"));
-//		model.addAttribute("file", result.get("file"));
 	}
 	
-	@RequestMapping("/registWish.do")
+	@RequestMapping("registWish.do")
 	public String registWish(HttpSession session, WishVO wishVO) throws Exception {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		// VO에 설정하기
@@ -46,7 +63,7 @@ public class UserBookController {
 		return "redirect:detailBook.do?bookCode=" + wishVO.getBookCode();
 	}
 	
-	@RequestMapping("/deleteWish.do")
+	@RequestMapping("deleteWish.do")
 	public String deleteWish(HttpSession session, WishVO wishVO) throws Exception {
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		// VO에 설정하기
@@ -58,7 +75,7 @@ public class UserBookController {
 	
 	
 	
-	@RequestMapping("/registReview.json")
+	@RequestMapping("registReview.json")
 	@ResponseBody
 	public ReviewVO registReview(HttpSession session, ReviewVO reviewVO) throws Exception {
 		MemberVO user = (MemberVO)session.getAttribute("user");
@@ -69,7 +86,7 @@ public class UserBookController {
 		return UserBookService.registReview(reviewVO);
 	}
 	
-	@RequestMapping("/modifyReview.json")
+	@RequestMapping("modifyReview.json")
 	@ResponseBody
 	public String updateReview(ReviewVO reviewVO) throws Exception {
 		// 댓글 수정
@@ -77,14 +94,14 @@ public class UserBookController {
 		return "success";
 	}
 	
-	@RequestMapping("/listReview.json")
+	@RequestMapping("listReview.json")
 	@ResponseBody
 	public List<ReviewVO> selectReview(int bookCode) throws Exception {
 		// 댓글 정보 조회
 		return UserBookService.selectReview(bookCode);
 	}
 	
-	@RequestMapping("/deleteReview.json")
+	@RequestMapping("deleteReview.json")
 	@ResponseBody
 	public List<ReviewVO> deleteReview(ReviewVO reviewVO) throws Exception {
 		return UserBookService.deleteReview(reviewVO);

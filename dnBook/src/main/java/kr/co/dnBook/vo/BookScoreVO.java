@@ -1,9 +1,8 @@
 package kr.co.dnBook.vo;
 
-public class BookRecomVO {
+public class BookScoreVO {
 	private int bookCode;			
 	private String id;
-	
 	public int getBookCode() {
 		return bookCode;
 	}

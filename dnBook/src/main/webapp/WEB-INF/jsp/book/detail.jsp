@@ -21,6 +21,7 @@
 		border: 1px solid black;
 	}  
 	#pass {
+		position: fixed;
 		left: 300px; top: 200px;
 		width: 350px; height: 100px;
 		background: gold;

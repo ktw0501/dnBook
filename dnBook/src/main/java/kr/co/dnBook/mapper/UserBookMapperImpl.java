@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.dnBook.vo.BookRecomVO;
+import kr.co.dnBook.vo.BookSearchVO;
 import kr.co.dnBook.vo.BookVO;
 import kr.co.dnBook.vo.ReviewVO;
 import kr.co.dnBook.vo.WishVO;
@@ -17,19 +18,27 @@ public class UserBookMapperImpl implements UserBookMapper{
 	private SqlSessionTemplate session;
 	
 	private final String NAMESPACE = "kr.co.dnBook.mapper.UserBookMapper";
+	// 리스트 ----------------------------------------------------------------------
+	@Override
+	public List<BookVO> selectList(BookSearchVO bookSearch) throws Exception{
+		return session.selectList(NAMESPACE + ".selectList", bookSearch);
+	}
+	@Override
+	public int selectTotalCount(BookSearchVO bookSearch) throws Exception {
+		return session.selectOne(NAMESPACE + ".selectTotalCount", bookSearch);
+	}
+	// ----------------------------------------------------------------------리스트 
 	
 	// detailBook ----------------------------------------------------------------
 	public BookVO selectOneBoard(int bookCode) throws Exception {
 		return session.selectOne(NAMESPACE + ".selectOneBook", bookCode);
 	}
 
-	public int selectRecomCount(BookRecomVO bookRecomVO) throws Exception {						// 추천하기 바꿔야함 ★
+	public int selectRecomCount(BookRecomVO bookRecomVO) throws Exception {		
+		// 추천하기 바꿔야함 ★
 		return session.selectOne(NAMESPACE + ".selectRecomCount", bookRecomVO);
 	}
 	
-//	public BookVO selectCoverImg(int bookCode) throws Exception {			
-//		return session.selectOne(NAMESPACE + ".selectBoardFile", bookCode);
-//	}
 	public void insertWish(WishVO wishVO) throws Exception {
 		session.insert(NAMESPACE + ".insertWish", wishVO);
 	}
