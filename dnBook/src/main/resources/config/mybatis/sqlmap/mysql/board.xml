@@ -25,7 +25,7 @@
 	</select>
 	
 	<select id="selectBoardDetail" parameterType="int" resultMap="boardMapper">
-		select *
+		select board_no, id, board_type, title, content, view_count, DATE_FORMAT(reg_date, '%Y-%c-%e %T') as reg_date
 		  from t_board
 		 where board_no = #{no}
 	</select>
@@ -54,7 +54,8 @@
 	</resultMap>
 	
 	<select id="selectCommentList" parameterType="boardComment" resultMap="boardCommentMap">
-		select * from t_comment
+		select comment_no, content, id, board_no, DATE_FORMAT(reg_date, '%Y-%c-%e %T') as reg_date 
+		  from t_comment
 		 where board_no = #{boardNo}
 		 order by comment_no desc
 	</select>

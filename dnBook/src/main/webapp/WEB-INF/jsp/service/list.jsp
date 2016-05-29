@@ -39,6 +39,10 @@
 		margin-top: 50px;
 		margin-bottom: 50px;
 	}
+	a {
+		text-decoration: none;
+		color: black;
+	}
 </style>
 <script src="${pageContext.request.contextPath}/js/jquery-2.2.3.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
@@ -69,7 +73,7 @@
 							<c:forEach var="vo" items="${list}">
 							<tr>
 								<td>${vo.boardNo}</td>
-								<td><a href="service/detail.do?no=${vo.boardNo}">${vo.title}</a></td>
+								<td><a href="detail.do?boardNo=${vo.boardNo}">${vo.title}</a></td>
 								<td>관리자</td>
 								<td>${vo.pageViewCnt}</td>
 								<td>${vo.regDate}</td>
