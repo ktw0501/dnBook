@@ -1,12 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>  
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style>
+	.stop {
+		background: tomato;
+		color: white;
+		font-weight: bold;
+		border: 1px solid black;
+	}  
+</style>
 </head>
 <body>
 <div class="content">
@@ -51,15 +59,25 @@
 </div>
 
 
+<script src="${pageContext.request.contextPath}/js/jquery-2.2.3.js"></script>
 <script type="text/javascript">
+
 $(function () {
 	$("#stopBtn").on("click", function () {
-		var stopUrl = "update.do";
-		if(${status} == 1) {
-			recomUrl = "deleteRecom.do";
+		var statusUrl = "startStatus.do";
+		if("${member.status}" == 2) {
+			statusUrl = "stopStatus.do";
 		}
-		location.href = recomUrl + "?no=${board.no}";
+		location.href = statusUrl + "?id=${member.id}";
+	
+	
 	});
+	
+	if("${member.status}" == "2") {
+		$("#stopBtn").attr("class", "stop").html("정지 해제");
+	}
+	
+	
 });
 
 

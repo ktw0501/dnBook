@@ -10,14 +10,26 @@
 		 where id = #{id}      
     </select>
     
-      <!-- 회원 수정 -->
-    <update id="updateMember" parameterType="member">
+<!--       회원 수정 -->
+<!--     <update id="updateMember" parameterType="member"> -->
+<!--         update t_member  -->
+<!-- 		   set status = #{status}          -->
+<!-- 		 where id = #{id}         -->
+<!--     </update> -->
+    
+    <!-- 정지 해제 -->
+    <update id="startStatus" parameterType="member">
         update t_member 
-		   set status = #{status}         
+		   set status = 2       
 		 where id = #{id}        
-    </update>
+    </update>   
     
-    
+    <!-- 회원 정지 -->
+   <update id="stopStatus" parameterType="member">
+        update t_member 
+		   set status = -2        
+		 where id = #{id}        
+    </update> 
     
     
     

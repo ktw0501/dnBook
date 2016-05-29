@@ -15,18 +15,24 @@ public class AdminMemberMapperImpl implements AdminMemberMapper {
 
 	private static final String MEMBER_DAO_NAMESPACE = "kr.co.dnBook.mapper.AdminMemberMapper";
 	
-	@Override
-	public void updateMember(MemberVO member) throws Exception {
-		session.update(MEMBER_DAO_NAMESPACE + ".updateMember", member);
-		
-	}
+//	@Override
+//	public void updateMember(MemberVO member) throws Exception {
+//		session.update(MEMBER_DAO_NAMESPACE + ".updateMember", member);
+//		
+//	}
 
 	@Override
 	public MemberVO selectOneMember(String id) throws Exception {
 		return session.selectOne(MEMBER_DAO_NAMESPACE + ".selectOneMember", id);
 	}
 	
+	public void startStatus(MemberVO memberVO) throws Exception {
+		session.update(MEMBER_DAO_NAMESPACE + ".startStatus", memberVO);
+	}
 	
+	public void stopStatus(MemberVO MemberVO) throws Exception {
+		session.update(MEMBER_DAO_NAMESPACE + ".stopStatus", MemberVO);
+	}
 
 	
 		
