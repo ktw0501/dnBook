@@ -8,27 +8,61 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.dnBook.mapper.AdminBoardMapper;
+import kr.co.dnBook.vo.BoardCommentVO;
 import kr.co.dnBook.vo.BoardSearchVO;
 import kr.co.dnBook.vo.BoardVO;
+import kr.co.dnBook.vo.PageVO;
 
 @Service
-public class AdminBoardServiceImpl implements AdminBoardService{
-	
+public class AdminBoardServiceImpl implements AdminBoardService {
 	@Autowired
-	private AdminBoardMapper dao;
-
-	@Override
-	public Map<String, Object> listBoard(BoardSearchVO searchVO) throws Exception {
-		List<BoardVO> list = dao.selectBoard(searchVO);
-		
-		// 전체 게시글 카운트
-		int totalCount = dao.selectBoardCount();
-		
+	AdminBoardMapper dao;
+	
+	public Map<String, Object> listBoard(BoardSearchVO boardSearch) throws Exception {
 		Map<String, Object> result = new HashMap<>();
-		result.put("list", list);
-		result.put("totalCount", totalCount);
+		result.put("list", dao.selectList(boardSearch));
+		PageVO page = new PageVO(boardSearch.getPageNo(), dao.selectTotalCount(boardSearch));
+		result.put("page", page);
 		return result;
 	}
+	
+	@Override
+	public Map<String, Object> detailBoard(BoardVO board) throws Exception {
+		Map<String, Object> result = new HashMap<>();
+		board = dao.selectDetail(board.getBoardNo());
+		BoardVO prev = dao.selectPrev(board);
+		BoardVO next = dao.selectNext(board);
+		result.put("board", board);
+		result.put("prev", prev);
+		result.put("next", next);
+		return result;
+	}
+	
+	@Override
+	public List<BoardCommentVO> commentList(BoardCommentVO comment) throws Exception {
+		return dao.selectCommentList(comment);
+	}
+	
+	@Override
+	public List<BoardCommentVO> insertComment(BoardCommentVO comment) throws Exception {
+		dao.insertComment(comment);
+		return dao.selectCommentList(comment);
+	}
+	
+	
+	@Override
+	public List<BoardCommentVO> updateComment(BoardCommentVO comment) throws Exception {
+		dao.updateComment(comment);
+		return dao.selectCommentList(comment);
+	}
+	
+	@Override
+	public List<BoardCommentVO> deleteComment(BoardCommentVO comment) throws Exception {
+		dao.deleteComment(comment.getCommentNo());
+		return dao.selectCommentList(comment);
+	}
+	
+	
 	
 	
 }
