@@ -54,8 +54,8 @@
 		<td>${member.status}</td>
 	</tr>	
 	</table>
-	<button type="button" id="stopBtn">회원 정지</button>
-	<a href="updateForm.do?id=${member.id}"></a>	
+	<button type="button" id="stopBtn">회원 정지</button><br/>
+	<a href="list.do?status=${member.status}">목록으로</a>	
 </div>
 
 

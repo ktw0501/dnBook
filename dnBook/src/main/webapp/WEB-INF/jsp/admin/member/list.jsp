@@ -39,10 +39,6 @@
 		margin-top: 50px;
 		margin-bottom: 50px;
 	}
-	a {
-		text-decoration: none;
-		color: black;
-	}
 </style>
 <script src="${pageContext.request.contextPath}/js/jquery-2.2.3.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
@@ -64,23 +60,23 @@
 					<div id="board">
 						<table class="table table-striped">
 							<tr>
-								<th style="width: 10%;">번호</th>
-								<th style="width: 40%;">제목</th>
-								<th style="width: 10%;">작성자</th>
-								<th style="width: 10%;">조회수</th>
-								<th style="width: 20%;">등록일</th>
+								<th style="width: 10%;">id</th>
+								<th style="width: 10%;">name</th>
+								<th style="width: 40%;">주소</th>
+								<th style="width: 20%;">이메일</th>
+								<th style="width: 20%;">전화번호</th>
 							</tr>
 							<c:forEach var="vo" items="${list}">
 							<tr>
-								<td>${vo.boardNo}</td>
-								<td><a href="detail.do?boardNo=${vo.boardNo}">${vo.title}</a></td>
-								<td>관리자</td>
-								<td>${vo.pageViewCnt}</td>
-								<td>${vo.regDate}</td>
+								<td><a href="detail.do?id=${vo.id}">${vo.id}</a></td>
+								<td>${vo.name}</td>
+								<td>${vo.address} ${vo.detailAddress} </td>
+								<td>${vo.email}</td>
+								<td>${vo.tel}</td>
 							</tr>
 							</c:forEach>
 							<c:if test="${empty list}">
-							<tr><td colspan="4">게시물이 없습니다.</td></tr>
+							<tr><td colspan="4">회원이 없습니다.</td></tr>
 							</c:if>
 						</table>
 						<c:if test="${not empty list}">

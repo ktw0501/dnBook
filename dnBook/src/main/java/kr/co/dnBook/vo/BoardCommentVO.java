@@ -7,7 +7,7 @@ public class BoardCommentVO {
 	private int boardNo;
 	private String content;
 	private String id;
-	private Date regDate;
+	private String regDate;
 	
 	public int getCommentNo() {
 		return commentNo;
@@ -33,10 +33,10 @@ public class BoardCommentVO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public Date getRegDate() {
+	public String getRegDate() {
 		return regDate;
 	}
-	public void setRegDate(Date regDate) {
+	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
 	

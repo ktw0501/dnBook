@@ -1,5 +1,6 @@
 package kr.co.dnBook.admin.member.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
@@ -13,7 +14,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.dnBook.admin.member.service.AdminMemberService;
+import kr.co.dnBook.vo.BoardSearchVO;
+import kr.co.dnBook.vo.BoardVO;
+import kr.co.dnBook.vo.MemberSearchVO;
 import kr.co.dnBook.vo.MemberVO;
+import kr.co.dnBook.vo.PageVO;
 
 
 
@@ -27,18 +32,17 @@ public class AdminMemberController {
 	@Autowired
 	private AdminMemberService memberService;
 	
-	
-//	@RequestMapping("/updateForm.do")
-//	public void updateFormMember(String id, Model model) throws Exception {
-//		MemberVO member = memberService.updateFormMember(id);
-//		model.addAttribute("member", member);
-//	}
-	
-//	@RequestMapping("/update.do")
-//	public String updateMember(MemberVO member) throws Exception {
-//		memberService.updateMember(member);
-//		return "redirect:list.do";
-//	}
+	@RequestMapping("/list.do")
+	public void memberList(Model model, int status, @RequestParam(value="pageNo", required=false, defaultValue="1")int pageNo) throws Exception {
+		MemberSearchVO memberSearch = new MemberSearchVO(pageNo);
+		memberSearch.setStatus(status);
+		Map<String, Object> result = memberService.listMember(memberSearch);
+		List<MemberVO> list = (List<MemberVO>) result.get("list");
+		PageVO page = (PageVO) result.get("page");
+		model.addAttribute("list", list);
+		model.addAttribute("page", page);
+	}
+
 	
 	@RequestMapping("/detail.do")
 	public void detailMember(Model model, @RequestParam(value="id", required=false) String id) throws Exception {

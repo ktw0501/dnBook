@@ -37,6 +37,18 @@
 		margin-top: 50px;
 		margin-bottom: 50px;
 	}
+	a {
+		text-decoration: none;
+		color: black;
+	}
+	#titleHr {
+		width: 100%;
+		color: black;
+		border: thin;
+	}
+	#line {
+		
+	}
 </style>
 <script src="${pageContext.request.contextPath}/js/jquery-2.2.3.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
@@ -57,29 +69,28 @@
 					</div>
 					<div id="board">
 						<div id="title"><c:out value="${board.title}" /></div>
+						<div id="line"><hr id="titleHr"></div>
 						<div id="content"><c:out value="${board.content}" /></div>
 						<div id="comment">
 							<div>
 							
 							</div>
 							<div id="commentList">
-								<table class="table table-striped">
-									
-								</table>
+								<table class="table table-striped"></table>
 							</div>
 						</div>
 						<div>
 							<table>
-								<c:if test="${not empty board.prev.title}">
-								<tr>
-									<th>이전글</th>
-									<td><a href="detail.do?no=${board.prev.boardNo}">${board.prev.title}</a></td>
-								</tr>
-								</c:if>
 								<c:if test="${not empty board.next.title}">
 								<tr>
 									<th>다음글</th>
 									<td><a href="detail.do?no=${board.next.boardNo}">${board.next.title}</a></td>
+								</tr>
+								</c:if>
+								<c:if test="${not empty board.prev.title}">
+								<tr>
+									<th>이전글</th>
+									<td><a href="detail.do?no=${board.prev.boardNo}">${board.prev.title}</a></td>
 								</tr>
 								</c:if>
 							</table>
@@ -94,5 +105,25 @@
 			</div>
 		</div>
 	</div>
+	
+	<script type="text/javascript">
+		$(function() {
+			$.ajax({
+				url: "commentList.json",
+				data: {boardNo: "${board.boardNo}"}
+			}).done(function(data) {
+				console.dir(data);
+				for(var vo in data) {
+					var html = "<tr><td>" + data[vo].content + "</td><td>" + data[vo].id + "</td><td>" + data[vo].regDate + "</td>";
+					if(vo.id === "${user.id}") {
+						html += "<td><a href='updateComment(" + data[vo].commentNo + ");'>수정</a></td><td>" +
+						        "<a href='delComment(" + data[vo].commentNo  + ");'>삭제</a></td>";
+					}
+					$(".table").append(html);
+				}
+			});
+		})		
+			
+	</script>
 </body>
 </html>
