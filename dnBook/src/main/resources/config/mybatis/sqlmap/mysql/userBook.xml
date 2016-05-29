@@ -31,6 +31,78 @@
 		 where book_code = #{bookCode}    
     </select>
     
+    <!-- 게시물 추천수 -->		<!-- 추천하기 바꿔야함 ★ -->
+    <resultMap type="bookRecom" id="bookRecomMap">
+    	<result column="recom_no" property="recomNo"/>
+    	<result column="id" property="id"/>
+    </resultMap>
+    <select id="selectRecomCount" resultType="int" parameterType="bookRecomMap">
+		select count(*)
+		  from t_book_recom
+		 WHERE id = #{id}
+		   AND recomNo = #{recomNo}      
+    </select>
+
+    <!-- 장바구니 -->
+    <resultMap type="Wish" id="WishMap">
+    	<result column="book_code" property="bookCode"/>
+    	<result column="id" property="id"/>
+    </resultMap>
+    <insert id="insertWish" parameterType="WishMap">
+	    insert into t_Wish (       
+		    bookCode, id
+		) values (
+		    #{bookCode}, #{id}
+		)
+    </insert>    
+    <!-- 추천 삭제 -->
+    <insert id="deleteWish" parameterType="WishMap">
+	    delete 
+	      from t_Wish 			
+	     where bookCode = #{bookCode}
+	       and id = #{id}
+    </insert> 
+    
+    
+    
+     <!-- 게시물 댓글 조회 -->
+    <select id="selectReview" parameterType="int" resultType="review">
+		select comment_no as commentNo, bookCode, id, content, reg_date as regDate
+		  from t_comment				
+		 where no = #{no}      
+    </select>
+
+    <!-- 댓글 조회 -->
+    <select id="selectReviewByPk" parameterType="int" resultType="review">
+		select review_no as reviewNo, bookCode, id, content, reg_date as regDate
+		  from t_comment			
+		 where review_no = #{reviewNo}      
+    </select>
+    
+    <!-- 댓글 입력 -->
+    <insert id="insertReview" parameterType="review">
+	    <selectKey keyProperty="reviewNo" resultType="int" order="BEFORE">
+			select s_comment_no.nextVal from dual			
+		</selectKey>
+	    insert into t_comment (    				
+		    review_no, bookCode, id, content   
+		) values (
+		    #{reviewNo}, #{bookCode}, #{id}, #{content}
+		)
+    </insert>
+
+    <!-- 댓글 수정 -->
+    <update id="updateReview" parameterType="review">
+        update t_comment  				
+		   set content = #{content}
+		 where review_no = #{reviewNo}        
+    </update>
+    
+    <!-- 댓글 삭제 -->
+    <delete id="deleteReview" parameterType="int">
+        delete t_comment			
+		 where review_no = #{reviewNo}
+    </delete>
 </mapper>
 
 

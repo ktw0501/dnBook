@@ -1,7 +1,7 @@
 package kr.co.dnBook.vo;
 
 public class BookRecomVO {
-	private int bookCode;
+	private int bookCode;			// recomNo ??
 	private String id;
 	
 	public int getBookCode() {
