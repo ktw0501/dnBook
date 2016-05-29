@@ -53,7 +53,7 @@
 	       		<a href="${pageContext.request.contextPath}/member/joinForm.do">회원가입</a>
 	        </li>
 	        <li>
-	        	<a href="#">고객센터</a>
+	        	<a href="${pageContext.request.contextPath}/service/list.do?boardType=1">고객센터</a>
 	        </li>
         </ul>
 	</div>

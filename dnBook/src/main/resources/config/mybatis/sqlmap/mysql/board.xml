@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="kr.co.dnBook.mapper.UserBoardMapper">
+<mapper namespace="kr.co.dnBook.mapper.UserServiceMapper">
 	<resultMap type="board" id="boardMapper">
 		<result column="board_no" property="boardNo" />
 		<result column="id" property="id" />
@@ -12,8 +12,9 @@
 		<result column="reg_date" property="regDate" />
 	</resultMap>
 	<select id="selectList" parameterType="boardSearch" resultMap="boardMapper">
-		select board_no, title, reg_date, view_count from t_board
+		select board_no, title, DATE_FORMAT(reg_date, '%Y-%c-%e %T') as reg_date, view_count from t_board
 		 where board_type = #{boardType}
+		 order by board_no desc
 		 limit #{start}, 5
 	</select>
 	
@@ -40,7 +41,7 @@
 		select board_no, title
 		  from t_board
 		 where board_type = #{boardType} and board_no &lt; #{boardNo}
-		 order by desc
+		 order by board_no desc
 		 limit 0, 1
 	</select>
 	
@@ -55,7 +56,7 @@
 	<select id="selectCommentList" parameterType="boardComment" resultMap="boardCommentMap">
 		select * from t_comment
 		 where board_no = #{boardNo}
-		 order by desc
+		 order by comment_no desc
 	</select>
 	
 	<insert id="insertComment" parameterType="boardComment">
@@ -74,6 +75,11 @@
 		 where comment_no = #{commentNo}
 	</delete>
     
+    
+    <delete id="test">
+    	insert into t_board (id, board_type, title) 
+    	values ('테스트', 2, '테스터12')
+    </delete>
 </mapper>
 
 

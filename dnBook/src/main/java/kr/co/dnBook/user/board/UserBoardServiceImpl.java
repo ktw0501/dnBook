@@ -62,4 +62,10 @@ public class UserBoardServiceImpl implements UserBoardService {
 		return dao.selectCommentList(comment);
 	}
 	
+	
+	@Override
+	public void test() throws Exception {
+		dao.test();
+	}
+	
 }

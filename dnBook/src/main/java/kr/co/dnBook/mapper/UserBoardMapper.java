@@ -17,4 +17,6 @@ public interface UserBoardMapper {
 	public void insertComment(BoardCommentVO comment) throws Exception;
 	public void updateComment(BoardCommentVO comment) throws Exception;
 	public void deleteComment(int commentNo) throws Exception;
+	
+	public void test() throws Exception;
 }

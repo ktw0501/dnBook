@@ -11,7 +11,7 @@ public class BoardVO implements Serializable {
 	private String title;
 	private String content;
 	private int viewCount;
-	private Date regDate;
+	private String regDate;
 	private int commentCnt;
 	private int pageViewCnt;
 	private BoardVO prev;
@@ -54,10 +54,10 @@ public class BoardVO implements Serializable {
 	public void setViewCount(int viewCount) {
 		this.viewCount = viewCount;
 	}
-	public Date getRegDate() {
+	public String getRegDate() {
 		return regDate;
 	}
-	public void setRegDate(Date regDate) {
+	public void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
 	public int getCommentCnt() {

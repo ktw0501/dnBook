@@ -16,7 +16,7 @@ import kr.co.dnBook.vo.BoardVO;
 import kr.co.dnBook.vo.PageVO;
 
 @Controller
-@RequestMapping("/board/")
+@RequestMapping("/service/")
 public class UserBoardController {
 	@Autowired
 	UserBoardService service;
@@ -62,5 +62,10 @@ public class UserBoardController {
 	@ResponseBody
 	public List<BoardCommentVO> deleteComment(BoardCommentVO comment) throws Exception {
 		return service.deleteComment(comment);
+	}
+	
+	@RequestMapping("test.do")
+	public void test() throws Exception {
+		service.test();
 	}
 }
