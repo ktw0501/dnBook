@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.dnBook.vo.BoardCommentVO;
+import kr.co.dnBook.vo.BoardFileVO;
 import kr.co.dnBook.vo.BoardSearchVO;
 import kr.co.dnBook.vo.BoardVO;
+
 
 @Repository
 public class AdminBoardMapperImpl implements AdminBoardMapper{
@@ -62,10 +64,20 @@ public class AdminBoardMapperImpl implements AdminBoardMapper{
 		sqlSessionTemplate.delete(NAMESPACE + ".selectCommentList", commentNo);
 	}
 	
-	@Override
-	public void test() throws Exception {
-		sqlSessionTemplate.insert(NAMESPACE + ".test");
-		
+	public int insertBoard(BoardVO board) throws Exception {
+		sqlSessionTemplate.insert(NAMESPACE + ".insertBoard", board);
+		return board.getBoardNo();
 	}
+	
+	@Override
+	public int selectBoardNo(BoardVO board) throws Exception {
+		return sqlSessionTemplate.selectOne(NAMESPACE + ".selectBoardNo", board);
+	}
+
+	public void insertBoardFile(BoardFileVO file) throws Exception {
+		sqlSessionTemplate.insert(NAMESPACE + ".insertBoardFile", file);
+	}
+
+	
 	
 }

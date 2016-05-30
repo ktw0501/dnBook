@@ -18,7 +18,7 @@
 *{
 	margin: 0px;
 	padding: 0px;
-}
+} 
 
 .logo{
 	clear:both;
@@ -54,7 +54,6 @@
 	        	<c:when test="${empty member}">
 	        <li>
 	       		<a href="${pageContext.request.contextPath}/login/loginForm.do">로그인</a>
-	       		<a href="#">로그인</a>
 	        </li>
 	        <li>
 	       		<a href="${pageContext.request.contextPath}/member/joinForm.do">회원가입</a>

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.dnBook.mapper.AdminBoardMapper;
 import kr.co.dnBook.vo.BoardCommentVO;
+import kr.co.dnBook.vo.BoardFileVO;
 import kr.co.dnBook.vo.BoardSearchVO;
 import kr.co.dnBook.vo.BoardVO;
 import kr.co.dnBook.vo.PageVO;
@@ -60,6 +61,20 @@ public class AdminBoardServiceImpl implements AdminBoardService {
 	public List<BoardCommentVO> deleteComment(BoardCommentVO comment) throws Exception {
 		dao.deleteComment(comment.getCommentNo());
 		return dao.selectCommentList(comment);
+	}
+
+	@Override
+	public void insertBoard(BoardVO board, BoardFileVO file) throws Exception {
+		int boardNo = dao.insertBoard(board);
+		
+//		int boardNo = dao.selectBoardNo(board);
+		board.setBoardNo(boardNo);
+		
+		if (file != null) {
+			file.setBoardNo(boardNo);
+			dao.insertBoardFile(file);
+		}
+		
 	}
 	
 	

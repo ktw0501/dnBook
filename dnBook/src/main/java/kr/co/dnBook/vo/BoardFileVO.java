@@ -3,7 +3,7 @@ package kr.co.dnBook.vo;
 public class BoardFileVO {
 
     private int fileNo;
-    private int no;
+    private int boardNo;
     private String filePath;
     private String oriFileName;
     private String realFileName;
@@ -17,12 +17,12 @@ public class BoardFileVO {
         return fileNo;
     }
 
-    public void setNo(int no) { 
-        this.no = no;
+    public void setBoardNo(int boardNo) { 
+        this.boardNo = boardNo;
     }
 
-    public int getNo() { 
-        return no;
+    public int getBoardNo() { 
+        return boardNo;
     }
 
     public void setFilePath(String filePath) { 
