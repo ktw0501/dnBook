@@ -61,7 +61,7 @@ public class PdfImage {
 			g2.drawImage(image, 0, 0, null);
 			g2.dispose();
 			try {
-				ImageIO.write(bi, "jpg", new File(nDir,file.getName()+"Page"+i+".jpg"));
+				ImageIO.write(bi, "jpg", new File(nDir,i+".jpg"));
 			} catch (IOException ioe) {
 				System.out.println("write: " + ioe.getMessage());
 			}
