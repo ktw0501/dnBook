@@ -8,7 +8,7 @@
 				
 				<%-- 이전 페이지 설정 --%>
 				<c:if test="${page.beginPage ne 1}">
-					<a href="#" onclick="jsPageMove(${beginPage - 1})">◁</a>
+					<a href="#" onclick="jsPageMove(${beginPage - 1})">◀</a>
 				</c:if>
 				
 				<%-- 페이지 번호 설정 --%>			
@@ -23,11 +23,11 @@
 				
 				<%-- 다음 페이지 설정 --%>
 				<c:if test="${page.endPage ne page.lastPage}" >
-					<a href="#" onclick="jsPageMove(${page.endPage + 1})">▷</a>
+					<a href="#" onclick="jsPageMove(${page.endPage + 1})">▶</a>
 				</c:if>
 				
 				<%-- 마지막 페이지 설정 --%>
 				<c:if test="${page.pageNo ne page.lastPage}" >
 					<a href="#" onclick="jsPageMove(${page.lastPage})">▷▷</a>
 				</c:if>
-			</div>
+</div>

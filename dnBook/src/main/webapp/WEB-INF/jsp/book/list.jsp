@@ -2,13 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>   
+<%@ taglib prefix="navi" tagdir="/WEB-INF/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>listBook</title>
 <style>
-	.container {
+	.content {
 		width: 650px; height: 600px;
 	}
 	.list {
@@ -33,12 +34,23 @@
 	}
 </style>
 <script src="${pageContext.request.contextPath}/js/jquery-2.2.3.js"></script>
+<script>
+	function jsPageMove(pageNo) {
+		location.href = "${pageContext.request.contextPath}/book/list.do?pageNo=" + pageNo;
+	}
+</script>
 </head>
 <body>
-	<div class="container">
+<div class="container">
+	<div class="header">
+		<%@ include file="/WEB-INF/jsp/include/topMenu.jsp" %>
+	</div>
+	
+	<div class="content">
 	
 		<div class="search">
 			상품명순 | 판매량순 | 등록일순 | 저가격순 | 고가격순
+
 		</div>
 		<div>
 			<c:forEach var="vo" items="${list}">
@@ -59,8 +71,15 @@
 			</c:forEach>
 		</div>
 		<div class="page">
-			
+			<c:if test="${not empty list}">
+				<navi:page />
+			</c:if>
 		</div>
 	</div>
+	
+	<div class="footer">
+		<%@ include file="/WEB-INF/jsp/include/bottom.jsp" %>
+	</div>
+</div>
 </body>
 </html>

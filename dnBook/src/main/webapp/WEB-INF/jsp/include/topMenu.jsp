@@ -75,7 +75,7 @@
 	</div>
 	<br />
 	<div class="logo">
-		동네책방
+		<a href="${pageContext.request.contextPath}/main.do">동네책방</a>
 	</div>
 	<div class="menubar">
 		<button type="button" class="button"><a href="${pageContext.request.contextPath}/book/list.do">국내도서</a></button>

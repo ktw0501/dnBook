@@ -56,19 +56,17 @@ public class UserBookController {
 	@RequestMapping("registWish.do")
 	public String registWish(HttpSession session, WishVO wishVO) throws Exception {
 		MemberVO user = (MemberVO)session.getAttribute("user");
-		// VO에 설정하기
-		wishVO.setId(user.getId());
+//		wishVO.setId(user.getId());
+		wishVO.setId("a");
 		UserBookService.registWish(wishVO);
-		// 페이지 이동하기
 		return "redirect:detailBook.do?bookCode=" + wishVO.getBookCode();
 	}
 	@RequestMapping("deleteWish.do")
 	public String deleteWish(HttpSession session, WishVO wishVO) throws Exception {
 		MemberVO user = (MemberVO)session.getAttribute("user");
-		// VO에 설정하기
-		wishVO.setId(user.getId());
+//		wishVO.setId(user.getId());
+		wishVO.setId("a");
 		UserBookService.deleteWish(wishVO);
-		// 페이지 이동하기
 		return "redirect:detailBook.do?bookCode=" + wishVO.getBookCode();
 	}
 	//--------------------------
@@ -78,8 +76,8 @@ public class UserBookController {
 	@ResponseBody
 	public ReviewVO registReview(HttpSession session, ReviewVO reviewVO) throws Exception {
 		MemberVO user = (MemberVO)session.getAttribute("user");
-		// VO에 설정하기
-		reviewVO.setId(user.getId());
+//		reviewVO.setId(user.getId());
+		reviewVO.setId("a");
 		
 		// 등록된 댓글 반환s
 		return UserBookService.registReview(reviewVO);

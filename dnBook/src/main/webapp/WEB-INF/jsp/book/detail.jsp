@@ -8,7 +8,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>detailBook</title>
 <style>
-	.container {
+
+	.content {
 		width: 650px; 
 		border: 1px solid black;
 	}
@@ -79,7 +80,11 @@
 <script src="${pageContext.request.contextPath}/js/jquery-2.2.3.js"></script>
 </head>
 <body>
-	<div class="container">
+<div class="container">
+	<div class="header">
+		<%@ include file="/WEB-INF/jsp/include/topMenu.jsp" %>
+	</div>
+	<div class="content">
 		<div id="title">
 			${book.title}
 		</div>
@@ -99,8 +104,8 @@
 				</div>
 				<div id="wish3"> 
 					<button type="button" class="btn" id="wishBtn">장바구니 담기</button>
-					<button type="button" class="btn" id="recomBtn2">구매</button>
-					<button type="button" class="btn" id="recomBtn2">대여</button>
+					<button type="button" class="btn" id="buyBtn">구매</button>
+					<button type="button" class="btn" id="recomBtn">대여</button>
 				</div>
 			</div>
 		</div>
@@ -147,19 +152,36 @@
 		<!-- 댓글 목록 -->
 		<div id="commentList"></div>
 	</div>
+	<div class="footer">
+		<%@ include file="/WEB-INF/jsp/include/bottom.jsp" %>
+	</div>
 	
 	
 	<div id="pass">
 		<form action="">
-			비밀번호 입력 <input type="password" />
-			<button>확인</button>
+			<div>비밀번호 입력 <input type="password" /></div>
+			<div><button>확인</button></div>
 		</form>
 	</div>
+</div>
 	
 <script>
 	$(function () {
-		// 추천 버튼 ----------------------------------------------------
+		// 장바구니 버튼 ----------------------------------------------------
 		$("#wishBtn").on("click", function () {
+			var wishUrl = "registWish.do";
+			if("${recomCount}" == "1") {				
+				wishUrl = "deleteWish.do";
+			}
+			location.href = wishUrl + "?bookCode=${book.bookCode}";
+		});
+		// 추천 상태일 경우 버튼의  css 변경
+		if("${recomCount}" == "1") {
+			$("#wishBtn").attr("class", "wish");
+		}
+		// -------------------------------------------------------추천
+		// 구매 버튼 ----------------------------------------------------
+		$("#buyBtn").on("click", function () {
 			var recomUrl = "registWish.do";
 			if("${recomCount}" == "1") {				
 				recomUrl = "deleteWish.do";
@@ -170,7 +192,7 @@
 		if("${recomCount}" == "1") {
 			$("#wishBtn").attr("class", "wish");
 		}
-		// -------------------------------------------------------추천
+		// -------------------------------------------------------구매
 		
 		
 		
@@ -298,6 +320,7 @@
 			f.content.value  = "";
 		});
 	}
+	
 	
 </script>
 </body>
