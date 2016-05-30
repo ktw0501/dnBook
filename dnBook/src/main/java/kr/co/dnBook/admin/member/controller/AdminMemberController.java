@@ -55,7 +55,7 @@ public class AdminMemberController {
 	
 	@RequestMapping("/startStatus.do")
 	public String startStatus(
-			HttpSession session, MemberVO memberVO, Model model) throws Exception {
+			HttpSession session, MemberVO memberVO, Model model, @RequestParam(value="id", required=false) String id) throws Exception {
 /*		
 		주석 풀어야함
 		MemberVO user = (MemberVO)session.getAttribute("user");
@@ -64,7 +64,7 @@ public class AdminMemberController {
 		memberVO.setId(user.getId());
 */		
 		// VO에 설정하기
-		memberVO.setId("a");
+		memberVO.setId(id);
 		
 		memberService.startStatus(memberVO);
 		
@@ -74,14 +74,14 @@ public class AdminMemberController {
 	
 	@RequestMapping("/stopStatus.do")
 	public String stopStatus(
-			HttpSession session, MemberVO memberVO, Model model) throws Exception {
+			HttpSession session, MemberVO memberVO, Model model, @RequestParam(value="id", required=false) String id) throws Exception {
 		
 		/*//주석 풀어야함
 		MemberVO user = (MemberVO)session.getAttribute("user");
 		// VO에 설정하기
 		memberVO.setId(user.getId());
 		*/
-		memberVO.setId("a");
+		memberVO.setId(id);
 		
 		memberService.stopStatus(memberVO);
 		

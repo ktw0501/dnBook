@@ -110,7 +110,7 @@
     
 	
       <!-- 게시물 삭제 -->
-    <delete id="deleteBoard" parameterType="int">
+    <delete id="deleteBoard" parameterType="string">
         delete 
           from t_board
 		 where board_no = #{boardNo}
@@ -118,7 +118,7 @@
     
     
       <!-- 파일 삭제 -->    
-    <delete id="deleteFileByBoardNo" parameterType="int">
+    <delete id="deleteFileByBoardNo" parameterType="string">
         delete 
           from t_file
 		 where board_no = #{boardNo}
@@ -126,7 +126,7 @@
     
     
      <!-- 게시물 삭제에 따른 댓글 삭제 -->
-    <delete id="deleteCommentByBoardNo" parameterType="int">
+    <delete id="deleteCommentByBoardNo" parameterType="string">
         delete
           from t_comment 
 		 where board_no = #{boardNo}

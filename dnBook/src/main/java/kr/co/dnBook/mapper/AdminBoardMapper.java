@@ -35,11 +35,11 @@ public interface AdminBoardMapper {
 
 	public void insertBoardFile(BoardFileVO file) throws Exception;
 	
-	public void deleteBoard(int boardNo) throws Exception;
+	public void deleteBoard(String data) throws Exception;
 	
-	public void deleteFileByBoardNo(int boardNo) throws Exception;
+	public void deleteFileByBoardNo(String data) throws Exception;
 	
-	public void deleteCommentByBoardNo(int boardNo) throws Exception;
+	public void deleteCommentByBoardNo(String data) throws Exception;
 	
 	
 	
