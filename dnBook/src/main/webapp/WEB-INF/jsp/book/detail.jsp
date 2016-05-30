@@ -67,6 +67,21 @@
 		width: 648px; height: 122px;
 		border: 1px solid black;
 	}
+	.re1 {
+		width: 80px;
+		text-align: center;
+	}
+	.re2 {
+		width: 500px;
+	}
+	.re22 {
+		width: 500px;
+		text-align: center;
+	}
+	.re3 {
+		width: 50px;
+		text-align: center;
+	}
 	
 	
 	#pass {
@@ -129,7 +144,7 @@
 		<%-- 댓글 관련 부분 추가 --%>
 		<form id="crForm" name="crForm" action="registReview.json">
 			<!-- 게시물번호 -->
-			<input type="hidden" name="bookCode" value="${review.bookCode}" />      
+			<input type="hidden" name="bookCode" value="${book.bookCode}" />      
 			<table>
 			<tr>
 				<td><textarea name="content" rows="2" cols="60"></textarea></td>
@@ -160,7 +175,7 @@
 	<div id="pass">
 		<form action="">
 			<div>비밀번호 입력 <input type="password" /></div>
-			<div><button>확인</button></div>
+			<div><button>확인</button><button>취소</button></div>
 		</form>
 	</div>
 </div>
@@ -179,7 +194,7 @@
 		if("${recomCount}" == "1") {
 			$("#wishBtn").attr("class", "wish");
 		}
-		// -------------------------------------------------------추천
+		// -------------------------------------------------------장바구니
 		// 구매 버튼 ----------------------------------------------------
 		$("#buyBtn").on("click", function () {
 			var recomUrl = "registWish.do";
@@ -195,7 +210,7 @@
 		// -------------------------------------------------------구매
 		
 		
-		
+		console.log("sadfsad");
 		
 		// 댓글 관련 내용 추가 아래 -----------------------------
 		$("#cmForm").hide();   	// 댓글 수정폼
@@ -217,14 +232,11 @@
 	
 	
 	
-	
-	
-	
 	// 댓글 목록
 	function commentList() {
 		$.ajax({
 			url: "listReview.json",
-			data: {bookCode: "${review.bookCode}"}
+			data: {bookCode: "${book.bookCode}"}
 		})
 		.done(resCommentList);
 	}
@@ -232,13 +244,14 @@
 	 *   댓글 목록,삭제 콜백 
 	 */
 	function resCommentList(list) {
-		var table = $("<table>").append("<tr><th>작성자</th><th>내용</th><th>삭제</th><th>수정</th></tr>");
+		var table = $("<table>").append("<tr><th class='re1'>작성자</th><th class='re22'>내용</th><th class='re3'>삭제</th><th class='re3'>수정</th></tr>");
 		for (var i in list) {
 			table.append(makeTr(list[i]));
 		}
 		if (list.length == 0) {
 			table.append($("<tr>").append($("<td colspan='4'>").html("작성된 댓글이 없습니다.")));
 		}
+		
 		$("#commentList").empty();
 		$("#commentList").append(table);
 	}
@@ -246,9 +259,10 @@
 	// 댓글 tr 생성하기
 	function makeTr(data) {
 // 				<td>t:formatDate value="${commentVO.regDate}" pattern="yyyy-MM-dd HH:mm" /></td>
-		var tr = $("<tr>").append($("<td>").html(data.id))
-		                  .append($("<td id='" + data.reviewNo + "'>").html(data.content));
+		var tr = $("<tr>").append($("<td class='re1'>").html(data.id))
+		                  .append($("<td class='re2' id='" + data.reviewNo + "'>").html(data.content));
 		var delHtml = "";
+		var modHtml = "";
 		if ("${user.id}" == data.id) {
 			delHtml = '<a href="#1" onclick="commentDel(' + data.bookCode + ', ' + data.reviewNo + ')">삭제</a>'
 			modHtml = '<a href="#1" onclick="setModCommentForm(' + data.reviewNo + ', \'' + data.content + '\')">수정</a>';
@@ -271,6 +285,7 @@
 		})
 		.done(function (data) {
 			// 입력내용 초기화
+			console.dir(data);
 			f.content.value = "";
 			$("#commentList > table > tbody > tr:eq(0)").after(makeTr(data));
 		});

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.dnBook.mapper.AdminSalesMapper">
+	<select id="selectDaily" resultType="adminSales" parameterType="string">
+		SELECT date_format(sales_date, '%Y-%m-%d') as date, COUNT(id)  AS customer, SUM(price) AS sales
+		FROM t_sales s inner join t_book b
+		on s.book_code = b.book_code
+		where sales_date between #{date} and date_add(#{date},interval +6 day)
+		GROUP BY date
+		ORDER BY date  DESC;
+	</select>
+	<select id="selectMonthly" resultType="adminSales" parameterType="string">
+		SELECT date_format(sales_date, '%Y-%m') as date, COUNT(id)  AS customer, SUM(price) AS sales
+		FROM t_sales s inner join t_book b
+		on s.book_code = b.book_code
+		where sales_date between #{date} and date_add(#{date},interval +6 month)
+		GROUP BY date
+		ORDER BY date  DESC;
+	</select>
+	<select id="selectHourly" resultType="adminSales">
+		SELECT date_format(sales_date, '%H') as date, COUNT(id)  AS customer, SUM(price) AS sales
+		FROM t_sales s inner join t_book b
+		on s.book_code = b.book_code
+		GROUP BY date
+		ORDER BY date  DESC;
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -55,15 +55,14 @@ public class UserBookServiceImpl implements UserBookService{
 		dao.deleteWish(wishVO);
 	}
 	
-	
-	
 	@Override
 	public ReviewVO registReview(ReviewVO reviewVO) throws Exception {
 		// 댓글 등록
 		dao.insertReview(reviewVO);
 		// 등록된 댓글 반환
-		return dao.selectReviewByPk(reviewVO.getReviewNo());
+		return dao.selectReviewByPk(reviewVO.getReviewNo());							
 	}
+
 	@Override
 	public void updateReview(ReviewVO reviewVO) throws Exception {
 		dao.updateReview(reviewVO);

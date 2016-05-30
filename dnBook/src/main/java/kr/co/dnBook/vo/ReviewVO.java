@@ -5,6 +5,13 @@ public class ReviewVO {
 	private int bookCode;
 	private String id;
 	private String content;
+	private String regDate;
+	public String getRegDate() {
+		return regDate;
+	}
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
+	}
 	public int getReviewNo() {
 		return reviewNo;
 	}

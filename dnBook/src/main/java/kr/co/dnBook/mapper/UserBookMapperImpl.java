@@ -54,8 +54,8 @@ public class UserBookMapperImpl implements UserBookMapper{
 		session.insert(NAMESPACE + ".insertReview", reviewVO);
 	}
 	
-	public List<ReviewVO> selectReview(int no) throws Exception {
-		return session.selectList(NAMESPACE + ".selectReview", no);
+	public List<ReviewVO> selectReview(int bookCode) throws Exception {
+		return session.selectList(NAMESPACE + ".selectReview", bookCode);
 	}
 
 	public ReviewVO selectReviewByPk(int reviewNo) throws Exception {
