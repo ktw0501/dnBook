@@ -67,6 +67,5 @@ public class AdminBoardController {
 	
 	@RequestMapping("test.do")
 	public void test() throws Exception {
-		service.test();
 	}
 }

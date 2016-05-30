@@ -54,6 +54,7 @@
 	        	<c:when test="${empty member}">
 	        <li>
 	       		<a href="${pageContext.request.contextPath}/login/loginForm.do">로그인</a>
+	       		<a href="#">로그인</a>
 	        </li>
 	        <li>
 	       		<a href="${pageContext.request.contextPath}/member/joinForm.do">회원가입</a>
@@ -67,7 +68,7 @@
 	       		<a href="${pageContext.request.contextPath}/member/infoConfirmForm.do">회원정보수정</a><br/>
 	        </li>
 	        <li>
-	        	<a href="#">마이페이지</a>
+	        	<a href="${pageContext.request.contextPath}/user/mypage/salesList.do?id=eunhwa">마이페이지</a>
 	        </li>
 	        	</c:otherwise>
 	        </c:choose>

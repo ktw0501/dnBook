@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class SalesVO {
 	private String id;
-	private String bookCode;
+	private int bookCode;
 	private Date salesDate;
 	private String coverImg;
 	private String title;
@@ -41,10 +41,11 @@ public class SalesVO {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getBookCode() {
+
+	public int getBookCode() {
 		return bookCode;
 	}
-	public void setBookCode(String bookCode) {
+	public void setBookCode(int bookCode) {
 		this.bookCode = bookCode;
 	}
 	public Date getSalesDate() {

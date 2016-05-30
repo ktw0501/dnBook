@@ -1,6 +1,6 @@
 package kr.co.dnBook.user.mypage.sales;
 
-import java.util.Map;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -9,10 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import kr.co.dnBook.vo.MemberVO;
+import kr.co.dnBook.vo.SalesVO;
 
 @Controller
-@RequestMapping("member")
+@RequestMapping("user/mypage")
 public class SalesController {
 	
 	@Autowired
@@ -23,8 +23,8 @@ public class SalesController {
 //		MemberVO user = (MemberVO)session.getAttribute("user");
 		
 //		Map<String, Object> result = salesService.salesListBoard(user.getId());
-		Map<String, Object> result = salesService.salesListBoard("TEST");
-		model.addAttribute("sales", result.get("sales"));
+		List<SalesVO> list = salesService.salesListBoard("eunhwa");
+		model.addAttribute("list", list);
 		
 	}
 }
