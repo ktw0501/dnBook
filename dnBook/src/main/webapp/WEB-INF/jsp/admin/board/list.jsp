@@ -78,11 +78,13 @@
 								<td>${vo.pageViewCnt}</td>
 								<td>${vo.regDate}</td>
 							</tr>
+							
 							</c:forEach>
 							<c:if test="${empty list}">
 							<tr><td colspan="4">게시물이 없습니다.</td></tr>
 							</c:if>
 						</table>
+						<a href="registForm.do">글쓰기</a>
 						<c:if test="${not empty list}">
 							<navi:page/>
 						</c:if>

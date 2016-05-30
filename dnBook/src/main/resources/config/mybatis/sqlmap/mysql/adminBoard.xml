@@ -78,12 +78,36 @@
 		 where comment_no = #{commentNo}
 	</delete>
     
+	
+	  <!-- 게시물 등록 -->
+    <insert id="insertBoard" parameterType="board">
+		 insert into t_board(
+		 	id, board_type, title, content
+		 ) values(
+		 	#{id}, #{boardType}, #{title}, #{content}
+		 )
+    </insert>
     
-    <delete id="test">
-    	insert into t_board (id, board_type, title) 
-    	values ('테스트', 2, '테스터12')
-    </delete>
+    <!--  게시판 번호 뽑아서 파일에 주기 -->
+    <select id="selectBoardNo" parameterType="board" resultType="int">
+		select board_no
+		  from t_board
+		 where board_type = #{boardType}
+	     order by board_no desc
+		 limit 0,1
+	</select>
+    
 
+	 <!-- 파일 추가 -->    
+    <insert id="insertBoardFile" parameterType="boardFile">
+        insert into t_file (        
+		    board_no, file_path, ori_file_name, real_file_name, file_size  
+		) values (
+		    #{boardNo}, #{filePath}, #{oriFileName}, #{realFileName}, #{fileSize} 
+		)
+    </insert>
+    
+	
     
     
 </mapper>
