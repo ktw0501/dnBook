@@ -10,4 +10,7 @@ public interface UserMemberService {
 	public void insertMember(MemberVO member) throws Exception;
 
 	public String duplCheck(String id) throws Exception;
+
+	public MemberVO userOneMember(MemberVO member);
+
 }

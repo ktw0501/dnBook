@@ -21,4 +21,10 @@ public class UserMemberMapperImpl implements UserMemberMapper {
 	public String selectId(String id) throws Exception {
 		return session.selectOne(MEMBER_DAO_NAMESPACE + ".selectId", id);
 	}
+
+	@Override
+	public MemberVO selectOneMember(MemberVO member) {
+		return session.selectOne(MEMBER_DAO_NAMESPACE + ".selectOneMember", member);
+	}
+
 }

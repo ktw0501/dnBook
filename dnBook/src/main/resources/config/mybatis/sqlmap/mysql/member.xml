@@ -4,9 +4,9 @@
 <mapper namespace="kr.co.dnBook.mapper">
     <insert id="insertMember" parameterType="member">
     	insert into t_member(
-    		id, pass, name, address, email, post_code, tel
+    		id, pass, name, address, detail_address, email, post_code, tel
     	) values(
-    		#{id}, #{pass}, #{name}, #{address}, #{email}, #{postCode}, #{tel}
+    		#{id}, #{pass}, #{name}, #{address}, #{detailAddress}, #{email}, #{postCode}, #{tel}
     	)
     </insert>
     <select id="selectId" parameterType="string" resultType="string">
@@ -14,6 +14,22 @@
     	  from t_member
     	 where id = #{id}  
     </select>
+        <resultMap id="memberMap" type="member">
+    	<result column="id" property="id" />
+    	<result column="pass" property="pass" />
+    	<result column="name" property="name" />
+    	<result column="address" property="address" />
+    	<result column="detail_address" property="detailAddress" />
+    	<result column="email" property="email" />
+    	<result column="post_code" property="postCode" />
+    	<result column="tel" property="tel" />
+    </resultMap>
+    <select id="selectOneMember" parameterType="member" resultMap="memberMap">
+    	select *
+    	  from t_member
+    	 where id = #{id}
+    	   and pass = #{pass} 
+    </select> 
 </mapper>
 
 
