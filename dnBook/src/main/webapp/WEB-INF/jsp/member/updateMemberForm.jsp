@@ -65,37 +65,14 @@
         }).open();
     }
 </script>
-<!-- 작성 중 가입제한 -->
+<!-- 작성 중 제한 -->
 <script>
 	$(function(){
 			var f = document.jForm;
-			var id = f.id;
 			var pass = f.pass;
 			var repass = f.repass;
 			var tel = f.tel;
 			var email = f.email;
-	//ID 제한
-		$("#idDupBtn").on("click", function(){
-			var msg = "";
-			if(id.value.length < 4 || id.value.length > 8){
-				msg = "아이디는 4자이상 8자 이하이어야 합니다.";
-			}
-			else{
-				$.ajax({
-					url:"duplCheck.json",
-					data: {id: id.value}
-				})
-				.done(function(data) {
-					msg = "이미 사용중인 아이디 입니다.";
-					if(data == ""){
-						msg="사용 가능한 아이디 입니다.";
-					}
-				$("#iresult").html(msg);
-				})
-			}
-				$("#iresult").html(msg);
-			
-		});
 	//패스워드가 4자이상 8자 이하 메시지
 		$("input[name=pass]").keyup(function(){
 			var msg = "";
@@ -138,11 +115,10 @@
 		});
 	});
 </script>
-<!-- 확인버튼 클릭 시 가입제한 -->
+<!-- 확인버튼 클릭 시 제한 -->
 <script>
 function ckForm(){
 	var f = document.jForm;
-	var id = f.id;
 	var pass = f.pass;
 	var repass = f.repass;
 	var name = f.name;
@@ -154,14 +130,6 @@ function ckForm(){
 	var mobilestr = /[01](0|1|6|7|8|9)[-](\d{4}|\d{3})[-]\d{4}$/g;
 	var regEmail = /([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 	console.log(pass);
-	if(isEmpty(id, "아이디를 입력하세요.")){
-		return false;			
-	}
-	if(id.value.length < 4 || id.value.length > 8){
-		alert("ID는 4자이상 8자 이하이어야 합니다.");
-		id.focus();
-		return false;
-	}
 	if(isEmpty(pass, "비밀번호를 입력하세요.")){
 		return false;			
 	}
@@ -207,7 +175,7 @@ function ckForm(){
 <!-- 가입 취소 -->
 <script>
 $(function(){
-	$("#joinCancel").on("click", function(){
+	$("#updateCancel").on("click", function(){
 		location.href = "${pageContext.request.contextPath}/main.do";
 	});
 });
@@ -221,27 +189,23 @@ $(function(){
 	  		</div>
 	        <div class="col-md-12">
 	        <div class="page-header">
-	    	    <h1>JOIN US <small>horizontal form</small></h1>
+	    	    <h1>회원정보수정 <small>horizontal form</small></h1>
 	        </div>
-	        <form class="form-horizontal" id="jForm" name="jForm" method="post" onsubmit = "return ckForm()" action="${pageContext.request.contextPath}/member/join.do">
+	        <form class="form-horizontal" id="jForm" name="jForm" method="post" onsubmit = "return ckForm()" action="${pageContext.request.contextPath}/member/updateMember.do">
 	       
 	       <div class="form-group">
 	            <label class="col-sm-3 control-label" for="inputId">아이디</label>
 	          <div class="col-sm-6">
 	          <div class="input-group">
-	            <input class="form-control" name = "id" id="id" type="text" placeholder="아이디">
-	          	<span class="input-group-btn">
-	          	<button class="btn btn-success" type="button" id ="idDupBtn">중복확인</button>
-	          	</span>
+	            <input class="form-control" name = "id" id="id" type="text" value="${member.id}" readonly>
 	          	</div>
-	          	<p class="help-block"><span id="iresult">아이디는 4자이상 8자 이하이어야 합니다.</span></p>
 	          </div>
 	        </div>
 	        
 	        <div class="form-group">
 	          <label class="col-sm-3 control-label" for="inputPassword">비밀번호</label>
 	        <div class="col-sm-6">
-	          <input class="form-control" name = "pass" id="inputPassword" type="password" placeholder="비밀번호">
+	          <input class="form-control" name = "pass" id="inputPassword" type="password" value="${member.pass}">
 	        <p class="help-block"><span id="presult">패스워드는 4자이상 12자 이하이어야 합니다.</span></p>
 	        </div>
 	        </div>
@@ -257,7 +221,7 @@ $(function(){
 	       <div class="form-group">
 	            <label class="col-sm-3 control-label" for="inputName">이름</label>
 	          <div class="col-sm-6">
-	            <input class="form-control" name="name" id="inputName" type="text" placeholder="이름">
+	            <input class="form-control" name="name" id="inputName" type="text" value="${member.name}" readonly>
 	          </div>
 	        </div>
 	       
@@ -265,7 +229,7 @@ $(function(){
 	            <label class="col-sm-3 control-label" for="inputPost">주소</label>
 	          <div class="col-sm-6">
 	          <div class="input-group">
-	          <input class="form-control" type="text" id="sample6_postcode" name="postCode" placeholder="우편번호">
+	          <input class="form-control" type="text" id="sample6_postcode" name="postCode" value="${member.postCode}">
 	          	<span class="input-group-btn">
 	          	<input class="btn btn-success" type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
 	          	</span>
@@ -276,8 +240,8 @@ $(function(){
 	            <label class="col-sm-3 control-label" for="inputAdd"></label>
 			  <div class="col-sm-6">
 			  <div class="input-group">
-			  <input class="form-control" type="text" id="sample6_address" name="address" placeholder="주소">
-			  <input class="form-control" type="text" id="sample6_address2" name="detailAddress" placeholder="상세주소">
+			  <input class="form-control" type="text" id="sample6_address" name="address" value="${member.address}">
+			  <input class="form-control" type="text" id="sample6_address2" name="detailAddress" value="${member.detailAddress}">
 			  </div>
 			</div>
 			</div>
@@ -285,7 +249,7 @@ $(function(){
 	        <div class="form-group">
 	          <label class="col-sm-3 control-label" for="inputEmail">이메일</label>
 	        <div class="col-sm-6">
-	          <input class="form-control" name = "email" id="inputEmail" type="text" placeholder="이메일">
+	          <input class="form-control" name = "email" id="inputEmail" type="text" value="${member.email}">
 	          <p class="help-block"><span id="eresult">이메일 형식에 맞게 입력해 주세요.</span></p>
 	        </div>
 	        </div>
@@ -293,15 +257,15 @@ $(function(){
 	         <div class="form-group">
 	          <label class="col-sm-3 control-label" for="inputTel">휴대폰번호</label>
 	        <div class="col-sm-6">
-	          <input class="form-control" name = "tel" id="inputTel" type="text" placeholder="휴대폰번호">
+	          <input class="form-control" name = "tel" id="inputTel" type="text" value="${member.tel}">
 	          <p class="help-block"><span id="tresult">ex)01x-1234-5678</span></p>
 	        </div>
 	        </div>
 	          
 	        <div class="form-group">
 	          <div class="col-sm-12 text-center">
-	            <button class="btn btn-primary" type="submit">회원가입</button>
-	            <button class="btn btn-danger" type="button" id ="joinCancel">취소</button>
+	            <button class="btn btn-primary" type="submit">수정완료</button>
+	            <button class="btn btn-danger" type="button" id ="updateCancel">취소</button>
 	          </div>
 	        </div>
 	        </form>

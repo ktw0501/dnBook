@@ -10,8 +10,6 @@
 .bottomSubLnb{
 	width:1050px;
 	height: 225px;
-	background: #B2EBF4;
-	
 }
 .bottomlogo{
 	margin-left: 20px;

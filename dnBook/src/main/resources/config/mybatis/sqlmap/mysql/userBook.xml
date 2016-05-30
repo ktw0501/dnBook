@@ -42,18 +42,16 @@
 		 where book_code = #{bookCode}    
     </select>
     
-    <!-- 게시물 추천수 -->		<!-- 추천하기 바꿔야함 ★ -->
-    <resultMap type="bookRecom" id="bookRecomMap">
-    	<result column="recom_no" property="recomNo"/>
-    	<result column="id" property="id"/>
-    </resultMap>
-    
-    <select id="selectRecomCount" resultType="int" resultMap="bookRecomMap">
+    <select id="selectRecomCount" parameterType="bookScore" resultType="int">
 		select count(*)
-		  from t_book_recom
+		  from t_book_score
 		 WHERE id = #{id}
-		   AND recomNo = #{recomNo}      
+		   AND book_code = #{bookCode}       
     </select>
+    
+	<!-- score 부르기 -->
+	
+
 
     <!-- 장바구니 -->
     <insert id="insertWish" parameterType="Wish">

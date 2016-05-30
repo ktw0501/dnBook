@@ -19,7 +19,9 @@ public class UserMemberServiceImpl implements UserMemberService{
 	public String duplCheck(String id) throws Exception {
 		return dao.selectId(id);
 	}
-
-		
+	@Override
+	public MemberVO userOneMember(MemberVO member) {
+		return dao.selectOneMember(member);
+	}
 
 }

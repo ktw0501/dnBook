@@ -8,4 +8,7 @@ public interface UserMemberMapper {
 	public void insertMember(MemberVO member) throws Exception;
 
 	public String selectId(String id) throws Exception;
+
+	public MemberVO selectOneMember(MemberVO member);
+
 }

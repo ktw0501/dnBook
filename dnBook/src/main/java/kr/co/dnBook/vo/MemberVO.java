@@ -10,8 +10,21 @@ public class MemberVO {
 	private String postCode;
 	private String tel;
 	private int status;
-
-
+	private String idRem;
+	
+	
+	public String getIdRem() {
+		return idRem;
+	}
+	public void setIdRem(String idRem) {
+		this.idRem = idRem;
+	}
+	public String getDetailAddress() {
+		return detailAddress;
+	}
+	public void setDetailAddress(String detailAddress) {
+		this.detailAddress = detailAddress;
+	}
 	public String getId() {
 		return id;
 	}
@@ -35,12 +48,6 @@ public class MemberVO {
 	}
 	public void setAddress(String address) {
 		this.address = address;
-	}
-	public String getDetailAddress() {
-		return detailAddress;
-	}
-	public void setDetailAddress(String detailAddress) {
-		this.detailAddress = detailAddress;
 	}
 	public String getEmail() {
 		return email;

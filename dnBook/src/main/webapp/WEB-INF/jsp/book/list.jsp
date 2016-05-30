@@ -13,18 +13,23 @@
 	}
 	.list {
 		width: 650px; height: 200px;
+		border: 1px solid black;
 	}
 	.book {
-		floar: left;
+		float: left;
 	}
 	#img {
-		width: 150px; height: 100%;
+		width: 150px; height: 200px;
+		border: 1px solid black;
 	}
 	#bookInfo {
+		width: 370px; height: 200px;
+		border: 1px solid black;
 		
 	}
 	#choice {
-		width: 120px; height: 100%;
+		width: 124px; height: 200px;
+		border: 1px solid black;
 	}
 </style>
 <script src="${pageContext.request.contextPath}/js/jquery-2.2.3.js"></script>
@@ -35,10 +40,9 @@
 		<div class="search">
 			상품명순 | 판매량순 | 등록일순 | 저가격순 | 고가격순
 		</div>
-		<div class="list">
-		${list[0].title}${list[0].author}${list[0].price}
+		<div>
 			<c:forEach var="vo" items="${list}">
-				<div>
+				<div class="list">
 					<div id="img"  class="book">${vo.coverImg}</div>
 					<div id="bookInfo"  class="book">
 						<div><a href="detail.do?bookCode=${vo.bookCode}">${vo.title}</a></div>
@@ -46,7 +50,7 @@
 						<div>${vo.price}원</div>
 						<div>${vo.description}</div>
 					</div>
-					<div id="choice"  class="book">
+					<div id="choice" class="book">
 						<div>찜</div>
 						<div>구매</div>
 						<div>대여</div>
