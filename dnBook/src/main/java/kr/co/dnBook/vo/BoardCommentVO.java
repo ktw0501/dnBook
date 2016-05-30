@@ -1,7 +1,5 @@
 package kr.co.dnBook.vo;
 
-import java.util.Date;
-
 public class BoardCommentVO {
 	private int commentNo;
 	private int boardNo;

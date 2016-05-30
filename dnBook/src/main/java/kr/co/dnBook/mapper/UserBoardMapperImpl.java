@@ -48,17 +48,17 @@ public class UserBoardMapperImpl implements UserBoardMapper {
 	
 	@Override
 	public void insertComment(BoardCommentVO comment) throws Exception {
-		sqlSessionTemplate.insert(NAMESPACE + ".selectCommentList", comment);
+		sqlSessionTemplate.insert(NAMESPACE + ".insertComment", comment);
 	}
 	
 	@Override
 	public void updateComment(BoardCommentVO comment) throws Exception {
-		sqlSessionTemplate.update(NAMESPACE + ".selectCommentList", comment);
+		sqlSessionTemplate.update(NAMESPACE + ".updateComment", comment);
 	}
 	
 	@Override
 	public void deleteComment(int commentNo) throws Exception {
-		sqlSessionTemplate.delete(NAMESPACE + ".selectCommentList", commentNo);
+		sqlSessionTemplate.delete(NAMESPACE + ".deleteComment", commentNo);
 	}
 	
 	

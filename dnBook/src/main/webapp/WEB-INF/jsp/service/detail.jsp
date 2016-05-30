@@ -72,8 +72,11 @@
 						<div id="line"><hr id="titleHr"></div>
 						<div id="content"><c:out value="${board.content}" /></div>
 						<div id="comment">
-							<div>
-							
+							<div id="commentReg">
+								<textarea rows="2" cols="60" style="resize: none;"></textarea> <button type="button" onclick="regComment();">입력</button>
+							</div>
+							<div id="commentUpd">
+								<textarea rows="2" cols="60" style="resize: none;"></textarea> <button type="button" onclick="updComment();">수정</button>
 							</div>
 							<div id="commentList">
 								<table class="table table-striped"></table>
@@ -108,21 +111,74 @@
 	
 	<script type="text/javascript">
 		$(function() {
+			$("#commentUpd").hide();
 			$.ajax({
 				url: "commentList.json",
 				data: {boardNo: "${board.boardNo}"}
 			}).done(function(data) {
-				console.dir(data);
-				for(var vo in data) {
-					var html = "<tr><td>" + data[vo].content + "</td><td>" + data[vo].id + "</td><td>" + data[vo].regDate + "</td>";
-					if(vo.id === "${user.id}") {
-						html += "<td><a href='updateComment(" + data[vo].commentNo + ");'>수정</a></td><td>" +
-						        "<a href='delComment(" + data[vo].commentNo  + ");'>삭제</a></td>";
-					}
-					$(".table").append(html);
-				}
+				mkCommentList(data);
 			});
-		})		
+		});
+		
+		function mkCommentList(data) {
+			$(".table").empty();
+			for(var vo in data) {
+				var html = "<tr><td>" + data[vo].content + "</td><td>" + data[vo].id + "</td><td>" + data[vo].regDate + "</td>";
+				if(data[vo].id === "aa") {
+					html += "<td><a href='#' onclick='updSetComment(" + data[vo].commentNo + ", " + data[vo].content + ");'>수정</a></td><td>" +
+					        "<a href='#' onclick='delComment(" + data[vo].commentNo  + ");'>삭제</a></td>";
+				}
+				$(".table").append(html);
+			}
+		};
+			
+		function regComment() {
+			$.ajax({
+				url: "insertComment.json",
+				data: {boardNo: "${board.boardNo}",
+					   content: $("#commentReg > textarea").val(),
+					   id: "aa"}
+			}).done(function(data) {
+				mkCommentList(data);
+				$("#commentReg > textarea").val("");
+			});
+		}
+		
+		function updSetComment(commentNo, content) {
+			$("#commentUpd").show();
+			$("#commentReg").hide();
+			$("#commentUpd > textarea").val(content);
+			
+			updateComment(commentNo);
+		}
+		
+		function updateComment(commentNo) {
+			$.ajax({
+				url: "updateComment.json",
+				data: {
+						boardNo: "${board.boardNo}",
+						commentNo: commentNo,
+						content: $("#commentUpd > textarea").val(),
+						id: "aa"
+				}
+			}).done(function(data) {
+				mkCommentList(data);
+				$("#commentUpd").hide();
+				$("#commentReg").show();
+			});
+		}
+		
+		function delComment(commentNo) {
+			$.ajax({
+				url: "deleteComment.json",
+				data: {
+						boardNo: "${board.boardNo}",
+						commentNo: commentNo
+				}
+			}).done(function(data) {
+				mkCommentList(data);
+			});
+		};
 			
 	</script>
 </body>

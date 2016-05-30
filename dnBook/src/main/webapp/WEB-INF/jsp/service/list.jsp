@@ -28,6 +28,7 @@
 		float: left;
 	} 
 	#bmiddle {
+		width: 650px;
 		margin: 0 auto;
 	}
 	#bottom {
@@ -50,7 +51,6 @@
 <body>
 	<div id="outer">
 		<div id="container">
-			
 			<div id="top">
 				<%@ include file="/WEB-INF/jsp/include/topMenu.jsp" %>
 			</div>
@@ -96,5 +96,11 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+		
+		function jsPageMove(pageNo) {
+			location.href = "list.do?pageNo=" + pageNo + "&boardType=${boardType}";
+		}
+	</script>
 </body>
 </html>

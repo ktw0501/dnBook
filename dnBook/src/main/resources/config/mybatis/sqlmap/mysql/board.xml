@@ -12,7 +12,8 @@
 		<result column="reg_date" property="regDate" />
 	</resultMap>
 	<select id="selectList" parameterType="boardSearch" resultMap="boardMapper">
-		select board_no, title, DATE_FORMAT(reg_date, '%Y-%c-%e %T') as reg_date, view_count from t_board
+		select board_no, title, DATE_FORMAT(reg_date, '%Y-%c-%e %T') as reg_date, view_count 
+		  from t_board
 		 where board_type = #{boardType}
 		 order by board_no desc
 		 limit #{start}, 5
