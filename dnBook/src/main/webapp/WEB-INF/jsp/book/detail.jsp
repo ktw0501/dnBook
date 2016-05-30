@@ -9,20 +9,68 @@
 <title>detailBook</title>
 <style>
 	.container {
-		width: 650px; height: 600px;
+		width: 650px; 
+		border: 1px solid black;
 	}
 	.book {
-		floar: left;
+		float: left;
 	}
-	.wish {
-		background: tomato;
-		color: white;
-		font-weight: bold;
+	#title {
+		width: 648px; height: 50px;
+		border: 1px solid black;
+	}
+	#bookInfoA1 {
+		width: 648px; height: 200px;
+		border: 1px solid black;
+	}
+	#img2 {
+		width: 150px; height: 198px;
+		border: 1px solid black;
+	}
+	#infoA2 {
+		width: 494px; height: 198px;
+		border: 1px solid black;
+	}
+	#infoA3 {
+		height: 150px;
+		border: 1px solid black;
+	}
+	#infoA41 {
+		width: 300px; height: 148px;
+		border: 1px solid black;
+	}
+	#infoA42 {
+		width: 188px; height: 148px;
+		border: 1px solid black;
+	}
+	#wish3 {
+		height: 44px;
 		border: 1px solid black;
 	}  
+	.btn {
+		
+	}
+	
+	
+	#bookInfoB1 {
+		width: 648px; height: 250px;
+		border: 1px solid black;
+		
+	}
+	.infoB21 {
+		width: 648px; height: 40px;
+		border: 1px solid black;
+		
+	}
+	.infoB22 {
+		width: 648px; height: 122px;
+		border: 1px solid black;
+	}
+	
+	
 	#pass {
 		position: fixed;
-		left: 300px; top: 200px;
+		left: 800px; top: 500px;
 		width: 350px; height: 100px;
 		background: gold;
 		border: 2px solid black;
@@ -32,34 +80,43 @@
 </head>
 <body>
 	<div class="container">
-		<div>
+		<div id="title">
 			${book.title}
 		</div>
-		<div>
-			<div class="book">${book.coverImg}</div>
-			<div class="book">
-				<div>저자 : ${book.author} <c:if test="${book.translator != null}"> | ${book.translator}</c:if></div>
-				<div>출판사 : ${book.publisher}</div>
-				<div>출판일 : ${book.pubDate}</div>
-				<div>정가 : ${book.price}원</div>
-				<div> 
-					<button type="button" id="wishBtn">장바구니 담기</button>
-					<button type="button" id="recomBtn2">구매</button>
-					<button type="button" id="recomBtn2">대여</button>
+		<div id="bookInfoA1">
+			<div id="img2" class="book">${book.coverImg}</div>
+			<div id="infoA2" class="book">
+				<div id="infoA3">
+					<div id="infoA41" class="book">
+						<div>저자 : ${book.author} <c:if test="${book.translator != null}"> | ${book.translator}</c:if></div>
+						<div>출판사 : ${book.publisher}</div>
+						<div>출판일 : ${book.pubDate}</div>
+						<div>정가 : ${book.price}원</div>
+					</div>
+					<div id="infoA42" class="book">
+						추천 그래프
+					</div>
+				</div>
+				<div id="wish3"> 
+					<button type="button" class="btn" id="wishBtn">장바구니 담기</button>
+					<button type="button" class="btn" id="recomBtn2">구매</button>
+					<button type="button" class="btn" id="recomBtn2">대여</button>
 				</div>
 			</div>
 		</div>
-		<div>
-			주제분류
-		</div>
-		<div>
-			>>
-		</div>
-		<div>
-			책소개
-		</div>
-		<div>
-			${book.description}
+		<div id="bookInfoB1">
+			<div class="infoB21">
+				주제분류
+			</div>
+			<div class="infoB21">
+				>>
+			</div>
+			<div class="infoB21">
+				책소개
+			</div>
+			<div class="infoB22">
+				${book.description}
+			</div>
 		</div>
 	
 	

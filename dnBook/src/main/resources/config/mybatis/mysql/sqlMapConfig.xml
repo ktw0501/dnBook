@@ -18,5 +18,6 @@
 		<typeAlias alias="memberSearch" type="kr.co.dnBook.vo.MemberSearchVO"/>
 		<typeAlias alias="review" type="kr.co.dnBook.vo.ReviewVO"/>
 		<typeAlias alias="bookSearch" type="kr.co.dnBook.vo.BookSearchVO"/>
+		<typeAlias alias="bookScore" type="kr.co.dnBook.vo.BookScoreVO"/>
 	</typeAliases>
 </configuration>
