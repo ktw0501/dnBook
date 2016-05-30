@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.dnBook.mapper.AdminBookMapper">
+
+	<insert id="insertBook" parameterType="book">
+		insert 	into t_book 
+				(
+				cover_img, title, publisher,author,translator,description,price,rent_price,
+				rental_dir_path, pdf_path, pub_date, category_code
+				)
+		values	(#{coverImg},#{title},#{publisher},#{author},
+				#{translator},#{description},#{price},#{rentPrice},#{rentalDirPath},
+				#{pdfPath},#{pubDate},#{categoryCode})
+	</insert>
+	<update id="updateBook" parameterType="book">
+		update 	t_book
+		set		cover_img = #{coverImg}, title = #{title},publisher = #{publisher},
+				author = #{author}, translator = #{translator},
+				description = #{description}, price = #{price},
+				rent_price = #{rentPrice}, rental_dir_path = #{rentalDirPath},
+				pdf_path = #{pdfPath}, pub_date = #{pubDate},
+				category_code = #{categoryCode} 
+		where	book_code = #{bookCode}
+	</update>
+	<delete id="deleteBook" parameterType="string">
+		delete
+		from	t_book
+		where	book_code = #{bookCode}
+	</delete>
+	<select id="selectBook" resultType="book" parameterType="bookSearch">
+		select	book_code as bookCode, cover_img as coverImg,
+				title, publisher, author, translator, price, rent_price as rentPrice,
+				pub_date as pubDate, category_code as categoryCode
+		from	t_book
+		limit	#{start}, 5
+	</select>
+	<select id="selectBookCount" resultType="int">
+		select	count(*)
+		from	t_book
+	</select>
+	<select id="selectOneBook" resultType="book" parameterType="int">
+		select	book_code as bookCode, cover_img as coverImg,
+				title, publisher, author, translator, description,
+				price, rent_price as rentPrice, rental_dir_path as rentalDirPath,
+				pub_date as pubDate, category_code as categoryCode,pdf_path as pdfPath
+		from	t_book
+		where	book_code = #{bookCode}
+	</select>
+	<delete id="deleteReview" parameterType="string">
+		delete
+		from	t_review
+		where	book_code = #{bookCode}
+	</delete>
+	<delete id="deleteRecom" parameterType="int">
+		delete
+		from	t_recom
+		where	#{recomNo}
+	</delete>
+	<select id="selectReview" parameterType="int" resultType="review">
+<!-- 		select	count(*) -->
+<!-- 		from	t_book_recom -->
+<!-- 		where	book_code = #{bookCode} -->
+		select	review_no as reviewNo, id , content
+		from	t_review
+		where 	book_code = #{bookCode}
+	
+	</select>
+    
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
