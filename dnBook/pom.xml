@@ -13,13 +13,30 @@
 			<name>ORACLE JDBC Repository</name>
 			<url>http://maven.jahia.org/maven2</url>
 		</repository>
+		
+		<!-- 		pdf 파일 변환을위한 jar -->
+		<repository>
+			<id>in-project</id>
+			<name>PDFRendererJAR</name>
+			<url>file://${project.basedir}/src/main/java/webapp/lib</url>
+		</repository>
+		
 	</repositories>
 	<dependencies>
+		<!-- 		pdf 파일 변환을위한 jar -->
+		<dependency>
+			<groupId>PDFRenderer</groupId>
+			<artifactId>PDF-custom</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+	
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
 			<version>1.8.9</version>
 		</dependency>
+		
+		
 		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>

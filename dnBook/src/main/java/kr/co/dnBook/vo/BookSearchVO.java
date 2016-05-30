@@ -3,8 +3,8 @@ package kr.co.dnBook.vo;
 public class BookSearchVO {
 	private int pageNo;
 	private int start;
-	
-	public BookSearchVO(int pageNo) {
+	public BookSearchVO(int pageNo)
+	{
 		this.start = (pageNo - 1) * 5;
 		this.pageNo = pageNo;
 	}
@@ -14,5 +14,5 @@ public class BookSearchVO {
 	public int getStart() {
 		return start;
 	}
-	
+
 }
