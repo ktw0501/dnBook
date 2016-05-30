@@ -59,7 +59,7 @@ public class UserBookController {
 //		wishVO.setId(user.getId());
 		wishVO.setId("a");
 		UserBookService.registWish(wishVO);
-		return "redirect:detailBook.do?bookCode=" + wishVO.getBookCode();
+		return "redirect:detail.do?bookCode=" + wishVO.getBookCode();
 	}
 	@RequestMapping("deleteWish.do")
 	public String deleteWish(HttpSession session, WishVO wishVO) throws Exception {
@@ -67,7 +67,7 @@ public class UserBookController {
 //		wishVO.setId(user.getId());
 		wishVO.setId("a");
 		UserBookService.deleteWish(wishVO);
-		return "redirect:detailBook.do?bookCode=" + wishVO.getBookCode();
+		return "redirect:detail.do?bookCode=" + wishVO.getBookCode();
 	}
 	//--------------------------
 	
@@ -79,7 +79,7 @@ public class UserBookController {
 //		reviewVO.setId(user.getId());
 		reviewVO.setId("a");
 		
-		// 등록된 댓글 반환s
+				// 등록된 댓글 반환
 		return UserBookService.registReview(reviewVO);
 	}
 	

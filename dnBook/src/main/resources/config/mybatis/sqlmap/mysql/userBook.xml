@@ -56,7 +56,7 @@
     <!-- 장바구니 -->
     <insert id="insertWish" parameterType="Wish">
 	    insert into t_Wish (       
-		    bookCode, id
+		    book_code, id
 		) values (
 		    #{bookCode}, #{id}
 		)
@@ -65,7 +65,7 @@
     <insert id="deleteWish" parameterType="Wish">
 	    delete 
 	      from t_Wish 			
-	     where bookCode = #{bookCode}
+	     where book_code = #{bookCode}
 	       and id = #{id}
     </insert> 
     
@@ -73,40 +73,40 @@
     
      <!-- 게시물 댓글 조회 -->
     <select id="selectReview" parameterType="int" resultType="review">
-		select comment_no as commentNo, bookCode, id, content, DATE_FORMAT(reg_date, '%Y-%c-%e %T') as regDate
-		  from t_comment				
-		 where no = #{no}      
+		select review_no as reviewNo, book_code as bookCode, id, content, DATE_FORMAT(reg_date, '%Y-%c-%e %T') as regDate
+		  from t_review				
+		 where book_code = #{bookCode}      
     </select>
 
     <!-- 댓글 조회 -->
     <select id="selectReviewByPk" parameterType="int" resultType="review">
-		select review_no as reviewNo, bookCode, id, content, DATE_FORMAT(reg_date, '%Y-%c-%e %T') as regDate
-		  from t_comment			
+		select review_no as reviewNo, book_code as bookCode, id, content, DATE_FORMAT(reg_date, '%Y-%c-%e %T') as regDate
+		  from t_review			
 		 where review_no = #{reviewNo}      
     </select>
     
-    <!-- 댓글 입력 -->
+
     <insert id="insertReview" parameterType="review">
-	    <selectKey keyProperty="reviewNo" resultType="int" order="BEFORE">
-			select s_comment_no.nextVal from dual			
-		</selectKey>
-	    insert into t_comment (    				
-		    review_no, bookCode, id, content   
+    <selectKey keyProperty="reviewNo" resultType="int" order="AFTER"> 
+		SELECT LAST_INSERT_ID()
+	</selectKey> 
+	    insert into t_review (    				
+		    book_code, id, content   
 		) values (
-		    #{reviewNo}, #{bookCode}, #{id}, #{content}
+		    #{bookCode}, #{id}, #{content}
 		)
     </insert>
 
     <!-- 댓글 수정 -->
     <update id="updateReview" parameterType="review">
-        update t_comment  				
+        update t_review  				
 		   set content = #{content}
 		 where review_no = #{reviewNo}        
     </update>
     
     <!-- 댓글 삭제 -->
     <delete id="deleteReview" parameterType="int">
-        delete t_comment			
+        delete t_review			
 		 where review_no = #{reviewNo}
     </delete>
 </mapper>

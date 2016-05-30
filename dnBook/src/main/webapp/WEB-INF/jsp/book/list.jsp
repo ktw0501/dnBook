@@ -49,8 +49,11 @@
 	<div class="content">
 	
 		<div class="search">
-			상품명순 | 판매량순 | 등록일순 | 저가격순 | 고가격순
-
+			<a href="">상품명순</a><span>|</span>
+			<a href="">판매량순</a><span>|</span>
+			<a href="">등록일순</a><span>|</span>
+			<a href="">저가격순</a><span>|</span>
+			<a href="">고가격순</a>
 		</div>
 		<div>
 			<c:forEach var="vo" items="${list}">
