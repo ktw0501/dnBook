@@ -14,7 +14,8 @@
 	</resultMap>
 	
 	<select id="selectList" parameterType="boardSearch" resultMap="boardMapper">
-		select board_no, title, DATE_FORMAT(reg_date, '%Y-%c-%e %T') as reg_date, view_count from t_board
+		select board_no, title, DATE_FORMAT(reg_date, '%Y-%c-%e %T') as reg_date, view_count, board_type 
+		  from t_board
 		 where board_type = #{boardType}
 		 order by board_no desc
 		 limit #{start}, 5
@@ -29,7 +30,7 @@
 	<select id="selectBoardDetail" parameterType="int" resultMap="boardMapper">
 		select board_no, id, board_type, title, content, view_count, DATE_FORMAT(reg_date, '%Y-%c-%e %T') as reg_date
 		  from t_board
-		 where board_no = #{no}
+		 where board_no = #{boardNo}
 	</select>
 	
 	<select id="selectNext" parameterType="board" resultMap="boardMapper">
@@ -108,8 +109,28 @@
     </insert>
     
 	
+      <!-- 게시물 삭제 -->
+    <delete id="deleteBoard" parameterType="int">
+        delete 
+          from t_board
+		 where board_no = #{boardNo}
+    </delete>
     
     
+      <!-- 파일 삭제 -->    
+    <delete id="deleteFileByBoardNo" parameterType="int">
+        delete 
+          from t_file
+		 where board_no = #{boardNo}
+    </delete>
+    
+    
+     <!-- 게시물 삭제에 따른 댓글 삭제 -->
+    <delete id="deleteCommentByBoardNo" parameterType="int">
+        delete
+          from t_comment 
+		 where board_no = #{boardNo}
+    </delete>
 </mapper>
 
 

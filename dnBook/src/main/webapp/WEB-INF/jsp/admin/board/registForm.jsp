@@ -20,6 +20,7 @@
 		<h2>게시판 등록</h2>
 		<hr />
 		<form action="regist.do" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="boardType" value="${boardType}" />
 			<table>
 			<tr>
 				<th>제목</th>
@@ -40,7 +41,7 @@
 			<tr>
 				<td colspan="2">
 					<input type="submit" value="등록" />
-					<a href="${pageContext.request.contextPath}/board/list.do">목록</a>
+					<a href="${pageContext.request.contextPath}/admin/board/list.do?boardType=${boardType}">목록</a>
 				</td>
 			</tr>
 			</table>

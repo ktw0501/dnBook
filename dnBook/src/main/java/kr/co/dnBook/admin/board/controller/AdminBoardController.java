@@ -44,6 +44,7 @@ public class AdminBoardController {
 		Map<String, Object> result = service.listBoard(boardSearch);
 		List<BoardVO> list = (List<BoardVO>) result.get("list");
 		PageVO page = (PageVO) result.get("page");
+		model.addAttribute("boardType", boardType);
 		model.addAttribute("list", list);
 		model.addAttribute("page", page);
 	}
@@ -95,11 +96,13 @@ public class AdminBoardController {
 		String title = mRequest.getParameter("title");
 		String id = mRequest.getParameter("id");
 		String content = mRequest.getParameter("content");
+		int boardType = Integer.parseInt(mRequest.getParameter("boardType"));
 		
 		BoardVO board = new BoardVO();
 		board.setTitle(title);
 		board.setId(id);
 		board.setContent(content);
+		board.setBoardType(boardType);
 		
 		BoardFileVO file = null;
 		MultipartFile mFile = mRequest.getFile("attachFile");
@@ -135,12 +138,23 @@ public class AdminBoardController {
 			file.setFileSize(mFile.getSize());
 		}
 		service.insertBoard(board, file);
-		return "redirect:admin/board/list.do";
+		return "redirect:list.do?boardType=" + board.getBoardType();
 	}	
 	
 	
 	@RequestMapping("/registForm.do")
-	public void registForm(HttpServletRequest req) throws Exception {
+	public void registForm(Model model, int boardType) throws Exception {
+		model.addAttribute("boardType", boardType);
+	}
+	
+	
+	@RequestMapping("/delete.do")
+	public String deleteBoard(int boardNo, int boardType) throws Exception {
+		// 게시물 삭제 처리 호출
+		
+		service.deleteBoard(boardNo);
+		// 페이지 이동
+		return "redirect:list.do?boardType=" + boardType;
 	}
 	
 }

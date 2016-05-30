@@ -64,9 +64,8 @@ public class AdminBoardMapperImpl implements AdminBoardMapper{
 		sqlSessionTemplate.delete(NAMESPACE + ".selectCommentList", commentNo);
 	}
 	
-	public int insertBoard(BoardVO board) throws Exception {
+	public void insertBoard(BoardVO board) throws Exception {
 		sqlSessionTemplate.insert(NAMESPACE + ".insertBoard", board);
-		return board.getBoardNo();
 	}
 	
 	@Override
@@ -78,6 +77,17 @@ public class AdminBoardMapperImpl implements AdminBoardMapper{
 		sqlSessionTemplate.insert(NAMESPACE + ".insertBoardFile", file);
 	}
 
+	public void deleteBoard(int boardNo) throws Exception { 
+		sqlSessionTemplate.delete(NAMESPACE + ".deleteBoard", boardNo);
+	}
+	
+	public void deleteFileByBoardNo(int boardNo) throws Exception {
+		sqlSessionTemplate.delete(NAMESPACE + ".deleteFileByBoardNo", boardNo);
+	}
+	
+	public void deleteCommentByBoardNo(int boardNo) throws Exception {
+		sqlSessionTemplate.delete(NAMESPACE + ".deleteCommentByBoardNo", boardNo);
+	}
 	
 	
 }

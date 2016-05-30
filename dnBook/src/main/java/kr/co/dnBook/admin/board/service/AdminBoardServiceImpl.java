@@ -65,15 +65,26 @@ public class AdminBoardServiceImpl implements AdminBoardService {
 
 	@Override
 	public void insertBoard(BoardVO board, BoardFileVO file) throws Exception {
-		int boardNo = dao.insertBoard(board);
+		dao.insertBoard(board);
 		
-//		int boardNo = dao.selectBoardNo(board);
-		board.setBoardNo(boardNo);
+		int boardNo = dao.selectBoardNo(board);
+//		board.setBoardNo(boardNo);
 		
 		if (file != null) {
 			file.setBoardNo(boardNo);
 			dao.insertBoardFile(file);
 		}
+		
+	}
+
+	@Override
+	public void deleteBoard(int boardNo) throws Exception {
+		// 게시물 삭제
+		dao.deleteBoard(boardNo);
+		// 파일 삭제	
+		dao.deleteFileByBoardNo(boardNo);
+		// 댓글 삭제
+		dao.deleteCommentByBoardNo(boardNo);
 		
 	}
 	

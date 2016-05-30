@@ -71,9 +71,13 @@
 						<div id="title"><c:out value="${board.title}" /></div>
 						<div id="line"><hr id="titleHr"></div>
 						<div id="content"><c:out value="${board.content}" /></div>
+						<div>
+							<a href="delete.do?boardNo=${board.boardNo}&boardType=${board.boardType}">삭제</a>
+						</div>
+						
 						<div id="comment">
 							<div>
-							
+								
 							</div>
 							<div id="commentList">
 								<table class="table table-striped"></table>
@@ -84,13 +88,13 @@
 								<c:if test="${not empty board.next.title}">
 								<tr>
 									<th>다음글</th>
-									<td><a href="detail.do?no=${board.next.boardNo}">${board.next.title}</a></td>
+									<td><a href="detail.do?boardNo=${board.next.boardNo}">${board.next.title}</a></td>
 								</tr>
 								</c:if>
 								<c:if test="${not empty board.prev.title}">
 								<tr>
 									<th>이전글</th>
-									<td><a href="detail.do?no=${board.prev.boardNo}">${board.prev.title}</a></td>
+									<td><a href="detail.do?boardNo=${board.prev.boardNo}">${board.prev.title}</a></td>
 								</tr>
 								</c:if>
 							</table>

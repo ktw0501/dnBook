@@ -73,7 +73,7 @@
 							<c:forEach var="vo" items="${list}">
 							<tr>
 								<td>${vo.boardNo}</td>
-								<td><a href="detail.do?boardNo=${vo.boardNo}">${vo.title}</a></td>
+								<td><a href="detail.do?boardNo=${vo.boardNo}&boardType=${vo.boardType}">${vo.title}</a></td>
 								<td>관리자</td>
 								<td>${vo.pageViewCnt}</td>
 								<td>${vo.regDate}</td>
@@ -84,7 +84,7 @@
 							<tr><td colspan="4">게시물이 없습니다.</td></tr>
 							</c:if>
 						</table>
-						<a href="registForm.do">글쓰기</a>
+						<a href="registForm.do?boardType=${boardType}">글쓰기</a>
 						<c:if test="${not empty list}">
 							<navi:page/>
 						</c:if>
