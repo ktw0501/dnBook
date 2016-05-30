@@ -10,7 +10,8 @@ public interface AdminBookMapper {
 
 	public void insertBook(BookVO book) throws Exception;
 	public void updateBook(BookVO book) throws Exception;
-	public void deleteBook(int bookCode) throws Exception;
+	public void deleteBook(String data) throws Exception;
+	public void deleteReview(String data) throws Exception;
 	public BookVO selectOneBook(int bookCode) throws Exception;
 	public List<ReviewVO> selectReview(int bookCode) throws Exception;
 	public int selectBookCount() throws Exception;

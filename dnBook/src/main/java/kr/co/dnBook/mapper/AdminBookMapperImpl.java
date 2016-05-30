@@ -27,7 +27,12 @@ public class AdminBookMapperImpl implements AdminBookMapper{
 		sessionTemplate.update(NAMESPACE+".updateBook",book);
 	}
 
-	public void deleteBook(int bookCode) throws Exception {
+	public void deleteBook(String data) throws Exception {
+		sessionTemplate.delete(NAMESPACE+".deleteBook",data);
+	}
+	public void deleteReview(String data) throws Exception
+	{
+		sessionTemplate.delete(NAMESPACE+".deleteReview",data);
 	}
 
 	@Override

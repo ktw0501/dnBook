@@ -9,7 +9,7 @@ import kr.co.dnBook.vo.ReviewVO;
 
 public interface AdminBookService {
 	
-	public void deleteBook(int bookCode) throws Exception;
+	public void deleteBook(String data) throws Exception;
 	
 	public void deleteReview(int bookCode) throws Exception;
 

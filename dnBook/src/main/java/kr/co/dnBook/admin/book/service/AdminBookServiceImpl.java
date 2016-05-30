@@ -19,7 +19,13 @@ public class AdminBookServiceImpl implements AdminBookService{
 	private AdminBookMapper mapper;
 
 	@Override
-	public void deleteBook(int bookCode) throws Exception {
+	public void deleteBook(String data) throws Exception {
+		String[] delNo = data.split(",");
+		for(String delno : delNo)
+		{
+			mapper.deleteBook(delno);
+			mapper.deleteReview(delno);
+		}
 	}
 
 	@Override
