@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.co.dnBook.mapper.UserBookMapper;
-import kr.co.dnBook.vo.BookRecomVO;
+import kr.co.dnBook.vo.BookScoreVO;
 import kr.co.dnBook.vo.BookSearchVO;
 import kr.co.dnBook.vo.BookVO;
 import kr.co.dnBook.vo.PageVO;
@@ -30,17 +30,18 @@ public class UserBookServiceImpl implements UserBookService{
 	}
 	//----------------------------------------------------------------------------------
 	@Override
-	public Map<String, Object> detailBook(BookRecomVO bookRecomVO) throws Exception {
-		int bookCode = bookRecomVO.getBookCode();
+	public Map<String, Object> detailBook(BookScoreVO bookScoreVO) throws Exception {
+		int bookCode = bookScoreVO.getBookCode();
 		// 게시물 정보 조회
 		BookVO book = dao.selectOneBoard(bookCode);
 		// 추천수 조회
-		int recomCount = dao.selectRecomCount(bookRecomVO);		    // 추천하기 바꿔야함 ★
+		int recomCount = dao.selectRecomCount(bookScoreVO);		    
+		// score 부르기 ★
+		// ...
 		
 		Map<String, Object> result = new HashMap<>();
 		result.put("book", book);
 		result.put("recomCount", recomCount);
-//		result.put("coverImg", coverImg);
 		return result;
 	}
 	

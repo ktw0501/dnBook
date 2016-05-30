@@ -3,6 +3,8 @@ package kr.co.dnBook.vo;
 public class BookScoreVO {
 	private int bookCode;			
 	private String id;
+	private int bookScore;
+	
 	public int getBookCode() {
 		return bookCode;
 	}
@@ -14,6 +16,12 @@ public class BookScoreVO {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public int getBookScore() {
+		return bookScore;
+	}
+	public void setBookScore(int bookScore) {
+		this.bookScore = bookScore;
 	}
 	
 }

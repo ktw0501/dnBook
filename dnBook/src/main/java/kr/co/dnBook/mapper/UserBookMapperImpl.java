@@ -6,7 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import kr.co.dnBook.vo.BookRecomVO;
+import kr.co.dnBook.vo.BookScoreVO;
 import kr.co.dnBook.vo.BookSearchVO;
 import kr.co.dnBook.vo.BookVO;
 import kr.co.dnBook.vo.ReviewVO;
@@ -34,9 +34,9 @@ public class UserBookMapperImpl implements UserBookMapper{
 		return session.selectOne(NAMESPACE + ".selectOneBook", bookCode);
 	}
 
-	public int selectRecomCount(BookRecomVO bookRecomVO) throws Exception {		
+	public int selectRecomCount(BookScoreVO bookScoreVO) throws Exception {		
 		// 추천하기 바꿔야함 ★
-		return session.selectOne(NAMESPACE + ".selectRecomCount", bookRecomVO);
+		return session.selectOne(NAMESPACE + ".selectRecomCount", bookScoreVO);
 	}
 	
 	public void insertWish(WishVO wishVO) throws Exception {
