@@ -19,7 +19,7 @@ public class SalesController {
 	private SalesService salesService;
 	
 	@RequestMapping("/salesList.do")
-	public void selectSalesBoard(HttpSession session,Model model) throws Exception{
+	public void selectSales(HttpSession session,Model model) throws Exception{
 //		MemberVO user = (MemberVO)session.getAttribute("user");
 		
 //		Map<String, Object> result = salesService.salesListBoard(user.getId());
