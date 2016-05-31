@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.dnBook.vo.BoardCommentVO;
+import kr.co.dnBook.vo.BoardFileVO;
 import kr.co.dnBook.vo.BoardSearchVO;
 import kr.co.dnBook.vo.BoardVO;
 import kr.co.dnBook.vo.PageVO;
@@ -27,7 +28,9 @@ public class UserBoardController {
 		boardSearch.setBoardType(boardType);
 		Map<String, Object> result = service.listBoard(boardSearch);
 		List<BoardVO> list = (List<BoardVO>) result.get("list");
+		BoardFileVO file = (BoardFileVO)result.get("file");
 		PageVO page = (PageVO) result.get("page");
+		model.addAttribute("file", file);
 		model.addAttribute("boardType", boardType);
 		model.addAttribute("list", list);
 		model.addAttribute("page", page);
@@ -67,8 +70,4 @@ public class UserBoardController {
 		return service.deleteComment(comment);
 	}
 	
-	@RequestMapping("test.do")
-	public void test() throws Exception {
-		service.test();
-	}
 }

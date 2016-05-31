@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.dnBook.vo.BoardCommentVO;
+import kr.co.dnBook.vo.BoardFileVO;
 import kr.co.dnBook.vo.BoardSearchVO;
 import kr.co.dnBook.vo.BoardVO;
 
@@ -67,8 +68,8 @@ public class UserBoardMapperImpl implements UserBoardMapper {
 	}
 	
 	@Override
-	public void test() throws Exception {
-		sqlSessionTemplate.insert(NAMESPACE + ".test");
-		
+	public BoardFileVO selectBoardFile(BoardVO board) throws Exception {
+		return sqlSessionTemplate.selectOne(NAMESPACE + ".selectBoardFile", board);
 	}
+
 }

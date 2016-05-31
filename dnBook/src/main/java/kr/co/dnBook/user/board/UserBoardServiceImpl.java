@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.dnBook.mapper.UserBoardMapper;
 import kr.co.dnBook.vo.BoardCommentVO;
+import kr.co.dnBook.vo.BoardFileVO;
 import kr.co.dnBook.vo.BoardSearchVO;
 import kr.co.dnBook.vo.BoardVO;
 import kr.co.dnBook.vo.PageVO;
@@ -31,8 +32,13 @@ public class UserBoardServiceImpl implements UserBoardService {
 		Map<String, Object> result = new HashMap<>();
 		dao.insertViewCount(board);
 		board = dao.selectDetail(board.getBoardNo());
+		BoardFileVO file = new BoardFileVO();
+		if(board.getBoardType() == 2) {
+			file = dao.selectBoardFile(board);
+		}
 		BoardVO prev = dao.selectPrev(board);
 		BoardVO next = dao.selectNext(board);
+		result.put("file", file);
 		result.put("board", board);
 		result.put("prev", prev);
 		result.put("next", next);
@@ -63,10 +69,5 @@ public class UserBoardServiceImpl implements UserBoardService {
 		return dao.selectCommentList(comment);
 	}
 	
-	
-	@Override
-	public void test() throws Exception {
-		dao.test();
-	}
 	
 }

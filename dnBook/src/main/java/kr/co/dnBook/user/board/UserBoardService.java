@@ -15,5 +15,4 @@ public interface UserBoardService {
 	public List<BoardCommentVO> updateComment(BoardCommentVO comment) throws Exception;
 	public List<BoardCommentVO> deleteComment(BoardCommentVO comment) throws Exception;
 	
-	public void test() throws Exception;
 }

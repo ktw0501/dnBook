@@ -85,11 +85,21 @@
 		 where board_no = ${boardNo}
 	</update>
     
+  	<resultMap type="boardFile" id="boardFileMap" >
+  		<result column="board_no" property="boardNo" />
+  		<result column="file_path" property="filePath" />
+  		<result column="ori_file_name" property="oriFileName" />
+  		<result column="real_file_name" property="realFileName" />
+  		<result column="file_no" property="fileNo" />
+  		<result column="file_size" property="fileSize" />
+  	</resultMap>  
     
-    <delete id="test">
-    	insert into t_board (id, board_type, title) 
-    	values ('테스트', 2, '테스터12')
-    </delete>
+    <select id="selectBoardFile" parameterType="board" resultMap="boardFileMap">
+    	select * 
+    	  from t_file
+    	 where board_no = ${board_no} 
+    </select>
+   
 </mapper>
 
 
