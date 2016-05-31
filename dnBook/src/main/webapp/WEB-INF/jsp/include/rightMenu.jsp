@@ -14,12 +14,13 @@
 			for(var i in result){
 				
 				var title = result[i].title;
-				$("#result").append("<tr><td><a href="#">" + title + "<br /></a></td></td></tr>");
+				var title = result[i].no;
+				$("#noticeresult").append("<tr><td><a onclick = detail("+ no + ")>" + title + "</a></td></td></tr>");
 			}
 		};
 		
 		$.ajax({ //최초 리스트
-			url: "/jquery-basic/ajax/list"
+			url: "${pageContext.request.contextPath}/user/include/noticeList.json?boardType=1"
 		})
 		.done(function(data) {
 			list(data);
@@ -207,26 +208,13 @@ function getCookie(cookieName) {
 	 <hr />
 		<div id="noticelist">
 			<div id="noticecontent" style="margin-top:5px;">
-				<table id="noticeresult" border="1">
+				<table id="noticeresult">
 					<tr>
-						<th>제목</th>
-					</tr>
-					<tr><td><a href="#">-dd <br /></a></td></tr>
-					<tr>
-						<td><a href="#">-dd <br /></a></td>
-					</tr>
-					<tr>
-						<td><a href="#">-dd <br /></a></td>
-					</tr>
-					<tr>
-						<td><a href="#">-dd <br /></a></td>
-					</tr>
-					<tr>
-						<td><a href="#">-dd <br /></a></td>
+					  <td></td>
 					</tr>
 				</table>
 			</div>
-			<div>more</div>
+			<div align="right"><a href="${pageContext.request.contextPath}/service/list.do?boardType=1">more</a></div>
 		</div>
 	</div>
 </div>

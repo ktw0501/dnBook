@@ -5,68 +5,77 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<!-- <style> -->
-/* span { */
-/* 	font-size: 10px; */
-/* 	color: #BBBBBB; */
-/* } */
+<style>
 
-/* .login { */
-/* 	width: 400px; */
-/* 	height : 390px; */
-/* 	margin: 0px auto; */
-/* 	border: 1px solid; */
-/* 	border: 1px dashed #00498c; */
-/* 	padding-top: 50px; */
-/* } */
+#outer {width: 100%}
+ #container { width:1070px; margin: 0 auto;}
+ #container #header { width:1030px; height:200px; margin-left:10px;  margin-bottom:10px;}
+ #container #left { display:inline; float:left; width:190px; height:500px; margin-left:10px; background:#33CCFF; }
+ #container #content { float:left; width:650px; height:auto; margin-left:10px; background:#BFF484; }
+ #container #right { float:left; width:190px; height:500px; margin-left:10px; background:#73534D; }
+ #container #footer { clear:both; width:1050px; height:150px; margin-left:10px; margin-top:10px;}
 
-/* table { */
-/* 	margin: 0px auto; */
-/* } */
-/* h1{ */
-/* 	color: #00498c; */
-/* 	text-shadow: 5px 3px 5px #aaaaaa; */
-/* } */
+span {
+font-size: 10px; 
+ 	color: #BBBBBB;
+ } 
 
-/* th{ */
-/* 	font-size: 12px; */
-/* 	color: #776269; */
-/* } */
-/* .join{ */
+ .login { 
+ 	width: 400px; 
+ 	height : 390px; 
+ 	margin: 0px auto; 
+ 	border: 1px solid; 
+ 	border: 1px dashed #00498c; 
+ 	padding-top: 50px; 
+ } 
+
+ table { 
+ 	margin: 0px auto; 
+ } 
+ h1{ 
+ 	color: #00498c; 
+ 	text-shadow: 5px 3px 5px #aaaaaa; 
+ } 
+
+ th{ 
+ 	font-size: 12px; 
+ 	color: #776269; 
+ } 
+ .join{ 
 	
-/* 	border: 1px solid; */
-/* 	border-color: #dcdcdc; */
-/* 	text-align: center; */
+ 	border: 1px solid; 
+ 	border-color: #dcdcdc; 
+ 	text-align: center; 
 	
-/* 	} */
-/* a { text-decoration: none; color: #776269; display: block;} */
+ 	} 
+ .join > a { text-decoration: none; color: #776269; display: block;} 
 
-/* .join > a:hover {  */
-/* 	background : #00498c;  */
-/* 	color: white; */
-/* } */
-/* hr{ */
-/* 	border-color:  #00498c; */
-/* } */
+ .join > a:hover {  
+ 	background : #00498c;  
+ 	color: white; 
+ } 
+ hr{ 
+ 	border-color:  #00498c; 
+ } 
 
-/* .loginBtn { */
-/* 	height: 50px; */
-/* 	background-color:#00498c; */
-/* 	-moz-border-radius:5px; */
-/* 	-webkit-border-radius:5px; */
-/* 	border-radius:5px; */
-/* 	border:1px solid #337fed; */
-/* 	display:inline-block; */
-/* 	cursor:pointer; */
-/* 	color:#ffffff; */
-/* 	font-family:Arial; */
-/* 	font-size:15px; */
-/* 	font-weight:bold; */
-/* 	padding:8px 24px; */
-/* 	text-decoration:none; */
-/* 	text-shadow:0px 1px 0px #1570cd; */
-/* } */
-<!-- </style> -->
+ .loginBtn { 
+ 	height: 50px; 
+ 	background-color:#00498c; 
+ 	-moz-border-radius:5px; 
+ 	-webkit-border-radius:5px; 
+ 	border-radius:5px; 
+ 	border:1px solid #337fed; 
+ 	display:inline-block; 
+ 	cursor:pointer; 
+ 	color:#ffffff; 
+ 	font-family:Arial; 
+ 	font-size:15px; 
+ 	font-weight:bold; 
+ 	padding:8px 24px; 
+ 	text-decoration:none; 
+ 	text-shadow:0px 1px 0px #1570cd; 
+ } 
+</style>
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <!-- 로그인 실패시 오류메시지 띄우기 -->
 <script>
@@ -139,56 +148,61 @@ function getCookie(cookieName) {
 
 </head>
 <body>
-
-	<div class="container">
-		<div class="header">
+<div id="outer">
+	<div id="container" >
+		  <div id="header">
 		<%@ include file="/WEB-INF/jsp/include/topMenu.jsp" %>
 		</div>
-		<div class="content">
-<!-- 			<div class = "login"> -->
-<%-- 				<form id="lForm" name="lForm" onsubmit="return ckForm()" action="${pageContext.request.contextPath}/login/login.do" method="post"> --%>
-<!-- 					<table> -->
-<!-- 						<tr> -->
-<!-- 							<td colspan="3" align="center"> -->
-<!-- 								<h3>회원로그인<br /> -->
-<!-- 								<span>회원 아이디와 비밀번호를 입력하시고 로그인을 클릭해주세요.</span> -->
-<!-- 								</h3> -->
-<!-- 							</td> -->
-<!-- 						</tr> -->
-<!-- 						<tr> -->
-<!-- 							<th>아이디</th> -->
-<!-- 							<td><input type="text" name="id" required/></td> -->
-<!-- 							<td rowspan="2"> -->
-<!-- 							<button class = "loginBtn"type="submit">로그인</button> -->
-<!-- 							</td>					 -->
-<!-- 						</tr> -->
-<!-- 						<tr> -->
-<!-- 							<th>패스워드</th> -->
-<!-- 							<td><input type="password" name="pass" required/></td> -->
-<!-- 						</tr> -->
-<!-- 						<tr> -->
-<!-- 							<th id="result" colspan="4" style="color: red; font-size: 12px;"></th> -->
-<!-- 						</tr> -->
-<!-- 						<tr> -->
-<!-- 							<td></td> -->
-<!-- 							<th colspan="2" align="left"> -->
-<!-- 								<input type="checkbox" id="idSaveCheck" />아이디저장 -->
-<!-- 							</th> -->
-<!-- 						</tr> -->
-<!-- 						<tr> -->
-<!-- 							<th colspan="3" align="center" > -->
-<!-- 								<hr /> -->
-<!-- 								>아직 회원이 아니신가요?<br /> -->
-<!-- 								<span>회원으로 가입하시면 다양하고 특별한 혜택을 누리실 수 있습니다.</span> -->
-<%-- 								<div class="join"><a href="${pageContext.request.contextPath}/member/joinForm.do">회원가입</a></div>								 --%>
-<!-- 							</th> -->
-<!-- 						</tr> -->
-<!-- 					</table> -->
-<!-- 				</form> -->
-<!-- 			</div> -->
+		<div id="left"><span>left</span></div>
+		<div id="content">
+			<div class = "login">
+				<form id="lForm" name="lForm" onsubmit="return ckForm()" action="${pageContext.request.contextPath}/login/login.do" method="post">
+					<table>
+						<tr>
+							<td colspan="3" align="center">
+								<h3>회원로그인<br />
+								<span>회원 아이디와 비밀번호를 입력하시고 로그인을 클릭해주세요.</span>
+								</h3>
+							</td>
+						</tr>
+						<tr>
+							<th>아이디</th>
+							<td><input type="text" name="id" required/></td>
+							<td rowspan="2">
+							<button class = "loginBtn"type="submit">로그인</button>
+							</td>					
+						</tr>
+						<tr>
+							<th>패스워드</th>
+							<td><input type="password" name="pass" required/></td>
+						</tr>
+						<tr>
+							<th id="result" colspan="4" style="color: red; font-size: 12px;"></th>
+						</tr>
+						<tr>
+							<td></td>
+							<th colspan="2" align="left">
+								<input type="checkbox" id="idSaveCheck" />아이디저장
+							</th>
+						</tr>
+						<tr>
+							<th colspan="3" align="center" >
+								<hr />
+								>아직 회원이 아니신가요?<br />
+								<span>회원으로 가입하시면 다양하고 특별한 혜택을 누리실 수 있습니다.</span>
+								<div class="join"><a href="${pageContext.request.contextPath}/member/joinForm.do">회원가입</a></div>								
+							</th>
+						</tr>
+					</table>
+				</form>
+			</div>
 		</div>
-		<div class="footer">
+		 <div id="right">
+			<%@ include file="/WEB-INF/jsp/include/rightMenu.jsp" %>
+		</div>
+	     <div id="footer">
 			<%@ include file="/WEB-INF/jsp/include/bottom.jsp" %>
-		</div>
+		 </div>
 	</div>
+</div>
 </body>
