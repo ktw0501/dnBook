@@ -7,11 +7,11 @@
 		insert 	into t_book 
 				(
 				cover_img, title, publisher,author,translator,description,price,rent_price,
-				rental_dir_path, pdf_path, pub_date, category_code
+				rental_dir_path, pdf_path, pub_date, category_code, max_page
 				)
 		values	(#{coverImg},#{title},#{publisher},#{author},
 				#{translator},#{description},#{price},#{rentPrice},#{rentalDirPath},
-				#{pdfPath},#{pubDate},#{categoryCode})
+				#{pdfPath},#{pubDate},#{categoryCode},#{maxPage})
 	</insert>
 	<update id="updateBook" parameterType="book">
 		update 	t_book
@@ -34,6 +34,7 @@
 				pub_date as pubDate, category_code as categoryCode ,
 				rental_dir_path as rentalDirPath
 		from	t_book
+		order	by	book_code desc
 		limit	#{start}, 5
 	</select>
 	<select id="selectBookCount" resultType="int">

@@ -15,6 +15,13 @@ public class BookVO {
 	private String pdfPath;
 	private String pubDate;
 	private String categoryCode;
+	private int maxPage;
+	public int getMaxPage() {
+		return maxPage;
+	}
+	public void setMaxPage(int maxPage) {
+		this.maxPage = maxPage;
+	}
 	public int getBookCode() {
 		return bookCode;
 	}

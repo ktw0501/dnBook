@@ -183,7 +183,8 @@ public class AdminBookController {
 		book.setPubDate(mReq.getParameter("pubDate"));
 		book.setCategoryCode(mReq.getParameter("categoryCode"));
 		String uploadPath = servletContext.getRealPath("/upload/");
-		uploadPath+=book.getPubDate()+"/"+book.getTitle();
+		String path = book.getPubDate()+"/"+book.getTitle();
+		uploadPath+=path;
 		File uploadDir = new File(uploadPath);
 		if(!uploadDir.exists())
 		{
@@ -213,8 +214,8 @@ public class AdminBookController {
 					book.setPdfPath(saveFileName);
 					file = new File(uploadDir , saveFileName);
 					mFile.transferTo(file);
-					PdfImage.execute(uploadDir,saveFileName);
-					book.setRentalDirPath("dd");
+					book.setMaxPage(PdfImage.execute(uploadDir,saveFileName));
+					book.setRentalDirPath(path);
 
 				}
 				else if(ext.equalsIgnoreCase(".jpg") || ext.equalsIgnoreCase(".gif") ||
