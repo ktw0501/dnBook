@@ -77,16 +77,16 @@ public class AdminBoardMapperImpl implements AdminBoardMapper{
 		sqlSessionTemplate.insert(NAMESPACE + ".insertBoardFile", file);
 	}
 
-	public void deleteBoard(int boardNo) throws Exception { 
-		sqlSessionTemplate.delete(NAMESPACE + ".deleteBoard", boardNo);
+	public void deleteBoard(String data) throws Exception { 
+		sqlSessionTemplate.delete(NAMESPACE + ".deleteBoard", data);
 	}
 	
-	public void deleteFileByBoardNo(int boardNo) throws Exception {
-		sqlSessionTemplate.delete(NAMESPACE + ".deleteFileByBoardNo", boardNo);
+	public void deleteFileByBoardNo(String data) throws Exception {
+		sqlSessionTemplate.delete(NAMESPACE + ".deleteFileByBoardNo", data);
 	}
 	
-	public void deleteCommentByBoardNo(int boardNo) throws Exception {
-		sqlSessionTemplate.delete(NAMESPACE + ".deleteCommentByBoardNo", boardNo);
+	public void deleteCommentByBoardNo(String data) throws Exception {
+		sqlSessionTemplate.delete(NAMESPACE + ".deleteCommentByBoardNo", data);
 	}
 	
 	

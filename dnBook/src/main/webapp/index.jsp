@@ -2,4 +2,4 @@
     pageEncoding="UTF-8"%>
 <script>
 	location.href = "${pageContext.request.contextPath}/main.do";  
-</script> 
+</script>

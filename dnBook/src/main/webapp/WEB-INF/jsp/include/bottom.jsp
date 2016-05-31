@@ -13,7 +13,7 @@
 }
 .bottomlogo{
 	margin-left: 20px;
-	float: left
+	float: left;
 }
 .info{
 	float: left;

@@ -21,23 +21,6 @@ public class UserBoardController {
 	@Autowired
 	UserBoardService service;
 	
-	@RequestMapping("list2.do")
-	public void boardList2(Model model, int boardType, @RequestParam(value="pageNo", required=false, defaultValue="1")int pageNo) throws Exception {
-		BoardSearchVO boardSearch = new BoardSearchVO(pageNo);
-		boardSearch.setBoardType(boardType);
-		Map<String, Object> result = service.listBoard(boardSearch);
-		List<BoardVO> list = (List<BoardVO>) result.get("list");
-		PageVO page = (PageVO) result.get("page");
-		System.out.println("111111");
-		System.out.println("111111");
-		System.out.println(boardType);
-		System.out.println(boardType);
-		System.out.println(boardType);
-		model.addAttribute("boardType", boardType);
-		model.addAttribute("list", list);
-		model.addAttribute("page", page);
-	}
-	
 	@RequestMapping("list.do")
 	public void boardList(Model model, int boardType, @RequestParam(value="pageNo", required=false, defaultValue="1")int pageNo) throws Exception {
 		BoardSearchVO boardSearch = new BoardSearchVO(pageNo);
@@ -45,11 +28,6 @@ public class UserBoardController {
 		Map<String, Object> result = service.listBoard(boardSearch);
 		List<BoardVO> list = (List<BoardVO>) result.get("list");
 		PageVO page = (PageVO) result.get("page");
-		System.out.println("111111");
-		System.out.println("111111");
-		System.out.println(boardType);
-		System.out.println(boardType);
-		System.out.println(boardType);
 		model.addAttribute("boardType", boardType);
 		model.addAttribute("list", list);
 		model.addAttribute("page", page);

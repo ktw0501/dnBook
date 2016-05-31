@@ -25,7 +25,7 @@ public interface AdminBoardService {
 	
 	public void insertBoard(BoardVO board, BoardFileVO file) throws Exception;
 	
-	public void deleteBoard(int boardNo) throws Exception;
+	public void deleteBoard(String data) throws Exception;
 	
-	
+
 }

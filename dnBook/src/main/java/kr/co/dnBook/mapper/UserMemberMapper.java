@@ -11,4 +11,6 @@ public interface UserMemberMapper {
 
 	public MemberVO selectOneMember(MemberVO member);
 
+	public void updateMember(MemberVO member);
+
 }

@@ -13,4 +13,6 @@ public interface UserMemberService {
 
 	public MemberVO userOneMember(MemberVO member);
 
+	public void updateMember(MemberVO member);
+
 }

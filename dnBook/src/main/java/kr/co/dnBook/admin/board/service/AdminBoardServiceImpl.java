@@ -78,15 +78,20 @@ public class AdminBoardServiceImpl implements AdminBoardService {
 	}
 
 	@Override
-	public void deleteBoard(int boardNo) throws Exception {
-		// 게시물 삭제
-		dao.deleteBoard(boardNo);
-		// 파일 삭제	
-		dao.deleteFileByBoardNo(boardNo);
-		// 댓글 삭제
-		dao.deleteCommentByBoardNo(boardNo);
+	public void deleteBoard(String data) throws Exception {
 		
+		String[] delNo = data.split(",");
+		
+		for (String delno : delNo){
+			// 게시물 삭제
+			dao.deleteBoard(delno);
+			// 파일 삭제	
+			dao.deleteFileByBoardNo(delno);
+			// 댓글 삭제
+			dao.deleteCommentByBoardNo(delno);
+		}
 	}
+
 	
 	
 	

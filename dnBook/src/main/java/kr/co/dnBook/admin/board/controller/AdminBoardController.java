@@ -147,12 +147,11 @@ public class AdminBoardController {
 		model.addAttribute("boardType", boardType);
 	}
 	
-	
+	@ResponseBody
 	@RequestMapping("/delete.do")
-	public String deleteBoard(int boardNo, int boardType) throws Exception {
+	public String deleteBoard(String data, int boardType) throws Exception {
 		// 게시물 삭제 처리 호출
-		
-		service.deleteBoard(boardNo);
+		service.deleteBoard(data);
 		// 페이지 이동
 		return "redirect:list.do?boardType=" + boardType;
 	}
