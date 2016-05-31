@@ -30,10 +30,13 @@
 		<ul class="nav menu">
 			<li class="active"><a href="${pageContext.request.contextPath}/admin/main.do"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg>Main</a></li>
 			<li><a href="${pageContext.request.contextPath}/admin/book/list.do"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg> Book  </a></li>
-			<li><a href="${pageContext.request.contextPath}/admin/sales/main.do"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> Sales </a></li>
-			<li><a href="${pageContext.request.contextPath}/admin/member/list.do"><svg class="glyph stroked table"><use xlink:href="#stroked-table"></use></svg> Member </a></li>
-			<li><a href="${pageContext.request.contextPath}/admin/board/list.do"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg> Board </a></li>
-			
+
+			<li><a href=""><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> Sales </a></li>
+			<li><a href="${pageContext.request.contextPath}/admin/board/list.do?boardType=1"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg> Event Board </a></li>
+			<li><a href="${pageContext.request.contextPath}/admin/board/list.do?boardType=2"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg> Notice Board </a></li>
+			<li><a href="${pageContext.request.contextPath}/admin/member/list.do?status=1"><svg class="glyph stroked table"><use xlink:href="#stroked-table"></use></svg> Activated Member </a></li>
+			<li><a href="${pageContext.request.contextPath}/admin/member/list.do?status=-1"><svg class="glyph stroked table"><use xlink:href="#stroked-table"></use></svg> DeActivated Member </a></li>
+
 			<li role="presentation" class="divider"></li>
 			<li><a href="login.html"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Login Page</a></li>
 		</ul>

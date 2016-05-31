@@ -30,9 +30,15 @@ public class AdminBoardServiceImpl implements AdminBoardService {
 	@Override
 	public Map<String, Object> detailBoard(BoardVO board) throws Exception {
 		Map<String, Object> result = new HashMap<>();
+		dao.insertViewCount(board);
 		board = dao.selectDetail(board.getBoardNo());
+		BoardFileVO file = new BoardFileVO();
+		if(board.getBoardType() == 1) {
+			file = dao.selectBoardFile(board);
+		}
 		BoardVO prev = dao.selectPrev(board);
 		BoardVO next = dao.selectNext(board);
+		result.put("file", file);
 		result.put("board", board);
 		result.put("prev", prev);
 		result.put("next", next);

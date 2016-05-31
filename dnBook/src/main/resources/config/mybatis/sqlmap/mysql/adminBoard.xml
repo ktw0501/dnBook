@@ -131,6 +131,30 @@
           from t_comment 
 		 where board_no = #{boardNo}
     </delete>
+    
+    <resultMap type="boardFile" id="boardFileMap" >
+  		<result column="board_no" property="boardNo" />
+  		<result column="file_path" property="filePath" />
+  		<result column="ori_file_name" property="oriFileName" />
+  		<result column="real_file_name" property="realFileName" />
+  		<result column="file_no" property="fileNo" />
+  		<result column="file_size" property="fileSize" />
+  	</resultMap>  
+    
+    <select id="selectBoardFile" parameterType="board" resultMap="boardFileMap">
+    	select * 
+    	  from t_file
+    	 where board_no = ${boardNo} 
+    </select>
+    
+    <update id="insertViewCount" parameterType="board">
+		update t_board
+		   set  view_count = ((select view_count 
+				   from (select * from t_board) as t
+				  where board_no = ${boardNo}) + 1)
+		 where board_no = ${boardNo}
+	</update>
+    
 </mapper>
 
 

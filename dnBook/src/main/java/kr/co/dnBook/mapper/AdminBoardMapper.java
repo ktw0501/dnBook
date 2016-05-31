@@ -41,6 +41,8 @@ public interface AdminBoardMapper {
 	
 	public void deleteCommentByBoardNo(String data) throws Exception;
 	
+	public BoardFileVO selectBoardFile(BoardVO board) throws Exception;
 	
+	public void insertViewCount(BoardVO board) throws Exception;
 	
 }

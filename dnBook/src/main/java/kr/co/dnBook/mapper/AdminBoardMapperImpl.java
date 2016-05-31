@@ -89,5 +89,16 @@ public class AdminBoardMapperImpl implements AdminBoardMapper{
 		sqlSessionTemplate.delete(NAMESPACE + ".deleteCommentByBoardNo", data);
 	}
 	
+	@Override
+	public BoardFileVO selectBoardFile(BoardVO board) throws Exception {
+		return sqlSessionTemplate.selectOne(NAMESPACE + ".selectBoardFile", board);
+	}
+	
+	@Override
+	public void insertViewCount(BoardVO board) throws Exception {
+		sqlSessionTemplate.insert(NAMESPACE + ".insertViewCount", board);
+	}
+	
+	
 	
 }

@@ -44,56 +44,44 @@
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div id="outer">
-		<div id="container">
-			
-			<div id="top">
-				<%@ include file="/WEB-INF/jsp/include/topMenu.jsp" %>
-			</div>
-			
-			<div id="body">
-				<div id="bleft">a</div>
-				<div id="bmiddle">
-					<div id="serviceLogo">
-						<img src="${pageContext.request.contextPath}/img/serviceLogo.jpg" />
-					</div>
-					<div id="board">
-						<table class="table table-striped">
-							<tr>
-								<th style="width: 10%;">id</th>
-								<th style="width: 10%;">name</th>
-								<th style="width: 40%;">주소</th>
-								<th style="width: 20%;">이메일</th>
-								<th style="width: 20%;">전화번호</th>
-							</tr>
-							<c:forEach var="vo" items="${list}">
-							<tr>
-								<td><a href="detail.do?id=${vo.id}">${vo.id}</a></td>
-								<td>${vo.name}</td>
-								<td>${vo.address} ${vo.detailAddress} </td>
-								<td>${vo.email}</td>
-								<td>${vo.tel}</td>
-							</tr>
-							</c:forEach>
-							<c:if test="${empty list}">
-							<tr><td colspan="4">회원이 없습니다.</td></tr>
-							</c:if>
-						</table>
-						<c:if test="${not empty list}">
-							<navi:page/>
-						</c:if>
-					</div>
-				</div>
-				<div id="bright">a</div>
-			</div>
-			
-			<div id="bottom">
-				<%@ include file="/WEB-INF/jsp/include/bottom.jsp" %>
-			</div>
-		</div>
+	<c:import url="../include/basic.jsp" />
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+		<table data-toggle="table" data-show-refresh="true" data-show-toggle="true" data-show-columns="true">
+			<thead>
+				<tr>
+					<th>id</th>
+					<th>name</th>
+					<th>주소</th>
+					<th>이메일</th>
+					<th>전화번호</th>
+				</tr>
+			</thead>
+			<c:forEach var="member" items="${list}">
+
+				<tr id="tr${board.boardNo}">
+					
+					<td><a href="${pageContext.request.contextPath}/admin/member/detail.do?id=${member.id}">${member.id}</a></td>
+					<td><a href="${pageContext.request.contextPath}/admin/member/detail.do?id=${member.id}">${member.name}</a></td>
+					<td><a href="${pageContext.request.contextPath}/admin/member/detail.do?id=${member.id}">${member.address} ${member.detailAddress}</a></td>
+					<td>${member.email}</td>
+					<td><a href="${pageContext.request.contextPath}/admin/member/detail.do?id=${member.id}">${member.tel}</a></td>
+					
+				</tr>
+			</c:forEach>
+		</table>
+		<c:if test="${not empty list}">
+			<navi:page />
+		</c:if>
+<!-- 		<button class="btn btn-primary" id="delBtn">삭제</button> -->
+<!-- 		<button class="btn btn-primary" id="registBtn">글 등록</button> -->
 	</div>
+
+
+
+
+
+
 	<script type="text/javascript">
-		
 		function jsPageMove(pageNo) {
 			location.href = "list.do?pageNo=" + pageNo + "&status=${status}";
 		}

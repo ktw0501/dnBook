@@ -8,41 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-	#outer {
-		width: 100%;
-	}
 	
-	#container {
-		width: 1050px;
-		margin: 0 auto;
-	}
-	
-	#serviceLogo > img {
-		width: 650px;
-	}
-	
-	#bleft, #bright {
-		width: 180px;
-	}
-	#body > div {
-		float: left;
-	} 
-	#bmiddle {
-		margin: 0 auto;
-	}
-	#bottom {
-		clear: both;
-	}
-	#body {
-		height: auto;
-		width: 1050px;
-		margin-top: 50px;
-		margin-bottom: 50px;
-	}
-	a {
-		text-decoration: none;
-		color: black;
-	}
 </style>
 <script src="${pageContext.request.contextPath}/js/jquery-2.2.3.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
@@ -61,63 +27,48 @@
 </script>
 </head>
 <body>
-	<div id="outer">
-		<div id="container">
-			
-			<div id="top">
-				<%@ include file="/WEB-INF/jsp/include/topMenu.jsp" %>
-			</div>
-			
-			<div id="body">
-				<div id="bleft">a</div>
-				<div id="bmiddle">
-					<div id="serviceLogo">
-						<img src="${pageContext.request.contextPath}/img/serviceLogo.jpg" />
-					</div>
-					<div id="board">
-						<table class="table table-striped">
-							<tr>
-								<th style="width: 10%;">삭제</th>
-								<th style="width: 10%;">번호</th>
-								<th style="width: 30%;">제목</th>
-								<th style="width: 10%;">작성자</th>
-								<th style="width: 10%;">조회수</th>
-								<th style="width: 20%;">등록일</th>
-							</tr>
-							<c:forEach var="vo" items="${list}">
-							<tr>
-								<td><input type="checkBox" value="${vo.boardNo}" name = delCheck></td>
-								<td>${vo.boardNo}</td>
-								<td><a href="detail.do?boardNo=${vo.boardNo}&boardType=${vo.boardType}">${vo.title}</a></td>
-								<td>관리자</td>
-								<td>${vo.pageViewCnt}</td>
-								<td>${vo.regDate}</td>
-							</tr>
-							
-							</c:forEach>
-							<tr>
-								<td> <button id="delBtn"> 선택 삭제 </button></td>
-							</tr>
-							<c:if test="${empty list}">
-							<tr><td colspan="5">게시물이 없습니다.</td></tr>
-							</c:if>
-						</table>
-						<a href="registForm.do?boardType=${boardType}"><button>글쓰기</button></a>
-						<c:if test="${not empty list}">
-							<navi:page/>
-						</c:if>
-					</div>
-				</div>
-				<div id="bright">a</div>
-			</div>
-			
-			<div id="bottom">
-				<%@ include file="/WEB-INF/jsp/include/bottom.jsp" %>
-			</div>
-		</div>
+
+
+
+	<c:import url="../include/basic.jsp" />
+	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+		<table data-toggle="table" data-show-refresh="true" data-show-toggle="true" data-show-columns="true">
+			<thead>
+				<tr>
+					<th>삭제</th>
+					<th>번호</th>
+					<th>제목</th>
+					<th>조회수</th>
+					<th>등록일</th>
+				</tr>
+			</thead>
+			<c:forEach var="board" items="${list}">
+
+				<tr id="tr${board.boardNo}">
+					<td><input type="checkBox" value="${board.boardNo}"
+						name=delCheck></td>
+					<td>${board.boardNo}</td>
+					<td><a href="${pageContext.request.contextPath}/admin/board/detail.do?boardNo=${board.boardNo}&boardType=${board.boardType}">${board.title}</a></td>
+					<td>${board.pageViewCnt}</td>
+					<td>${board.regDate}</td>
+				</tr>
+			</c:forEach>
+		</table>
+		<c:if test="${not empty list}">
+			<navi:page />
+		</c:if>
+		<button class="btn btn-primary" id="delBtn">삭제</button>
+		<button class="btn btn-primary" id="registBtn">글 등록</button>
 	</div>
-	
-<script type="text/javascript">
+
+
+
+
+
+
+
+
+	<script type="text/javascript">
 
 $(function(){
 	$("#delBtn").click(function(){
@@ -144,7 +95,9 @@ $(function(){
 			console.log(data);
 			jsPageMove("${page.pageNo}");
 		})
-		
+	});
+	$("#registBtn").click(function(){
+		location.href = "registForm.do?boardType=" + ${boardType};
 	})
 })
 

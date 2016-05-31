@@ -43,10 +43,12 @@ public class AdminBoardController {
 		boardSearch.setBoardType(boardType);
 		Map<String, Object> result = service.listBoard(boardSearch);
 		List<BoardVO> list = (List<BoardVO>) result.get("list");
+		BoardFileVO file = (BoardFileVO)result.get("file");
 		PageVO page = (PageVO) result.get("page");
 		model.addAttribute("boardType", boardSearch.getBoardType());
 		model.addAttribute("list", list);
 		model.addAttribute("page", page);
+		
 	}
 	
 	@RequestMapping("/detail.do")
@@ -55,6 +57,7 @@ public class AdminBoardController {
 		model.addAttribute("board", result.get("board"));
 		model.addAttribute("prev", result.get("prev"));
 		model.addAttribute("next", result.get("next"));
+		model.addAttribute("file", result.get("file"));
 	}
 	
 	@RequestMapping("/commentList.json")

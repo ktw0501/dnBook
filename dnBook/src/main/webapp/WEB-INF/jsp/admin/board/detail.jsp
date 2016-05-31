@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-	#outer {
+#outer {
 		width: 100%;
 	}
 	
@@ -41,19 +42,18 @@
 		text-decoration: none;
 		color: black;
 	}
-	#titleHr {
-		width: 100%;
-		color: black;
-		border: thin;
+	#title {
+		float: left;
 	}
-	#line {
-		
+	#viewCnt {
+		float:right;
 	}
 </style>
 <script src="${pageContext.request.contextPath}/js/jquery-2.2.3.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 </head>
 <body>
+ 
 <div id="outer">
 		<div id="container">
 			
@@ -68,16 +68,27 @@
 						<img src="${pageContext.request.contextPath}/img/serviceLogo.jpg" />
 					</div>
 					<div id="board">
-						<div id="title"><c:out value="${board.title}" /></div>
-						<div id="line"><hr id="titleHr"></div>
-						<div id="content"><c:out value="${board.content}" /></div>
-						<a href="list.do?boardType=${board.boardType}">목록으로</a>	
-<!-- 						<div> -->
-<%-- 							<a href="delete.do?boardNo=${board.boardNo}&boardType=${board.boardType}">삭제</a> --%>
-<!-- 						</div> -->
-						
+						<table>
+							<tr >
+								<td style="border-bottom: 1px solid black">
+									<div id="title" ><c:out value="${board.title}" /></div>
+									<div id="viewCnt">조회수 ${board.pageViewCnt}</div>
+								</td>
+							</tr>
+							<tr>
+								<td style="border-bottom: 1px solid black">
+									<c:if test="${not empty file}">
+										<img style="width: 600px; height: 180px;" src="${pageContext.request.contextPath}/upload/event${file.filePath}/${file.realFileName}" />
+									<br />
+									</c:if>
+									<br />
+									<textarea id="content" style="resize: none; border: none;" rows="8" cols="90"  
+									><c:out value="${board.content}" /></textarea>
+								</td>
+							</tr>
+						</table>
 						<div id="comment">
-							<div>
+							<div id="commentReg">
 								<textarea rows="2" cols="60" style="resize: none;"></textarea> <button type="button" onclick="regComment();">입력</button>
 							</div>
 							<div id="commentUpd">
@@ -89,19 +100,20 @@
 						</div>
 						<div>
 							<table>
-								<c:if test="${not empty board.next.title}">
+								<c:if test="${not empty next.title}">
 								<tr>
 									<th>다음글</th>
-									<td><a href="detail.do?boardNo=${board.next.boardNo}">${board.next.title}</a></td>
+									<td><a href="detail.do?no=${next.boardNo}">${next.title}</a></td>
 								</tr>
 								</c:if>
-								<c:if test="${not empty board.prev.title}">
+								<c:if test="${not empty prev.title}">
 								<tr>
 									<th>이전글</th>
-									<td><a href="detail.do?boardNo=${board.prev.boardNo}">${board.prev.title}</a></td>
+									<td><a href="detail.do?no=${prev.boardNo}">${prev.title}</a></td>
 								</tr>
 								</c:if>
 							</table>
+							<a href="list.do?boardType=${board.boardType}">목록</a>
 						</div>
 					</div>
 				</div>
@@ -113,6 +125,11 @@
 			</div>
 		</div>
 	</div>
+	
+
+
+	
+	
 	
 	<script type="text/javascript">
 		
