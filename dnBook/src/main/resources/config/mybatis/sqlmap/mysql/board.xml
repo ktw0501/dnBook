@@ -97,7 +97,7 @@
     <select id="selectBoardFile" parameterType="board" resultMap="boardFileMap">
     	select * 
     	  from t_file
-    	 where board_no = ${board_no} 
+    	 where board_no = ${boardNo} 
     </select>
    
 </mapper>

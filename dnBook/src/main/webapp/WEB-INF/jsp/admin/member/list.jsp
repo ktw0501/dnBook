@@ -95,7 +95,7 @@
 	<script type="text/javascript">
 		
 		function jsPageMove(pageNo) {
-			location.href = "list.do?pageNo=" + pageNo + "&status=${board.status}";
+			location.href = "list.do?pageNo=" + pageNo + "&status=${status}";
 		}
 	</script>
 </body>

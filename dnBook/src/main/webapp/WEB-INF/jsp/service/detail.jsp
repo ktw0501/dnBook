@@ -77,7 +77,7 @@
 							<tr>
 								<td style="border-bottom: 1px solid black">
 									<c:if test="${not empty file}">
-										<img style="width: 450px;" src="${file.filePath}/${file.realFileName}" />
+										<img style="width: 600px; height: 180px;" src="${pageContext.request.contextPath}/upload/event${file.filePath}/${file.realFileName}" />
 									<br />
 									</c:if>
 									<br />

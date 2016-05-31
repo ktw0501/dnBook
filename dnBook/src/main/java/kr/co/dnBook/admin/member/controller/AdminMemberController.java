@@ -33,12 +33,15 @@ public class AdminMemberController {
 	private AdminMemberService memberService;
 	
 	@RequestMapping("/list.do")
-	public void memberList(Model model, int status, @RequestParam(value="pageNo", required=false, defaultValue="1")int pageNo) throws Exception {
+	public void memberList(Model model, @RequestParam(value="status", required=false)int status, @RequestParam(value="pageNo", required=false, defaultValue="1")int pageNo) throws Exception {
 		MemberSearchVO memberSearch = new MemberSearchVO(pageNo);
 		memberSearch.setStatus(status);
 		Map<String, Object> result = memberService.listMember(memberSearch);
 		List<MemberVO> list = (List<MemberVO>) result.get("list");
 		PageVO page = (PageVO) result.get("page");
+		
+		System.out.println(memberSearch.getStatus());
+		model.addAttribute("status", memberSearch.getStatus());
 		model.addAttribute("list", list);
 		model.addAttribute("page", page);
 	}

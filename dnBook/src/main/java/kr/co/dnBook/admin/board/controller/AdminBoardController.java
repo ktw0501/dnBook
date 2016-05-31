@@ -38,13 +38,13 @@ public class AdminBoardController {
 	AdminBoardService service;
 	
 	@RequestMapping("/list.do")
-	public void boardList(Model model, int boardType, @RequestParam(value="pageNo", required=false, defaultValue="1")int pageNo) throws Exception {
+	public void boardList(Model model, @RequestParam(value="boardType", required=false)int boardType, @RequestParam(value="pageNo", required=false, defaultValue="1")int pageNo) throws Exception {
 		BoardSearchVO boardSearch = new BoardSearchVO(pageNo);
 		boardSearch.setBoardType(boardType);
 		Map<String, Object> result = service.listBoard(boardSearch);
 		List<BoardVO> list = (List<BoardVO>) result.get("list");
 		PageVO page = (PageVO) result.get("page");
-		model.addAttribute("boardType", boardType);
+		model.addAttribute("boardType", boardSearch.getBoardType());
 		model.addAttribute("list", list);
 		model.addAttribute("page", page);
 	}
@@ -84,14 +84,17 @@ public class AdminBoardController {
 	@RequestMapping("/regist.do")
 	public String insertBoard(MultipartHttpServletRequest mRequest) throws Exception {
 		// 데이터베이스에 파일 정보 추가
-		String savePath = servletContext.getRealPath("upload");
+		String savePath = servletContext.getRealPath("upload/event");
 		System.out.println("savePath ::: " + savePath);
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("/yyyy/MM/dd");
 		String str = sdf.format(new Date());
-		
-		File f = new File(savePath + str);
+		String uploadPath = savePath + str;
+		File f = new File(uploadPath);
 //		System.out.println(f.mkdirs());
+		if(!f.exists()) {
+			f.mkdirs();
+		}
 		
 		String title = mRequest.getParameter("title");
 		String id = mRequest.getParameter("id");
@@ -128,7 +131,7 @@ public class AdminBoardController {
 			System.out.println("저장할 파일명 : " + saveFileName);
 		
 			// 임시저장된 파일을 원하는 경로에 저장
-			mFile.transferTo(new File(savePath + "/" + saveFileName));
+			mFile.transferTo(new File(uploadPath + "/" + saveFileName));
 
 			// 파일 관련 데이터 저장
 			file = new BoardFileVO();

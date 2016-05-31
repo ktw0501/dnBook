@@ -33,7 +33,7 @@ public class UserBoardServiceImpl implements UserBoardService {
 		dao.insertViewCount(board);
 		board = dao.selectDetail(board.getBoardNo());
 		BoardFileVO file = new BoardFileVO();
-		if(board.getBoardType() == 2) {
+		if(board.getBoardType() == 1) {
 			file = dao.selectBoardFile(board);
 		}
 		BoardVO prev = dao.selectPrev(board);

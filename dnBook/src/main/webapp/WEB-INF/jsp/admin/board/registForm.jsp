@@ -34,10 +34,12 @@
 				<th>내용</th>
 				<td><textarea name="content"></textarea>
 			</tr>
+			<c:if test="${boardType == 1}">
 			<tr>
 				<th>첨부파일</th>
 				<td><input type="file" name="attachFile" /></td>
 			</tr>
+			</c:if>
 			<tr>
 				<td colspan="2">
 					<input type="submit" value="등록" />

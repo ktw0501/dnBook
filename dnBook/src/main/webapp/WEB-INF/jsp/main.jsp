@@ -32,7 +32,8 @@
 			<a href="${pageContext.request.contextPath}/admin/board/list.do?boardType=2">공지 게시판</a><br/>
 
 			<a href="${pageContext.request.contextPath}/admin/member/detail.do?id=a">회원상세로</a><br/>
-			<a href="${pageContext.request.contextPath}/admin/member/list.do?status=1">회원  목록으로</a>
+			<a href="${pageContext.request.contextPath}/admin/member/list.do?status=1">활성회원  목록으로</a>
+			<a href="${pageContext.request.contextPath}/admin/member/list.do?status=-1">정지회원  목록으로</a>
 		
 			<a href="${pageContext.request.contextPath}/admin/book/registform.do">글등록테스트</a><br>
 			<a href="${pageContext.request.contextPath}/admin/book/updateform.do?bookCode=2">글수정테스트</a><br>

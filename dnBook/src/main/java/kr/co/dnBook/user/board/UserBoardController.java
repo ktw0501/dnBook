@@ -30,7 +30,6 @@ public class UserBoardController {
 		List<BoardVO> list = (List<BoardVO>) result.get("list");
 		BoardFileVO file = (BoardFileVO)result.get("file");
 		PageVO page = (PageVO) result.get("page");
-		model.addAttribute("file", file);
 		model.addAttribute("boardType", boardType);
 		model.addAttribute("list", list);
 		model.addAttribute("page", page);
@@ -39,6 +38,7 @@ public class UserBoardController {
 	@RequestMapping("detail.do")
 	public void boardDetail(BoardVO board, Model model) throws Exception {
 		Map<String, Object> result = service.detailBoard(board);
+		model.addAttribute("file", result.get("file"));
 		model.addAttribute("board", result.get("board"));
 		model.addAttribute("prev", result.get("prev"));
 		model.addAttribute("next", result.get("next"));
