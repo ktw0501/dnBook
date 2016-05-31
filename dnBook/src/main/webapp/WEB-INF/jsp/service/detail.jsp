@@ -124,7 +124,7 @@
 			$(".table").empty();
 			for(var vo in data) {
 				var html = "<tr><td>" + data[vo].content + "</td><td>" + data[vo].id + "</td><td>" + data[vo].regDate + "</td>";
-				if(data[vo].id === "aa") {
+				if(data[vo].id == "aa") {
 					html += "<td><a href='#' onclick='updSetComment(" + data[vo].commentNo + ", " + data[vo].content + ");'>수정</a></td><td>" +
 					        "<a href='#' onclick='delComment(" + data[vo].commentNo  + ");'>삭제</a></td>";
 				}

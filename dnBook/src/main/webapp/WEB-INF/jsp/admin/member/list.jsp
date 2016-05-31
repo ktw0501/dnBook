@@ -92,5 +92,11 @@
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript">
+		
+		function jsPageMove(pageNo) {
+			location.href = "list.do?pageNo=" + pageNo + "&status=${board.status}";
+		}
+	</script>
 </body>
 </html>

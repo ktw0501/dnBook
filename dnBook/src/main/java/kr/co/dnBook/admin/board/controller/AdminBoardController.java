@@ -156,4 +156,7 @@ public class AdminBoardController {
 		return "redirect:list.do?boardType=" + boardType;
 	}
 	
+	
+	
+	
 }

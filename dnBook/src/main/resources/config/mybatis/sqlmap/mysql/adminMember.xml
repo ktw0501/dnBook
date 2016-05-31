@@ -46,14 +46,14 @@
     <!-- 정지 해제 -->
     <update id="startStatus" parameterType="member">
         update t_member 
-		   set status = 2       
+		   set status = 1       
 		 where id = #{id}        
     </update>   
     
     <!-- 회원 정지 -->
    <update id="stopStatus" parameterType="member">
         update t_member 
-		   set status = -2        
+		   set status = -1        
 		 where id = #{id}        
     </update> 
     

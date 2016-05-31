@@ -28,7 +28,7 @@
 			</tr>
 			<tr>
 				<th>글쓴이</th>
-				<td><input type="text" name="id" value="${user.id}" /></td>
+				<td>관리자</td>
 			</tr>
 			<tr>
 				<th>내용</th>

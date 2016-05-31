@@ -65,7 +65,7 @@
 $(function () {
 	$("#stopBtn").on("click", function () {
 		var statusUrl = "startStatus.do";
-		if("${member.status}" == 2) {
+		if("${member.status}" == 1) {
 			statusUrl = "stopStatus.do";
 		}
 		location.href = statusUrl + "?id=${member.id}";
@@ -73,7 +73,7 @@ $(function () {
 	
 	});
 	
-	if("${member.status}" == "2") {
+	if("${member.status}" == "-1") {
 		$("#stopBtn").attr("class", "stop").html("정지 해제");
 	}
 	

@@ -85,7 +85,7 @@
 		 insert into t_board(
 		 	id, board_type, title, content
 		 ) values(
-		 	#{id}, #{boardType}, #{title}, #{content}
+		 	'관리자', #{boardType}, #{title}, #{content}
 		 )
     </insert>
     

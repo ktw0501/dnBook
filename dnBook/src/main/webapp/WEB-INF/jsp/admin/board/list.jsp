@@ -47,10 +47,16 @@
 <script src="${pageContext.request.contextPath}/js/jquery-2.2.3.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 <script type="text/javascript">
-	function jsPageMove(pageNo)
-	{
-		location.href = "list.do?pageNo=" + pageNo;
+	
+	function jsPageMove(pageNo) {
+		location.href = "list.do?pageNo=" + pageNo + "&boardType=${boardType}";
 	}
+
+
+// 	function jsPageMove(pageNo)
+// 	{
+// 		location.href = "list.do?pageNo=" + pageNo;
+// 	}
 
 </script>
 </head>
@@ -96,7 +102,7 @@
 							<tr><td colspan="5">게시물이 없습니다.</td></tr>
 							</c:if>
 						</table>
-						<a href="registForm.do?boardType=${boardType}">글쓰기</a>
+						<a href="registForm.do?boardType=${boardType}"><button>글쓰기</button></a>
 						<c:if test="${not empty list}">
 							<navi:page/>
 						</c:if>
@@ -118,6 +124,7 @@ $(function(){
 
 		var delNo = "";
 		var i = 0;
+		var boardType = ${boardType};
 		$("input:checked").each(function(){
 
 			if(i!=0)
@@ -129,7 +136,8 @@ $(function(){
 		console.log(delNo);
 		$.ajax({
 			url:"delete.do",
-			data:{"data":delNo}
+			data:{"data":delNo,
+				"boardType":boardType}
 			
 		}).done(function(data)
 		{

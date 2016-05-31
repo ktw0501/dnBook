@@ -55,6 +55,7 @@
 		페이지 내용<br />
 		페이지 내용<br />
 		<a href="${pageContext.request.contextPath}/admin/board/list.do?boardType=1">이벤트 게시판</a><br/>
+		<a href="${pageContext.request.contextPath}/admin/board/list.do?boardType=2">공지 게시판</a><br/>
 		<a href="${pageContext.request.contextPath}/admin/member/detail.do?id=a">회원상세로</a><br/>
 		<a href="${pageContext.request.contextPath}/admin/member/list.do?status=1">회원  목록으로</a>
 		
