@@ -9,6 +9,21 @@
 		if ("${msg}"){
 			$("#result").html("${msg}");
 		}
+		function list (data) { //리스트 보여주는 함수
+			var result = eval(data);
+			for(var i in result){
+				
+				var title = result[i].title;
+				$("#result").append("<tr><td><a href="#">" + title + "<br /></a></td></td></tr>");
+			}
+		};
+		
+		$.ajax({ //최초 리스트
+			url: "/jquery-basic/ajax/list"
+		})
+		.done(function(data) {
+			list(data);
+		});
 	})
 </script>
 <!-- 아이디 저장 체크시 쿠키저장 -->
@@ -75,7 +90,6 @@ function getCookie(cookieName) {
 	 height:150px; 
 }
 
-
 .loginForm{
 	position:relative;
 	border: 1px dashed #00498c;
@@ -94,11 +108,11 @@ function getCookie(cookieName) {
  .fleft{
  	margin-right: 10px;
  }
- #logintext{
+ #rightmenutext{
  	text-align: right;
 	padding-right: 20px;
 	color:#00498c;
-	
+	margin-bottom: 20px;
 }
  #loginBtn{
  	margin-top: 10px;
@@ -115,11 +129,38 @@ function getCookie(cookieName) {
 	height: 180px;
 	position:relative}
 	}
-	#loginmsg{
+	#mypagemsg{
 	padding-top: 10px;
 	color:#00498c;
- 	font:15px 굴림;
+ 	font:12px 굴림;
  	font-weight:bold; 
+	}
+	.buttons {
+    float: left;
+    padding-bottom: 20px;
+    clear: both;
+}
+	.mypateBtn{
+		border: ;
+		background-Color:#B2EBF4;   /*--백그라운드 정의---*/
+		font:12px 굴림;      /*--폰트 정의---*/
+		font-weight:bold;   /*--폰트 굵기---*/
+		color:#00498c;    /*--폰트 색깔---*/
+}
+	#notice{
+		margin-top: 10px;
+		border: 1px dashed #00498c;
+		background-Color:#B2EBF4;   
+		width: 188px;
+		height: 240px;
+		position:relative}
+	}
+	#noticecontent{
+		margin-left: 6px;
+	}
+	#noticeresult{
+		margin-left: 12px;
+		width: 160px;
 	}
 
 </style>
@@ -127,7 +168,8 @@ function getCookie(cookieName) {
 <c:choose>
 	<c:when test="${empty user}">
  	<div class="loginForm">
- 	<h3 id="logintext">Login</h3>
+ 	<h3 id="rightmenutext">Login</h3>
+ 	<hr />
 		<form id="lForm" name="lForm" onsubmit="return ckForm()" action="${pageContext.request.contextPath}/login/login.do" method="post">
            <div class="box">
             ID : <br/><input type="text" name="id" required/>
@@ -145,13 +187,46 @@ function getCookie(cookieName) {
 	</c:when>
 	<c:otherwise>
 	<div id="mypage">
-		<h3 id="logintext">Mypage</h3>
-		<div id="loginmsg">
+		<div><h3 id="rightmenutext">Mypage</h3></div>
+		 <hr />
+		<div id="mypagemsg" style="text-align: center; margin-bottom: 20px;">
 			${user.name}님 <br />
 			로그인 하셨습니다.
-			<a href="${pageContext.request.contextPath}/member/infoConfirmForm.do">회원정보수정</a>
 		</div>
+		<div class="buttons" style="margin-left: 11px;">
+		<a href="${pageContext.request.contextPath}/user/mypage/salesList.do?id=${user.id}" class="mypateBtn">구매 |</a>
+		<a href="${pageContext.request.contextPath}/user/mypage/rentList.do?id=${user.id}" class= "mypateBtn">대여 |</a>
+		<a href="${pageContext.request.contextPath}/user/mypage/wishList.do?id=${user.id}"class="mypateBtn">찜목록 |</a>
+		<a href="${pageContext.request.contextPath}/member/infoConfirmForm.do?id=${user.id}"class="mypateBtn">내정보</a>
+        </div>
 	</div>
 	</c:otherwise>
 </c:choose>
+	<div id="notice">
+	<div><h3 id="rightmenutext">Notice</h3></div>
+	 <hr />
+		<div id="noticelist">
+			<div id="noticecontent" style="margin-top:5px;">
+				<table id="noticeresult" border="1">
+					<tr>
+						<th>제목</th>
+					</tr>
+					<tr><td><a href="#">-dd <br /></a></td></tr>
+					<tr>
+						<td><a href="#">-dd <br /></a></td>
+					</tr>
+					<tr>
+						<td><a href="#">-dd <br /></a></td>
+					</tr>
+					<tr>
+						<td><a href="#">-dd <br /></a></td>
+					</tr>
+					<tr>
+						<td><a href="#">-dd <br /></a></td>
+					</tr>
+				</table>
+			</div>
+			<div>more</div>
+		</div>
+	</div>
 </div>

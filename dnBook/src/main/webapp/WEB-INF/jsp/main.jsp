@@ -11,7 +11,7 @@
  #container { width:1070px; margin: 0 auto;}
  #container #header { width:1030px; height:200px; margin-left:10px;  margin-bottom:10px;}
  #container #left { display:inline; float:left; width:190px; height:500px; margin-left:10px; background:#33CCFF; }
- #container #content { float:left; width:650px; height:500px; margin-left:10px; background:#BFF484; }
+ #container #content { float:left; width:650px; height:auto; margin-left:10px; background:#BFF484; }
  #container #right { float:left; width:190px; height:500px; margin-left:10px; background:#73534D; }
  #container #footer { clear:both; width:1050px; height:150px; margin-left:10px; margin-top:10px;}
 </style>

@@ -97,9 +97,6 @@
 	       		<a href="${pageContext.request.contextPath}/login/logout.do">로그아웃</a>
 	        </li>
 	        <li>
-	       		<a href="${pageContext.request.contextPath}/member/infoConfirmForm.do">회원정보수정</a><br/>
-	        </li>
-	        <li>
 	        	<a href="${pageContext.request.contextPath}/user/mypage/myPageHome.do?id=eunhwa">마이페이지</a>
 	        </li>
 	        	</c:otherwise>
