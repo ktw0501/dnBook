@@ -7,7 +7,7 @@
 		select b.cover_img as coverImg, b.title, b.author, w.reg_date as regDate, 
 			   b.price
 		  from t_book as b, t_wish as w
-		 where b.book_code = w.book_code and id=#{id}
+		 where b.book_code = w.book_code and id="eunhwa"
 		 order by regDate desc;
 	</select>
 	

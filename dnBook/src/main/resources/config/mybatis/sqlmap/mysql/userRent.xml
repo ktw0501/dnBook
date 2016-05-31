@@ -7,7 +7,7 @@
 		select b.cover_img as coverImg, b.title, b.author, r.rent_Date as rentDate, 
 			   r.expire_date as expireDate
 		  from t_book as b, t_rent as r
-		 where b.book_code = r.book_code and id=#{id}
+		 where b.book_code = r.book_code and id="eunhwa"
 		 order by rentDate desc;
 	</select>
     <select id="selectRentCount" parameterType="string" resultType="int">
