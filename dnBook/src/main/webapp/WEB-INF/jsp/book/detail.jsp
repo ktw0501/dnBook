@@ -238,8 +238,8 @@
 		// -------------------------------------------------------구매
 		// 뷰어 버튼 ----------------------------------------------------
 		$("#viewBtn").on("click", function () {
-			
-			location.href = "view.do?bookCode=${book.bookCode}";
+			openNewWindow("view.do?bookCode=${book.bookCode}");
+// 			location.href = "view.do?bookCode=${book.bookCode}";
 		});
 		// -------------------------------------------------------뷰어
 		
@@ -261,7 +261,16 @@
 			event.preventDefault();
 		});
 	});
-//====================================================================== 여기
+//====================================================================== 뷰어 =======
+	function pop() {
+	var strURL ="view.jsp";
+	var strPos = "dialogWidth:250px; dialogHeight:300; status:no; scroll:no; resizable:no";
+	var result = new Array();
+	var val = new Object();
+	val.dirPath = ${book.rentalDirPath};
+	result = window.showModalDialog(strURL, val, strPos);
+}
+//=============== ======================================================= 여기
 	function passok() {
 		if($("#pas").val() == "${pass}") {
 			$.ajax({
@@ -316,7 +325,7 @@
 		var delHtml = "";
 		var modHtml = "";
 		if ("${user.id}" == data.id) {
-			delHtml = '<a href="#1" onclick="commentDel(' + data.bookCode + ', ' + data.reviewNo + ')">삭제</a>'
+			delHtml = '<a href="#1" onclick="commentDel(' + data.bookCode + ', ' + data.reviewNo + ')">삭제</a>';
 			modHtml = '<a href="#1" onclick="setModCommentForm(' + data.reviewNo + ', \'' + data.content + '\')">수정</a>';
 		} 
 		tr.append($("<td>").html(delHtml));
