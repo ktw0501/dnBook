@@ -77,7 +77,7 @@ public class UserMemberController {
 			attr.addFlashAttribute("msg", "아이디 또는 비밀번호를 다시 확인하세요.");
 			return "redirect:/login/loginForm.do";
 		} else {
-			session.setAttribute("member", member);
+			session.setAttribute("user", user);
 			return "redirect:/main.do";
 		}
 	}

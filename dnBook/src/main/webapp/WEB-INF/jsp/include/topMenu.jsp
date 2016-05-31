@@ -84,7 +84,7 @@
 	<div id="nav_menu">
 		<ul>
 	        <c:choose>
-	        	<c:when test="${empty member}">
+	        	<c:when test="${empty user}">
 	        <li>
 	       		<a href="${pageContext.request.contextPath}/login/loginForm.do">로그인</a>
 	        </li>

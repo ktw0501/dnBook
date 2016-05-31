@@ -38,7 +38,9 @@
 			<a href="${pageContext.request.contextPath}/admin/book/updateform.do?bookCode=2">글수정테스트</a><br>
 			<a href="${pageContext.request.contextPath}/admin/book/list.do">리스트테스트</a><br>
 		 </div>
-	     <div id="right"><span>right</span></div>
+	     <div id="right">
+			<%@ include file="/WEB-INF/jsp/include/rightMenu.jsp" %>
+		</div>
 	     <div id="footer">
 			<%@ include file="/WEB-INF/jsp/include/bottom.jsp" %>
 		 </div>
