@@ -3,6 +3,7 @@ package kr.co.dnBook.mapper;
 import java.util.List;
 
 import kr.co.dnBook.vo.BoardCommentVO;
+import kr.co.dnBook.vo.BoardFileVO;
 import kr.co.dnBook.vo.BoardSearchVO;
 import kr.co.dnBook.vo.BoardVO;
 
@@ -18,6 +19,6 @@ public interface UserBoardMapper {
 	public void updateComment(BoardCommentVO comment) throws Exception;
 	public void deleteComment(int commentNo) throws Exception;
 	public void insertViewCount(BoardVO board) throws Exception;
+	public BoardFileVO selectBoardFile(BoardVO board) throws Exception;
 	
-	public void test() throws Exception;
 }

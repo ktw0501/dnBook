@@ -76,6 +76,10 @@
 							</tr>
 							<tr>
 								<td style="border-bottom: 1px solid black">
+									<c:if test="${not empty file}">
+										<img style="width: 450px;" src="${file.filePath}/${file.realFileName}" />
+									<br />
+									</c:if>
 									<br />
 									<textarea id="content" style="resize: none; border: none;" rows="8" cols="90"  
 									><c:out value="${board.content}" /></textarea>
