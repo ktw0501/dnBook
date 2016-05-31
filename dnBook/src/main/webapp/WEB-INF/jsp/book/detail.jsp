@@ -11,42 +11,42 @@
 
 	.content111 {
 		width: 650px; 
-		border: 1px solid black;
+/* 		border: 1px solid black; */
 	}
 	.book {
 		float: left;
 	}
 	#title {
 		width: 648px; height: 50px;
-		border: 1px solid black;
+/* 		border: 1px solid black; */
 	}
 	#bookInfoA1 {
 		width: 648px; height: 200px;
-		border: 1px solid black;
+/* 		border: 1px solid black; */
 	}
 	#img2 {
 		width: 150px; height: 198px;
-		border: 1px solid black;
+/* 		border: 1px solid black; */
 	}
 	#infoA2 {
 		width: 494px; height: 198px;
-		border: 1px solid black;
+/* 		border: 1px solid black; */
 	}
 	#infoA3 {
 		height: 150px;
-		border: 1px solid black;
+/* 		border: 1px solid black; */
 	}
 	#infoA41 {
 		width: 280px; height: 100px;
-		border: 1px solid black;
+/* 		border: 1px solid black; */
 	}
 	#infoA42 {
 		width: 188px; height: 148px;
-		border: 1px solid black;
+/* 		border: 1px solid black; */
 	}
 	#wish3 {
 		height: 44px;
-		border: 1px solid black;
+/* 		border: 1px solid black; */
 	}  
 	.btn {
 		
@@ -55,17 +55,17 @@
 	
 	#bookInfoB1 {
 		width: 648px; height: 250px;
-		border: 1px solid black;
+/* 		border: 1px solid black; */
 		
 	}
 	.infoB21 {
 		width: 648px; height: 40px;
-		border: 1px solid black;
+/* 		border: 1px solid black; */
 		
 	}
 	.infoB22 {
 		width: 648px; height: 122px;
-		border: 1px solid black;
+/* 		border: 1px solid black; */
 	}
 	.re1 {
 		width: 80px;
@@ -129,15 +129,17 @@
 									추천 그래프
 								</div>
 							</div>
-							<div id="wish3"> 
-								<button type="button" class="btn" id="wishBtn">장바구니 담기</button>
-								<button type="button" class="btn" id="buyBtn">구매</button>
-								<button type="button" class="btn" id="recomBtn">대여</button>
-								<button type="button" class="btn" id="viewBtn">뷰어</button>
+							<div id="wish3" style="padding-left: 10px;"> 
+								<div>
+									<button type="button" class="btn" id="wishBtn">장바구니 담기</button>
+									<button type="button" class="btn" id="buyBtn">구매</button>
+									<button type="button" class="btn" id="recomBtn">대여</button>
+									<button type="button" class="btn" id="viewBtn">뷰어</button>
+								</div>
 							</div>
 						</div>
 					</div>
-					<div id="bookInfoB1">
+					<div id="bookInfoB1" >
 						<div class="infoB21">
 							주제분류
 						</div>
@@ -208,9 +210,9 @@
 	$(function () {
 		// 장바구니 버튼 ----------------------------------------------------
 		$("#wishBtn").on("click", function () {
-			var wishUrl = "registWish1.do";
+			var wishUrl = "registWish.do";
 			if("${wishCount}" == "1") {				
-				wishUrl = "deleteWish1.do";
+				wishUrl = "deleteWish.do";
 			}
 			location.href = wishUrl + "?bookCode=${book.bookCode}";
 		});
@@ -237,7 +239,7 @@
 		// 뷰어 버튼 ----------------------------------------------------
 		$("#viewBtn").on("click", function () {
 			
-			location.href = "view.do";
+			location.href = "view.do?bookCode=${book.bookCode}";
 		});
 		// -------------------------------------------------------뷰어
 		

@@ -27,15 +27,15 @@
 	<select id="doList" parameterType="bookSearch" resultMap="bookMap">
 		select *
 		  from t_book 
-		 order by binary(title) asc
+		 order by title asc
 		 limit #{start}, 5
 	</select>
-	<select id="panList" parameterType="bookSearch" resultMap="bookMap">
-		select *
-		  from t_book 
-		 order by ????? desc
-		 limit #{start}, 5
-	</select>
+<!-- 	<select id="panList" parameterType="bookSearch" resultMap="bookMap"> -->
+<!-- 		select * -->
+<!-- 		  from t_book  -->
+<!-- 		 order by ????? desc -->
+<!-- 		 limit #{start}, 5 -->
+<!-- 	</select> -->
 	<select id="deungList" parameterType="bookSearch" resultMap="bookMap">
 		select *
 		  from t_book 
