@@ -66,21 +66,39 @@
 		});
 		$(document).on("click","#btn",function(){
 			var date = $(this).html();
+			var date1="";
+				if(date == "hourly")					
+				{
+					lineChartData.labels = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
+				}
+				else if(date == "monthly")
+				{
+					date1="2016-01-01"
+					lineChartData.labels = ["2016-01","2016-02","2016-03","2016-04","2016-05","2016-06","2016-07"];					
+				}
+				else if(date == "daily")
+				{					
+					date1="2016-05-29"
+					lineChartData.labels = ["2016-05-21","2016-05-22","2016-05-23","2016-05-24","2016-05-25","2016-05-26","2016-05-27"];	
+				}
 			var url = "${pageContext.request.contextPath}/admin/sales/"+date+".do";
 			$.ajax({
 				url:url,
-				data:"2016-05-30"
+				data:{"date":date1}
 			}).done(function(data){
 				var json = JSON.parse(data);
 				console.dir(json);
-				if(date == "daily")
-					lineChartData.labels = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23];
-				else if(date == "monthly")
-					lineChartData.labels = ["2016-01","2016-02","2016-03","2016-04","2016-05","2016-06","2016-07"];					
-				else if(date == "daily")
-					lineChartData.labels = ["2016-05-21","2016-05-22","2016-05-23","2016-05-24","2016-05-25","2016-05-26","2016-05-27"];	
+				for(var i in lineChartData.datasets[0].data)
+				{	
+					if(json[i])
+						lineChartData.datasets[0].data[i]=json[i].sales;
+					else
+						lineChartData.datasets[0].data[i]=0;
+				}
 				
-				
+				myChart = new Chart(chart1).Line(lineChartData, {
+					responsive: true
+				});
 			});
 		})
 		
