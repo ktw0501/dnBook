@@ -13,6 +13,7 @@ import kr.co.dnBook.vo.BookSearchVO;
 import kr.co.dnBook.vo.BookVO;
 import kr.co.dnBook.vo.PageVO;
 import kr.co.dnBook.vo.ReviewVO;
+import kr.co.dnBook.vo.SalesVO;
 import kr.co.dnBook.vo.WishVO;
 
 @Service
@@ -24,6 +25,46 @@ public class UserBookServiceImpl implements UserBookService{
 	public Map<String, Object> listBook(BookSearchVO bookSearch) throws Exception {
 		Map<String, Object> result = new HashMap<>();
 		result.put("list", dao.selectList(bookSearch));
+		PageVO page = new PageVO(bookSearch.getPageNo(), dao.selectTotalCount(bookSearch));
+		result.put("page", page);
+		return result;
+	}
+	@Override
+	public Map<String, Object> doBook(BookSearchVO bookSearch) throws Exception {
+		Map<String, Object> result = new HashMap<>();
+		result.put("list", dao.doList(bookSearch));
+		PageVO page = new PageVO(bookSearch.getPageNo(), dao.selectTotalCount(bookSearch));
+		result.put("page", page);
+		return result;
+	}
+	@Override
+	public Map<String, Object> panBook(BookSearchVO bookSearch) throws Exception {
+		Map<String, Object> result = new HashMap<>();
+		result.put("list", dao.panList(bookSearch));
+		PageVO page = new PageVO(bookSearch.getPageNo(), dao.selectTotalCount(bookSearch));
+		result.put("page", page);
+		return result;
+	}
+	@Override
+	public Map<String, Object> deungBook(BookSearchVO bookSearch) throws Exception {
+		Map<String, Object> result = new HashMap<>();
+		result.put("list", dao.deungList(bookSearch));
+		PageVO page = new PageVO(bookSearch.getPageNo(), dao.selectTotalCount(bookSearch));
+		result.put("page", page);
+		return result;
+	}
+	@Override
+	public Map<String, Object> juBook(BookSearchVO bookSearch) throws Exception {
+		Map<String, Object> result = new HashMap<>();
+		result.put("list", dao.juList(bookSearch));
+		PageVO page = new PageVO(bookSearch.getPageNo(), dao.selectTotalCount(bookSearch));
+		result.put("page", page);
+		return result;
+	}
+	@Override
+	public Map<String, Object> goBook(BookSearchVO bookSearch) throws Exception {
+		Map<String, Object> result = new HashMap<>();
+		result.put("list", dao.goList(bookSearch));
 		PageVO page = new PageVO(bookSearch.getPageNo(), dao.selectTotalCount(bookSearch));
 		result.put("page", page);
 		return result;
@@ -78,5 +119,11 @@ public class UserBookServiceImpl implements UserBookService{
 		// 댓글 정보 조회
 		List<ReviewVO> commentList = dao.selectReview(reviewVO.getBookCode());
 		return commentList;
+	}
+	
+	@Override
+	public int passchk(SalesVO salesVO) throws Exception {
+		
+		return dao.passchk(salesVO);
 	}
 }

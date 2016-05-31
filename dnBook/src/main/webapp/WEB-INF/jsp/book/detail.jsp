@@ -121,6 +121,7 @@
 					<button type="button" class="btn" id="wishBtn">장바구니 담기</button>
 					<button type="button" class="btn" id="buyBtn">구매</button>
 					<button type="button" class="btn" id="recomBtn">대여</button>
+					<button type="button" class="btn" id="viewBtn">뷰어</button>
 				</div>
 			</div>
 		</div>
@@ -173,10 +174,11 @@
 	
 	
 	<div id="pass">
-		<form action="">
-			<div>비밀번호 입력 <input type="password" /></div>
-			<div><button>확인</button><button>취소</button></div>
+		<form action="passchk.do?bookCode="${book.bookCode}>
+			<div>비밀번호 입력 <input type="password" id="pas"/></div>
+			<button class="ok">확인</button>
 		</form>
+			<button class="cancle">취소</button>
 	</div>
 </div>
 	
@@ -185,29 +187,37 @@
 		// 장바구니 버튼 ----------------------------------------------------
 		$("#wishBtn").on("click", function () {
 			var wishUrl = "registWish.do";
-			if("${recomCount}" == "1") {				
+			if("${wishCount}" == "1") {				
 				wishUrl = "deleteWish.do";
 			}
 			location.href = wishUrl + "?bookCode=${book.bookCode}";
 		});
 		// 추천 상태일 경우 버튼의  css 변경
-		if("${recomCount}" == "1") {
-			$("#wishBtn").attr("class", "wish");
+		if("${wishCount}" == "1") {
+// 			$("#wishBtn").attr("class", "wish");
+			$("#wishBtn").empty();
+			$("#wishBtn").html("장바구니 취소");
 		}
 		// -------------------------------------------------------장바구니
 		// 구매 버튼 ----------------------------------------------------
+		$("#pass").hide();   	// 처음 확인창
 		$("#buyBtn").on("click", function () {
-			var recomUrl = "registWish.do";
-			if("${recomCount}" == "1") {				
-				recomUrl = "deleteWish.do";
-			}
-			location.href = recomUrl + "?bookCode=${book.bookCode}";
+			$("#pass").show();   	// 확인창 보여주기
 		});
-		// 추천 상태일 경우 버튼의  css 변경
-		if("${recomCount}" == "1") {
-			$("#wishBtn").attr("class", "wish");
-		}
+		
+		$(".cancle").on("click", function () {
+			$("#pass").hide();   	// 확인창 보여주기
+		});
+		$(".ok").on("click", function () {
+			passok();
+		});
 		// -------------------------------------------------------구매
+		// 뷰어 버튼 ----------------------------------------------------
+		$("#viewBtn").on("click", function () {
+			
+			location.href = "view.do";
+		});
+		// -------------------------------------------------------뷰어
 		
 		
 		console.log("sadfsad");
@@ -227,8 +237,25 @@
 			event.preventDefault();
 		});
 	});
-	
-	
+//====================================================================== 여기
+	function passok() {
+		$.ajax({
+			url: "passchk.do",
+			type: "POST",
+			data: {
+				id: "${id}",
+				pass: $("#pas").val(),
+				bookCode: "${book.bookCode}"
+			}
+		})
+		.done(function (data) {
+			$("#pass").hide();
+			if(data == 1) alert("구매완료 되었습니다.");
+			if(data == 0) alert("비밀번호가 잘못");
+			
+		});
+	}
+//============================================================================
 	
 	
 	

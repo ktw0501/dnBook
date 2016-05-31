@@ -49,12 +49,13 @@
 	<div class="content">
 	
 		<div class="search">
-			<a href="">상품명순</a><span>|</span>
-			<a href="">판매량순</a><span>|</span>
-			<a href="">등록일순</a><span>|</span>
-			<a href="">저가격순</a><span>|</span>
-			<a href="">고가격순</a>
+			<a href="order.do?no=1">도서명순</a><span>|</span>
+			<a href="order.do?no=2">판매량순</a><span>|</span>
+			<a href="order.do?no=3">등록일순</a><span>|</span>
+			<a href="order.do?no=4">저가격순</a><span>|</span>
+			<a href="order.do?no=5">고가격순</a>
 		</div>
+		${list[0].title}${list[1].title}${list[2].title}
 		<div>
 			<c:forEach var="vo" items="${list}">
 				<div class="list">

@@ -11,6 +11,14 @@ public class SalesVO {
 	private String author;
 	private int price;
 	
+	private String pass;
+	public String getPass() {
+		return pass;
+	}
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
+	
 	public String getCoverImg() {
 		return coverImg;
 	}

@@ -24,6 +24,36 @@
 		 order by book_code desc
 		 limit #{start}, 5
 	</select>
+	<select id="doList" parameterType="bookSearch" resultMap="bookMap">
+		select *
+		  from t_book 
+		 order by binary(title) asc
+		 limit #{start}, 5
+	</select>
+	<select id="panList" parameterType="bookSearch" resultMap="bookMap">
+		select *
+		  from t_book 
+		 order by ????? desc
+		 limit #{start}, 5
+	</select>
+	<select id="deungList" parameterType="bookSearch" resultMap="bookMap">
+		select *
+		  from t_book 
+		 order by pub_date desc
+		 limit #{start}, 5
+	</select>
+	<select id="juList" parameterType="bookSearch" resultMap="bookMap">
+		select *
+		  from t_book 
+		 order by price
+		 limit #{start}, 5
+	</select>
+	<select id="goList" parameterType="bookSearch" resultMap="bookMap">
+		select *
+		  from t_book 
+		 order by price desc
+		 limit #{start}, 5
+	</select>
 	
 	<select id="selectTotalCount" parameterType="bookSearch" resultType="int">
 		select count(*)
@@ -44,7 +74,7 @@
     
     <select id="selectRecomCount" parameterType="bookScore" resultType="int">
 		select count(*)
-		  from t_book_score
+		  from t_wish
 		 WHERE id = #{id}
 		   AND book_code = #{bookCode}       
     </select>
@@ -109,6 +139,16 @@
         delete t_review			
 		 where review_no = #{reviewNo}
     </delete>
+    
+    
+    
+	<!-- 패스워드 확인  -->
+	<select id="selectpasschk" parameterType="sales" resultType="int">
+		select count(*)
+		  from t_sales
+		 where id = #{id}
+		   and pass = #{pass}
+	</select>
 </mapper>
 
 

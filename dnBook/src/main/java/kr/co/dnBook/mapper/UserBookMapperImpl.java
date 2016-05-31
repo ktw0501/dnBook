@@ -10,6 +10,7 @@ import kr.co.dnBook.vo.BookScoreVO;
 import kr.co.dnBook.vo.BookSearchVO;
 import kr.co.dnBook.vo.BookVO;
 import kr.co.dnBook.vo.ReviewVO;
+import kr.co.dnBook.vo.SalesVO;
 import kr.co.dnBook.vo.WishVO;
 
 @Repository
@@ -22,6 +23,26 @@ public class UserBookMapperImpl implements UserBookMapper{
 	@Override
 	public List<BookVO> selectList(BookSearchVO bookSearch) throws Exception{
 		return session.selectList(NAMESPACE + ".selectList", bookSearch);
+	}
+	@Override
+	public List<BookVO> doList(BookSearchVO bookSearch) throws Exception{
+		return session.selectList(NAMESPACE + ".doList", bookSearch);
+	}
+	@Override
+	public List<BookVO> panList(BookSearchVO bookSearch) throws Exception{
+		return session.selectList(NAMESPACE + ".panList", bookSearch);
+	}
+	@Override
+	public List<BookVO> deungList(BookSearchVO bookSearch) throws Exception{
+		return session.selectList(NAMESPACE + ".deungList", bookSearch);
+	}
+	@Override
+	public List<BookVO> juList(BookSearchVO bookSearch) throws Exception{
+		return session.selectList(NAMESPACE + ".juList", bookSearch);
+	}
+	@Override
+	public List<BookVO> goList(BookSearchVO bookSearch) throws Exception{
+		return session.selectList(NAMESPACE + ".goList", bookSearch);
 	}
 	@Override
 	public int selectTotalCount(BookSearchVO bookSearch) throws Exception {
@@ -71,4 +92,9 @@ public class UserBookMapperImpl implements UserBookMapper{
 		session.delete(NAMESPACE + ".deleteReview", reviewNo);
 	}
 	//----------------------------------------------------------------------------
+	@Override
+	public int passchk(SalesVO salesVO) throws Exception {
+		// TODO Auto-generated method stub
+		return session.selectOne(NAMESPACE + ".selectpasschk", salesVO);
+	}
 }
