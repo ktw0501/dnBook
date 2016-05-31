@@ -31,7 +31,8 @@
 	<select id="selectBook" resultType="book" parameterType="bookSearch">
 		select	book_code as bookCode, cover_img as coverImg,
 				title, publisher, author, translator, price, rent_price as rentPrice,
-				pub_date as pubDate, category_code as categoryCode
+				pub_date as pubDate, category_code as categoryCode ,
+				rental_dir_path as rentalDirPath
 		from	t_book
 		limit	#{start}, 5
 	</select>
@@ -47,7 +48,7 @@
 		from	t_book
 		where	book_code = #{bookCode}
 	</select>
-	<delete id="deleteReview" parameterType="string">
+	<delete id="deleteReview" parameterType="int">
 		delete
 		from	t_review
 		where	book_code = #{bookCode}

@@ -29,7 +29,7 @@
 			</div>
 		</form>
 		<ul class="nav menu">
-			<li class="active"><a href="index.html"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg>Main</a></li>
+			<li class="active"><a href="${pageContext.request.contextPath}/admin/main.do"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg>Main</a></li>
 			<li><a href="${pageContext.request.contextPath}/admin/book/list.do"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg> Book  </a></li>
 			<li><a href=""><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> Sales </a></li>
 			<li><a href=""><svg class="glyph stroked table"><use xlink:href="#stroked-table"></use></svg> Member </a></li>

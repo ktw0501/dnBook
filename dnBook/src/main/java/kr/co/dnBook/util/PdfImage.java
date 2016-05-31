@@ -24,7 +24,7 @@ public class PdfImage {
 		// load a pdf from a byte buffer
 		// 이미지파일이 저장될 디렉토리 생성
 		File file = new File(PDFFileDir,pdfFileName);
-		File nDir = new File(PDFFileDir,"imgs");
+		File nDir = PDFFileDir;
 		nDir.mkdirs();
 		
 		//파일정보 받아서 pdf파일 객체로 변환
