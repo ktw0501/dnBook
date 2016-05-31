@@ -33,5 +33,5 @@ public interface UserBookMapper {
 	public void deleteReview(int reviewNo) throws Exception;
 	//----------------------------------------------------------------------------
 
-	public int passchk(SalesVO salesVO) throws Exception;
+	public void passchk(SalesVO salesVO) throws Exception;
 }

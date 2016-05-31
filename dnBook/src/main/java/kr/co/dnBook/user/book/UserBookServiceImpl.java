@@ -122,8 +122,7 @@ public class UserBookServiceImpl implements UserBookService{
 	}
 	
 	@Override
-	public int passchk(SalesVO salesVO) throws Exception {
-		
-		return dao.passchk(salesVO);
+	public void passchk(SalesVO salesVO) throws Exception {
+		dao.passchk(salesVO);
 	}
 }

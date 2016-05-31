@@ -9,7 +9,7 @@
 <title>detailBook</title>
 <style>
 
-	.content {
+	.content111 {
 		width: 650px; 
 		border: 1px solid black;
 	}
@@ -37,7 +37,7 @@
 		border: 1px solid black;
 	}
 	#infoA41 {
-		width: 300px; height: 148px;
+		width: 280px; height: 100px;
 		border: 1px solid black;
 	}
 	#infoA42 {
@@ -87,108 +87,130 @@
 	#pass {
 		position: fixed;
 		left: 800px; top: 500px;
-		width: 350px; height: 100px;
+		width: 300px; height: 60px;
 		background: gold;
 		border: 2px solid black;
 	}
+	
+ #outer {width: 100%}
+ #container { width:1070px; margin: 0 auto;}
+ #container #header { width:1030px; height:200px; margin-left:10px;  margin-bottom:10px;}
+ #container #left { display:inline; float:left; width:190px; height:500px; margin-left:10px; background:#33CCFF; }
+ #container #content { float:left; width:650px; margin-left:10px; background:#BFF484; }
+ #container #right { float:left; width:190px; height:500px; margin-left:10px; background:#73534D; }
+ #container #footer { clear:both; width:1050px; height:150px; margin-left:10px; margin-top:10px;}
 </style>
 <script src="${pageContext.request.contextPath}/js/jquery-2.2.3.js"></script>
 </head>
 <body>
-<div class="container">
-	<div class="header">
-		<%@ include file="/WEB-INF/jsp/include/topMenu.jsp" %>
-	</div>
-	<div class="content">
-		<div id="title">
-			${book.title}
-		</div>
-		<div id="bookInfoA1">
-			<div id="img2" class="book">${book.coverImg}</div>
-			<div id="infoA2" class="book">
-				<div id="infoA3">
-					<div id="infoA41" class="book">
-						<div>저자 : ${book.author} <c:if test="${book.translator != null}"> | ${book.translator}</c:if></div>
-						<div>출판사 : ${book.publisher}</div>
-						<div>출판일 : ${book.pubDate}</div>
-						<div>정가 : ${book.price}원</div>
+<div id="outer">
+	   <div id="container" >
+	     <div id="header">
+			<%@ include file="/WEB-INF/jsp/include/topMenu.jsp" %>
+		 </div>
+	     <div id="left"><span>left</span></div>
+	     <div id="content">
+			<div class="container111">
+				<div class="content111" >
+					<div id="title">
+						${book.title}
 					</div>
-					<div id="infoA42" class="book">
-						추천 그래프
+					<div id="bookInfoA1">
+						<div id="img2" class="book">${book.coverImg}</div>
+						<div id="infoA2" class="book">
+							<div id="infoA3">
+								<div id="infoA41" class="book"  style="padding: 10px;">
+									<div>저자 : ${book.author} <c:if test="${book.translator != null}"> | ${book.translator}</c:if></div>
+									<div style="padding-top: 10px;">출판사 : ${book.publisher}</div>
+									<div style="padding-top: 10px;">출판일 : ${book.pubDate}</div>
+									<div style="padding-top: 10px;">정가 : ${book.price}원</div>
+								</div>
+								<div id="infoA42" class="book">
+									추천 그래프
+								</div>
+							</div>
+							<div id="wish3"> 
+								<button type="button" class="btn" id="wishBtn">장바구니 담기</button>
+								<button type="button" class="btn" id="buyBtn">구매</button>
+								<button type="button" class="btn" id="recomBtn">대여</button>
+								<button type="button" class="btn" id="viewBtn">뷰어</button>
+							</div>
+						</div>
 					</div>
-				</div>
-				<div id="wish3"> 
-					<button type="button" class="btn" id="wishBtn">장바구니 담기</button>
-					<button type="button" class="btn" id="buyBtn">구매</button>
-					<button type="button" class="btn" id="recomBtn">대여</button>
-					<button type="button" class="btn" id="viewBtn">뷰어</button>
-				</div>
-			</div>
-		</div>
-		<div id="bookInfoB1">
-			<div class="infoB21">
-				주제분류
-			</div>
-			<div class="infoB21">
-				>>
-			</div>
-			<div class="infoB21">
-				책소개
-			</div>
-			<div class="infoB22">
-				${book.description}
-			</div>
-		</div>
-	
-	
+					<div id="bookInfoB1">
+						<div class="infoB21">
+							주제분류
+						</div>
+						<div class="infoB21">
+							>>
+						</div>
+						<div class="infoB21">
+							책소개
+						</div>
+						<div class="infoB22">
+							${book.description}
+						</div>
+					</div>
+				
+				
+						
+					<%-- 댓글 관련 부분 추가 --%>
+					<form id="crForm" name="crForm" action="registReview.json">
+						<!-- 게시물번호 -->
+						<input type="hidden" name="bookCode" value="${book.bookCode}" />      
+						<table>
+						<tr>
+							<td><textarea name="content" rows="2" cols="60"></textarea></td>
+							<td><button>등록</button></td>
+						</tr>	
+						</table>
+					</form>
 			
-		<%-- 댓글 관련 부분 추가 --%>
-		<form id="crForm" name="crForm" action="registReview.json">
-			<!-- 게시물번호 -->
-			<input type="hidden" name="bookCode" value="${book.bookCode}" />      
-			<table>
-			<tr>
-				<td><textarea name="content" rows="2" cols="60"></textarea></td>
-				<td><button>등록</button></td>
-			</tr>	
-			</table>
-		</form>
+					<form id="cmForm" name="cmForm" action="modifyReview.json">
+						<!-- 게시물번호 -->
+						<input type="hidden" name="reviewNo" />      
+						<table>
+						<tr>
+							<td><textarea name="content" rows="2" cols="60"></textarea></td>
+							<td><button>수정</button></td>
+						</tr>	
+						</table>
+					</form>
+					
+					<!-- 댓글 목록 -->
+					<div id="commentList"></div>
+				</div>
+			
+				
+			</div>
+		 </div>
+	     <div id="right">
+			<%@ include file="/WEB-INF/jsp/include/rightMenu.jsp" %>
+		</div>
+	     <div id="footer">
+			<%@ include file="/WEB-INF/jsp/include/bottom.jsp" %>
+		 </div>
+	   </div>
+	</div>
 
-		<form id="cmForm" name="cmForm" action="modifyReview.json">
-			<!-- 게시물번호 -->
-			<input type="hidden" name="reviewNo" />      
-			<table>
-			<tr>
-				<td><textarea name="content" rows="2" cols="60"></textarea></td>
-				<td><button>수정</button></td>
-			</tr>	
-			</table>
-		</form>
-		
-		<!-- 댓글 목록 -->
-		<div id="commentList"></div>
-	</div>
-	<div class="footer">
-		<%@ include file="/WEB-INF/jsp/include/bottom.jsp" %>
-	</div>
-	
-	
+
 	<div id="pass">
-		<form action="passchk.do?bookCode="${book.bookCode}>
-			<div>비밀번호 입력 <input type="password" id="pas"/></div>
+		<div>비밀번호 입력 <input type="password" id="pas"/></div>
+		<div style="text-align: right; padding-right: 20px;">
 			<button class="ok">확인</button>
-		</form>
 			<button class="cancle">취소</button>
+		</div>
 	</div>
-</div>
+
+
 	
 <script>
 	$(function () {
 		// 장바구니 버튼 ----------------------------------------------------
 		$("#wishBtn").on("click", function () {
-			var wishUrl = "registWish.do";
+			var wishUrl = "registWish1.do";
 			if("${wishCount}" == "1") {				
-				wishUrl = "deleteWish.do";
+				wishUrl = "deleteWish1.do";
 			}
 			location.href = wishUrl + "?bookCode=${book.bookCode}";
 		});
@@ -239,21 +261,22 @@
 	});
 //====================================================================== 여기
 	function passok() {
-		$.ajax({
-			url: "passchk.do",
-			type: "POST",
-			data: {
-				id: "${id}",
-				pass: $("#pas").val(),
-				bookCode: "${book.bookCode}"
-			}
-		})
-		.done(function (data) {
-			$("#pass").hide();
-			if(data == 1) alert("구매완료 되었습니다.");
-			if(data == 0) alert("비밀번호가 잘못");
-			
-		});
+		if($("#pas").val() == "${pass}") {
+			$.ajax({
+				url: "passchk.do",
+				data: {
+					id: "${id}",
+					pass: $("#pas").val(),
+					bookCode: "${book.bookCode}"
+				}
+			})
+			.done(function (data) {
+				$("#pass").hide();
+				alert("구매완료 되었습니다.");
+			});
+		} else {
+			alert("비밀번호가 잘못");
+		}
 	}
 //============================================================================
 	

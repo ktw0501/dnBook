@@ -93,8 +93,7 @@ public class UserBookMapperImpl implements UserBookMapper{
 	}
 	//----------------------------------------------------------------------------
 	@Override
-	public int passchk(SalesVO salesVO) throws Exception {
-		// TODO Auto-generated method stub
-		return session.selectOne(NAMESPACE + ".selectpasschk", salesVO);
+	public void passchk(SalesVO salesVO) throws Exception {
+		session.insert(NAMESPACE + ".passchk", salesVO);
 	}
 }

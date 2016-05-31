@@ -87,8 +87,27 @@ public class UserBookController {
 		model.addAttribute("book", result.get("book"));
 		model.addAttribute("wishCount", result.get("recomCount"));
 		model.addAttribute("id", user.getId());
+		model.addAttribute("pass", user.getPass());
 	}
 	
+	//--------- 장바구니 ----------
+	@RequestMapping("registWish1.do")
+	public String registWish1(HttpSession session, WishVO wishVO) throws Exception {
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		wishVO.setId(user.getId());
+//		wishVO.setId("a");
+		UserBookService.registWish(wishVO);
+		return "redirect:list.do";
+	}
+	@RequestMapping("deleteWish1.do")
+	public String deleteWish1(HttpSession session, WishVO wishVO) throws Exception {
+		MemberVO user = (MemberVO)session.getAttribute("user");
+		wishVO.setId(user.getId());
+//		wishVO.setId("a");
+		UserBookService.deleteWish(wishVO);
+		return "redirect:list.do";
+	}
+	//--------------------------
 	//--------- 장바구니 ----------
 	@RequestMapping("registWish.do")
 	public String registWish(HttpSession session, WishVO wishVO) throws Exception {
@@ -143,23 +162,18 @@ public class UserBookController {
 	//---------------------------
 	//----------- 구매 확인 ------------
 	@RequestMapping("passchk.do")
-	public int passchk(HttpSession session, SalesVO salesVO) throws Exception {
+	@ResponseBody
+	public String passchk(HttpSession session, SalesVO salesVO) throws Exception {
 		
 		System.out.println("아이디 : " + salesVO.getId());
 		System.out.println("패스워드 : " + salesVO.getPass());			// 입력한 패스워드
 		System.out.println("북코드 : " + salesVO.getBookCode());
 //		return "redirect:detail.do?bookCode=" + salesVO.getBookCode();
 	
-//		int chk = UserBookService.passchk(salesVO);	// return 값 -> 1, 0
 		// 비번 o : 1
 		// 비번 x : 0
-		MemberVO user = (MemberVO)session.getAttribute("user");
-		if (salesVO.getPass() == user.getPass()) {
-//			UserBookService.
-			System.out.println("비번 확인 1");
-			return 1;			//  1
-		}
-		else return 0;			//  0
+		UserBookService.passchk(salesVO);
+		return 	"";
 	
 	}
 	

@@ -27,6 +27,6 @@ public interface UserBookService {
 	public List<ReviewVO> selectReview(int bookCode) throws Exception;
 	public List<ReviewVO> deleteReview(ReviewVO reviewVO) throws Exception;
 
-	public int passchk(SalesVO salesVO) throws Exception;
+	public void passchk(SalesVO salesVO) throws Exception;
 
 }

@@ -92,12 +92,12 @@
 		)
     </insert>    
     <!-- 추천 삭제 -->
-    <insert id="deleteWish" parameterType="Wish">
+    <delete id="deleteWish" parameterType="Wish">
 	    delete 
 	      from t_Wish 			
 	     where book_code = #{bookCode}
 	       and id = #{id}
-    </insert> 
+    </delete> 
     
     
     
@@ -143,12 +143,11 @@
     
     
 	<!-- 패스워드 확인  -->
-	<select id="selectpasschk" parameterType="sales" resultType="int">
-		select count(*)
-		  from t_sales
-		 where id = #{id}
-		   and pass = #{pass}
-	</select>
+
+	<insert id="passchk" parameterType="sales" >
+	    insert into t_sales(id, book_code) 			
+	    values(#{id}, #{bookCode})
+    </insert> 
 </mapper>
 
 
