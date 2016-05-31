@@ -110,6 +110,8 @@ public class AdminBoardController {
 		board.setContent(content);
 		board.setBoardType(boardType);
 		
+		
+		
 		BoardFileVO file = null;
 		MultipartFile mFile = mRequest.getFile("attachFile");
 		// 원본 파일명
@@ -143,7 +145,9 @@ public class AdminBoardController {
 			file.setRealFileName(saveFileName);
 			file.setFileSize(mFile.getSize());
 		}
+		
 		service.insertBoard(board, file);
+		
 		return "redirect:list.do?boardType=" + board.getBoardType();
 	}	
 	
