@@ -20,7 +20,7 @@ import com.sun.pdfview.PDFPage;
  * pdf 파일 또는 경로를 받아 이미지파일로 변환하고 이미지파일이 들어있는 디렉토리의 경로를 반환
  */
 public class PdfImage {
-	public static String execute(File PDFFileDir,String pdfFileName) throws IOException {
+	public static int execute(File PDFFileDir,String pdfFileName) throws IOException {
 		// load a pdf from a byte buffer
 		// 이미지파일이 저장될 디렉토리 생성
 		File file = new File(PDFFileDir,pdfFileName);
@@ -67,6 +67,6 @@ public class PdfImage {
 			}
 			
 		}
-		return nDir.getPath();
+		return pdffile.getNumPages();
 	}
 }

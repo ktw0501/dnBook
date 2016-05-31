@@ -213,7 +213,8 @@ public class AdminBookController {
 					book.setPdfPath(saveFileName);
 					file = new File(uploadDir , saveFileName);
 					mFile.transferTo(file);
-					book.setRentalDirPath(PdfImage.execute(uploadDir,saveFileName));
+					PdfImage.execute(uploadDir,saveFileName);
+					book.setRentalDirPath("dd");
 
 				}
 				else if(ext.equalsIgnoreCase(".jpg") || ext.equalsIgnoreCase(".gif") ||
