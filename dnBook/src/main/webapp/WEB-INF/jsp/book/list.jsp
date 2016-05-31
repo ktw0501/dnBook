@@ -21,16 +21,16 @@
 	}
 	#img {
 		width: 150px; height: 200px;
-		border: 1px solid black;
+/* 		border: 1px solid black; */
 	}
 	#bookInfo {
 		width: 320px; height: 160px;
-		border: 1px solid black;
+/* 		border: 1px solid black; */
 		
 	}
 	#choice {
 		width: 124px; height: 170px;
-		border: 1px solid black;
+/* 		border: 1px solid black; */
 	}
 	
 	#pass {
@@ -64,13 +64,12 @@
 				<div class="content111" style="height: auto;">
 				
 					<div class="search">
-						<a href="order.do?no=1">도서명순</a><span>|</span>
-						<a href="order.do?no=2">판매량순</a><span>|</span>
-						<a href="order.do?no=3">등록일순</a><span>|</span>
-						<a href="order.do?no=4">저가격순</a><span>|</span>
-						<a href="order.do?no=5">고가격순</a>
-					</div>
-					${list[0].title}${list[1].title}${list[2].title}
+						<a href="list.do?no=1">도서명순</a><span>|</span>
+<!-- 						<a href="order.do?no=2">판매량순</a><span>|</span> -->
+						<a href="list.do?no=3">등록일순</a><span>|</span>
+						<a href="list.do?no=4">저가격순</a><span>|</span>
+						<a href="list.do?no=5">고가격순</a><br/>
+					</div><br/>
 					<div>
 						<c:forEach var="vo" items="${list}">
 							<div class="list">
@@ -127,9 +126,9 @@
 	$(function () {
 		// 장바구니 버튼 ----------------------------------------------------
 		$("#wishBtn").on("click", function () {
-			var wishUrl = "registWish.do";
+			var wishUrl = "registWish1.do";
 			if("${wishCount}" == "1") {				
-				wishUrl = "deleteWish.do";
+				wishUrl = "deleteWish1.do";
 			}
 			location.href = wishUrl + "?bookCode=${book.bookCode}";
 		});

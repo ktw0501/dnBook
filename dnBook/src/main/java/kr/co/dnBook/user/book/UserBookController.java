@@ -33,9 +33,27 @@ public class UserBookController {
 	AdminBookService adservice;
 //======================================================리스트=====================================================
 	@RequestMapping("list.do")
-	public void listBook(Model model, @RequestParam(value="pageNo", required=false, defaultValue="1")int pageNo) throws Exception {
+	public void listBook(Model model, @RequestParam(value="no", required=false, defaultValue="1")int no, @RequestParam(value="pageNo", required=false, defaultValue="1")int pageNo) throws Exception {
 		BookSearchVO bookSearch = new BookSearchVO(pageNo);
-		Map<String, Object> result = UserBookService.listBook(bookSearch);
+		Map<String, Object> result = null;
+		
+		switch (no) {
+		case 1:
+			result = UserBookService.doBook(bookSearch);
+			break;
+		case 2:
+			result = UserBookService.panBook(bookSearch);
+			break;
+		case 3:
+			result = UserBookService.deungBook(bookSearch);
+			break;
+		case 4:
+			result = UserBookService.juBook(bookSearch);
+			break;
+		case 5:
+			result = UserBookService.goBook(bookSearch);
+			break;
+		}
 		
 		List<BookVO> list = (List<BookVO>) result.get("list");
 		model.addAttribute("list", list);
