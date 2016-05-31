@@ -8,7 +8,7 @@
 		<result column="board_type" property="boardType" />
 		<result column="title" property="title" />
 		<result column="content" property="content" />
-		<result column="view_count" property="viewCount" />
+		<result column="view_count" property="pageViewCnt" />
 		<result column="reg_date" property="regDate" />
 	</resultMap>
 	<select id="selectList" parameterType="boardSearch" resultMap="boardMapper">
@@ -76,6 +76,14 @@
 		delete t_comment
 		 where comment_no = #{commentNo}
 	</delete>
+	
+	<update id="insertViewCount" parameterType="board">
+		update t_board
+		   set  view_count = ((select view_count 
+				   from (select * from t_board) as t
+				  where board_no = ${boardNo}) + 1)
+		 where board_no = ${boardNo}
+	</update>
     
     
     <delete id="test">

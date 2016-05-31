@@ -61,6 +61,10 @@ public class UserBoardMapperImpl implements UserBoardMapper {
 		sqlSessionTemplate.delete(NAMESPACE + ".deleteComment", commentNo);
 	}
 	
+	@Override
+	public void insertViewCount(BoardVO board) throws Exception {
+		sqlSessionTemplate.insert(NAMESPACE + ".insertViewCount", board);
+	}
 	
 	@Override
 	public void test() throws Exception {

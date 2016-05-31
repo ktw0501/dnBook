@@ -41,14 +41,13 @@
 		text-decoration: none;
 		color: black;
 	}
-	#titleHr {
-		width: 100%;
-		color: black;
-		border: thin;
+	#title {
+		float: left;
 	}
-	#line {
-		
+	#viewCnt {
+		float:right;
 	}
+	
 </style>
 <script src="${pageContext.request.contextPath}/js/jquery-2.2.3.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
@@ -68,9 +67,21 @@
 						<img src="${pageContext.request.contextPath}/img/serviceLogo.jpg" />
 					</div>
 					<div id="board">
-						<div id="title"><c:out value="${board.title}" /></div>
-						<div id="line"><hr id="titleHr"></div>
-						<div id="content"><c:out value="${board.content}" /></div>
+						<table>
+							<tr >
+								<td style="border-bottom: 1px solid black">
+									<div id="title" ><c:out value="${board.title}" /></div>
+									<div id="viewCnt">조회수 ${board.pageViewCnt}</div>
+								</td>
+							</tr>
+							<tr>
+								<td style="border-bottom: 1px solid black">
+									<br />
+									<textarea id="content" style="resize: none; border: none;" rows="8" cols="90"  
+									><c:out value="${board.content}" /></textarea>
+								</td>
+							</tr>
+						</table>
 						<div id="comment">
 							<div id="commentReg">
 								<textarea rows="2" cols="60" style="resize: none;"></textarea> <button type="button" onclick="regComment();">입력</button>
@@ -84,19 +95,20 @@
 						</div>
 						<div>
 							<table>
-								<c:if test="${not empty board.next.title}">
+								<c:if test="${not empty next.title}">
 								<tr>
 									<th>다음글</th>
-									<td><a href="detail.do?no=${board.next.boardNo}">${board.next.title}</a></td>
+									<td><a href="detail.do?no=${next.boardNo}">${next.title}</a></td>
 								</tr>
 								</c:if>
-								<c:if test="${not empty board.prev.title}">
+								<c:if test="${not empty prev.title}">
 								<tr>
 									<th>이전글</th>
-									<td><a href="detail.do?no=${board.prev.boardNo}">${board.prev.title}</a></td>
+									<td><a href="detail.do?no=${prev.boardNo}">${prev.title}</a></td>
 								</tr>
 								</c:if>
 							</table>
+							<a href="list.do?boardType=${board.boardType}">목록</a>
 						</div>
 					</div>
 				</div>

@@ -29,6 +29,7 @@ public class UserBoardServiceImpl implements UserBoardService {
 	@Override
 	public Map<String, Object> detailBoard(BoardVO board) throws Exception {
 		Map<String, Object> result = new HashMap<>();
+		dao.insertViewCount(board);
 		board = dao.selectDetail(board.getBoardNo());
 		BoardVO prev = dao.selectPrev(board);
 		BoardVO next = dao.selectNext(board);
