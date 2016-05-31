@@ -31,7 +31,8 @@
 				<input type="hidden" name="bookCode" value="${book.bookCode}"><br>
 				<input type="hidden" name="coverImg" value="${book.coverImg}"><br>
 				<input type="hidden" name="rentalDirPalabel" value="${book.rentalDirPath}"><br>
-				<input type="hidden" name="pdfPalabel" value="${book.pdfPath}"><br>
+				<input type="hidden" name="pdfPath" value="${book.pdfPath}"><br>
+				<input type="hidden" name="maxPage" value="0"><br>
 				
 			
 			
