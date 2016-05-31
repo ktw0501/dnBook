@@ -140,7 +140,7 @@
 			$(".table").empty();
 			for(var vo in data) {
 				var html = "<tr><td>" + data[vo].content + "</td><td>" + data[vo].id + "</td><td>" + data[vo].regDate + "</td>";
-				if(data[vo].id == "aa") {
+				if(data[vo].id == "${user.id}") {
 					html += "<td><a href='#' onclick='updSetComment(" + data[vo].commentNo + ", " + data[vo].content + ");'>수정</a></td><td>" +
 					        "<a href='#' onclick='delComment(" + data[vo].commentNo  + ");'>삭제</a></td>";
 				}
@@ -153,7 +153,7 @@
 				url: "insertComment.json",
 				data: {boardNo: "${board.boardNo}",
 					   content: $("#commentReg > textarea").val(),
-					   id: "aa"}
+					   id: "${user.id}"}
 			}).done(function(data) {
 				mkCommentList(data);
 				$("#commentReg > textarea").val("");
@@ -175,7 +175,7 @@
 						boardNo: "${board.boardNo}",
 						commentNo: commentNo,
 						content: $("#commentUpd > textarea").val(),
-						id: "aa"
+						id: "${user.id}"
 				}
 			}).done(function(data) {
 				mkCommentList(data);
