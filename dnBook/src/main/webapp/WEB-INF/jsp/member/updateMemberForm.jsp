@@ -205,7 +205,7 @@ $(function(){
 	        <div class="form-group">
 	          <label class="col-sm-3 control-label" for="inputPassword">비밀번호</label>
 	        <div class="col-sm-6">
-	          <input class="form-control" name = "pass" id="inputPassword" type="password" value="${member.pass}">
+	          <input class="form-control" name = "pass" id="inputPassword" type="password" placeholder="비밀번호">
 	        <p class="help-block"><span id="presult">패스워드는 4자이상 12자 이하이어야 합니다.</span></p>
 	        </div>
 	        </div>

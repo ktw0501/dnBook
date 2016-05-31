@@ -14,17 +14,16 @@
 	{
 		location.href = "list.do?pageNo=" + pageNo;
 	}
-
 </script>
 </head>
 <body>
-	<c:import url="../include/basic.jsp"/>
+	<c:import url="../include/basic.jsp"/> 
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
-	<table data-toggle="table"  data-show-refresh="true" data-show-toggle="true" data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true" data-sort-name="name" data-sort-order="desc">
+	<table data-toggle="table"  data-show-refresh="true" data-show-toggle="true" data-show-columns="true">
 	    <thead>
 	    <tr>
-	        <th data-field="state" data-checkbox="true" >삭제</th>
-	        <th style="width:30px;">BookCode</th>
+	        <th >삭제</th>
+	        <th >BookCode</th>
 	        <th >Cover</th>
 	        <th >title</th>
 	        <th >publisher</th>
@@ -35,22 +34,17 @@
 	<tr id="tr${book.bookCode}">
 	<td><input type="checkBox" value="${book.bookCode}" name = delCheck></td>
 	<td>${book.bookCode}</td>
-	<td><img src="${book.rentalDirPath}/../${book.coverImg}"/></td>
+	<td><img src="${book.rentalDirPath}/${book.coverImg}"/></td>
 	<td><a href="${pageContext.request.contextPath}/admin/book/detail.do?bookCode=${book.bookCode}">${book.title}</a></td>
 	<td>${book.publisher}</td>
 	</tr>	
 	</c:forEach>
-	<tr>
-	<td> <button id="delBtn"> 삭제 </button></td>
-	</tr>
-	<tr>
-	<td colspan="5">
-		<c:if test="${not empty list}">
-			<navi:page/>
-		</c:if>
-	</td>
-	</tr>
 </table>
+	<c:if test="${not empty list}">
+		<navi:page/>
+	</c:if>
+	<button id="delBtn"> 삭제 </button>
+	<button id="registBtn"> 글 등록 </button>
 </div>
 
 <script type="text/javascript">
@@ -79,6 +73,9 @@ $(function(){
 			jsPageMove("${page.pageNo}");
 		})
 		
+	});
+	$("#registBtn").click(function(){
+		location.href = "registform.do";
 	})
 })
 

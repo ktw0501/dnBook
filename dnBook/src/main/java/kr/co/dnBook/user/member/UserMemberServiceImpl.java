@@ -23,5 +23,9 @@ public class UserMemberServiceImpl implements UserMemberService{
 	public MemberVO userOneMember(MemberVO member) {
 		return dao.selectOneMember(member);
 	}
+	@Override
+	public void updateMember(MemberVO member) {
+		dao.updateMember(member);
+	}
 
 }

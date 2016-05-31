@@ -9,9 +9,9 @@
 <!-- 로그인 실패시 오류메시지 띄우기 -->
 <script>
 	$(function(){
-	if ("${msg}"){
-		$("#result").html("${msg}");
-	}
+		if ("${msg}"){
+			$("#result").html("${msg}");
+		}
 	})
 </script>
 <!-- 아이디 저장 체크시 쿠키저장 -->

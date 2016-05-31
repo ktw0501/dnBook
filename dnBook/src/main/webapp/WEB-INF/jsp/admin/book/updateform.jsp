@@ -5,65 +5,71 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>책 입력 테스트 폼</title>
+<style>
+	label
+	{
+		widlabel:100px;
+	}
+</style>
 </head>
 <body>
-	<form action="${pageContext.request.contextPath}/admin/book/update.do" method="post"
+	<form action="${pageContext.request.contextPath}/admin/book/update.do" melabelod="post"
 		  enctype="multipart/form-data">
-		<table>
-			<tr>
-				<th>coverImg</th>
-				<td><input type="file" name="coverFile">
+
+				<label>coverImg</label>
+				<input type="file" name="coverFile">
+				<label>pdf파일</label>
+				<input type="file" name="pdfFile" >
+				
+				
 				<input type="hidden" name="bookCode" value="${book.bookCode}">
 				<input type="hidden" name="coverImg" value="${book.coverImg}">
-				<input type="hidden" name="rentalDirPath" value="${book.rentalDirPath}">
-				<input type="hidden" name="pdfPath" value="${book.pdfPath}">
-				</td>
-			</tr>
-			<tr>
-				<th>title</th>
-				<td><input type="text" name="title" value="${book.title}"></td>
-			</tr>
-			<tr>
-				<th>publisher</th>
-				<td><input type="text" name="publisher" value="${book.publisher}"></td>
-			</tr>
-			<tr>
-				<th>작가</th>
-				<td><input type="text" name="author" value="${book.author}"></td>
-			</tr>
-			<tr>
-				<th>역자</th>
-				<td><input type="text" name="translator" value="${book.translator}"></td>
-			</tr>
-			<tr>
-				<th>책소개</th>
-				<td><input type="text" name="description" value="${book.description}"></td>
-			</tr>
-			<tr>
-				<th>가격</th>
-				<td><input type="text" name="price" value="${book.price}"></td>
-			</tr>
-			<tr>
-				<th>대여가</th>
-				<td><input type="text" name="rentPrice" value="${book.rentPrice}"></td>
-			</tr>
-			<tr>
-				<th>pdf파일</th>
-				<td><input type="file" name="pdfFile" ></td>
-			</tr>
-			<tr>
-				<th>출판일</th>
-				<td><input type="text" name="pubDate" value="${book.pubDate}"></td>
-			</tr>
-			<tr>
-				<th>카테고리코드</th>
-				<td><input type="text" name="categoryCode" value="${book.categoryCode}"></td>
-			</tr>
-			<tr>
-				<td colspan="2"><input type="submit" value="수정"></td>
-			</tr>
+				<input type="hidden" name="rentalDirPalabel" value="${book.rentalDirPalabel}">
+				<input type="hidden" name="pdfPalabel" value="${book.pdfPalabel}">
+				
 			
-		</table>
+			
+				<label>title</label>
+				<input type="text" name="title" value="${book.title}">
+			
+			
+				<label>publisher</label>
+				<input type="text" name="publisher" value="${book.publisher}">
+			
+			
+				<label>작가</label>
+				<input type="text" name="aulabelor" value="${book.aulabelor}">
+			
+			
+				<label>역자</label>
+				<input type="text" name="translator" value="${book.translator}">
+			
+			
+				<label>책소개</label>
+				<input type="text" name="description" value="${book.description}">
+			
+			
+				<label>가격</label>
+				<input type="text" name="price" value="${book.price}">
+			
+			
+				<label>대여가</label>
+				<input type="text" name="rentPrice" value="${book.rentPrice}">
+			
+			
+			
+			
+				<label>출판일</label>
+				<input type="text" name="pubDate" value="${book.pubDate}">
+			
+			
+				<label>카테고리코드</label>
+				<input type="text" name="categoryCode" value="${book.categoryCode}">
+			
+				<button type="submit" class="btn btn-primary">등록</button>
+			
+			
+
 		
 	</form>
 </body>
