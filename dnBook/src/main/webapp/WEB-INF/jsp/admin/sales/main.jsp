@@ -60,10 +60,12 @@
 
 		}
 	
-		var chart1 = document.getElementById("line-chart").getContext("2d");
-		var myChart = new Chart(chart1).Line(lineChartData, {
-			responsive: true
-		});
+// 		var chart1 = document.getElementById("line-chart").getContext("2d");
+// 		var myChart = new Chart(chart1).Line(lineChartData, {
+// 			responsive: true
+// 		});
+		var idx=0;
+		var myChart;
 		$(document).on("click","#btn",function(){
 			var date = $(this).html();
 			var date1="";
@@ -95,6 +97,16 @@
 					else
 						lineChartData.datasets[0].data[i]=0;
 				}
+				
+				$("#canvas-wrapper").html("");
+				$("#canvas-wrapper").html('<canvas class="main-chart" id="line-chart" height="200" width="600"></canvas>');
+				var chart1 = document.getElementById("line-chart").getContext("2d");
+				document.getElementById("line-chart").getContext("2d").clearRect(0,0,200,600);
+				if(myChart)
+					{
+					console.log(1)					
+					myChart.destroy();
+					}
 				
 				myChart = new Chart(chart1).Line(lineChartData, {
 					responsive: true
