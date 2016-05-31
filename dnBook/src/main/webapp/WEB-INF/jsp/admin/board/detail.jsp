@@ -81,6 +81,10 @@
 										<img style="width: 600px; height: 180px;" src="${pageContext.request.contextPath}/upload/event${file.filePath}/${file.realFileName}" />
 									<br />
 									</c:if>
+									<c:if test="${empty file}">
+										
+									<br />
+									</c:if>
 									<br />
 									<textarea id="content" style="resize: none; border: none;" rows="8" cols="90"  
 									><c:out value="${board.content}" /></textarea>

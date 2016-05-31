@@ -7,15 +7,33 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style>
+	table
+	{
+		width:300px;
+		height:400px;
+	}
+	
+	.content{
+		resize:none;
+	}
+	
+	
+</style>
 </head>
 <body>
 <script src="${pageContext.request.contextPath}/js/jquery-2.2.3.js"></script>
 <script src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
 
-<div class="container">
-	<div class="header">
-		<%@ include file="/WEB-INF/jsp/include/topMenu.jsp" %>
-	</div>	
+
+	
+	
+	
+	
+	
+	
+	
+	
 	<div class="content">
 		<h2>게시판 등록</h2>
 		<hr />
@@ -32,7 +50,7 @@
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td><textarea name="content"></textarea>
+				<td><textarea id="content" name="content" cols="50" rows="10" ></textarea>
 			</tr>
 			<c:if test="${boardType == 1}">
 			<tr>
