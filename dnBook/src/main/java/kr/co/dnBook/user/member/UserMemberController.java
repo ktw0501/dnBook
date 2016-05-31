@@ -113,8 +113,9 @@ public class UserMemberController {
 		MemberVO user = memberService.userOneMember(member);
 		if(user == null) {
 			attr.addFlashAttribute("msg", "비밀번호를 정확히 입력해주세요.");
-			return "redirect:/member/infoConfirm.do";
+			return "redirect:/member/infoConfirmForm.do";
 		}else {
+			attr.addFlashAttribute("member", user);
 			return "redirect:/member/updateMemberForm.do";
 		}
 	}
@@ -126,5 +127,16 @@ public class UserMemberController {
 	@RequestMapping("/member/updateMemberForm.do")
 	public MemberVO updateMemberForm(MemberVO member) throws Exception {
 		return memberService.userOneMember(member);
+	}
+	/**
+	 * 회원수정 완료시..
+	 * @param member
+	 * @return
+	 * @throws Exception
+	 */
+	@RequestMapping("/member/updateMember.do")
+	public String updateMember(MemberVO member) throws Exception {
+		memberService.updateMember(member);
+		return "redirect:/main.do";
 	}
 }

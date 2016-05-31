@@ -30,6 +30,16 @@
     	 where id = #{id}
     	   and pass = #{pass} 
     </select> 
+    <update id="updateMember" parameterType="string">
+    	update t_member
+    	   set pass = #{pass},
+    	   	   post_code = #{postCode},
+    	   	   address = #{address},
+    	   	   detail_address = #{detailAddress}, 
+    	   	   email = #{email}, 
+    	   	   tel = #{tel}
+    	 where id = #{id}
+    </update>
 </mapper>
 
 

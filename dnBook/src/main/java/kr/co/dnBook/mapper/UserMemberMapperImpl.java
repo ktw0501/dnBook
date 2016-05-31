@@ -27,4 +27,9 @@ public class UserMemberMapperImpl implements UserMemberMapper {
 		return session.selectOne(MEMBER_DAO_NAMESPACE + ".selectOneMember", member);
 	}
 
+	@Override
+	public void updateMember(MemberVO member) {
+		session.update(MEMBER_DAO_NAMESPACE + ".updateMember", member);
+	}
+
 }
