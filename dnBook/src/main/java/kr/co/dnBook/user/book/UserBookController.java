@@ -1,6 +1,5 @@
 package kr.co.dnBook.user.book;
 
-import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.dnBook.admin.book.service.AdminBookService;
+import kr.co.dnBook.vo.BoardFileVO;
 import kr.co.dnBook.vo.BookScoreVO;
 import kr.co.dnBook.vo.BookSearchVO;
 import kr.co.dnBook.vo.BookVO;
@@ -197,13 +197,9 @@ public class UserBookController {
 	
 //===========================================================================================================디테일
 	@RequestMapping("view.do")
-	public void view(Model model, int bookCode) throws Exception {
-		BookVO bookVO =adservice.detailBook(bookCode);
-		model.addAttribute("book", bookVO);
-		File imgDir = new File(bookVO.getRentalDirPath());
-		File[] imgs = imgDir.listFiles();
-		int imgLength = imgs.length;
-		model.addAttribute("imgLength", imgLength);
+	public void view(int bookCode, Model model) throws Exception {
+		BookScoreVO bookScore = new BookScoreVO();
+		bookScore.setBookCode(bookCode);
+		model.addAttribute("book", (BookVO)UserBookService.detailBook(bookScore));
 	}
-	
 }
