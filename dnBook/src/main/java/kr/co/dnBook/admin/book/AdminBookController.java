@@ -1,6 +1,11 @@
 package kr.co.dnBook.admin.book;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +13,9 @@ import java.util.Set;
 import java.util.UUID;
 
 import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -69,7 +77,8 @@ public class AdminBookController {
 		book.setPubDate(mReq.getParameter("pubDate"));
 		book.setCategoryCode(mReq.getParameter("categoryCode"));
 		String uploadPath = servletContext.getRealPath("/upload/");
-		uploadPath+=book.getPubDate()+"/"+book.getTitle();
+		String path = book.getPubDate()+"/"+book.getTitle();
+		uploadPath+=path;
 		File uploadDir = new File(uploadPath);
 		if(!uploadDir.exists())
 		{
@@ -99,7 +108,8 @@ public class AdminBookController {
 					book.setPdfPath(saveFileName);
 					file = new File(uploadDir , saveFileName);
 					mFile.transferTo(file);
-					book.setRentalDirPath(PdfImage.execute(uploadDir,saveFileName));
+					book.setRentalDirPath(book.getPubDate()+"/"+book.getTitle());
+					PdfImage.execute(uploadDir,saveFileName);
 
 				}
 				else if(ext.equalsIgnoreCase(".jpg") || ext.equalsIgnoreCase(".gif") ||
@@ -232,6 +242,56 @@ public class AdminBookController {
 	{
 		adminBookService.deleteBook(data);
 		return "delete";
+	}
+	@RequestMapping("/down.do")
+	public void download(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+		// 파일 다운로드 처리 진행
+		String downName = req.getParameter("downName");
+		String realName = req.getParameter("realName");
+		// Y, y ->  화면에 이미지를 그리기
+		// Y 이외의 값이면 다운로드 하기
+		String draw = req.getParameter("draw");
+		// 서버상에 설정된 upload 경로
+		ServletContext context = req.getServletContext();
+		String uploadPath = context.getRealPath("upload");
+		
+		// uploadPath : c:/java81/tomcat-work/wtpwebapps/Board-PRJ/upload
+		// /2016/04/17/test-1.jpg
+		File file = new File(uploadPath + realName);
+		
+		// 다운로드와 관련된 헤더 설정
+		// 웹브라우져에 이미지 그리기
+		if (draw != null && draw.equalsIgnoreCase("y")) {
+			resp.setHeader("Content-Type", "image/jpg");
+		}
+		// 사용자 컴퓨터에 다운로드
+		else {
+			resp.setHeader("Content-Type", "application/octet-stream");
+			resp.setHeader(
+				"Content-Disposition", 
+				"attachment;filename=" + new String(downName.getBytes("UTF-8"), "8859_1"));
+			resp.setHeader("Content-Transfer-Encoding", "binary");
+			resp.setHeader("Content-Length", String.valueOf(file.length()));
+		}
+		// 파일을 읽고 브라우져로 데이터를 전송
+		if (file.isFile()) {
+			FileInputStream fis = new FileInputStream(file);
+			BufferedInputStream bis = new BufferedInputStream(fis);
+			
+			OutputStream out = resp.getOutputStream();
+			BufferedOutputStream bos = new BufferedOutputStream(out);
+			
+			while (true) {
+				int ch = bis.read();
+				if (ch == -1) break;
+				
+				bos.write(ch);
+			}
+			bos.close();
+			out.close();
+			bis.close();
+			fis.close();
+		}
 	}
 	
 	

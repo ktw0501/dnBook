@@ -15,6 +15,15 @@
 		location.href = "list.do?pageNo=" + pageNo;
 	}
 </script>
+<style>
+	td img
+	{
+		width: 100px;
+		height: 100px;
+		
+	}
+</style>
+
 </head>
 <body>
 	<c:import url="../include/basic.jsp"/> 
@@ -34,7 +43,7 @@
 	<tr id="tr${book.bookCode}">
 	<td><input type="checkBox" value="${book.bookCode}" name = delCheck></td>
 	<td>${book.bookCode}</td>
-	<td><img src="${book.rentalDirPath}/${book.coverImg}"/></td>
+	<td><img src="${pageContext.request.contextPath}/upload/${book.rentalDirPath}/${book.coverImg}"/></td>
 	<td><a href="${pageContext.request.contextPath}/admin/book/detail.do?bookCode=${book.bookCode}">${book.title}</a></td>
 	<td>${book.publisher}</td>
 	</tr>	
@@ -43,8 +52,8 @@
 	<c:if test="${not empty list}">
 		<navi:page/>
 	</c:if>
-	<button id="delBtn"> 삭제 </button>
-	<button id="registBtn"> 글 등록 </button>
+	<button class="btn btn-primary" id="delBtn"> 삭제 </button>
+	<button class="btn btn-primary" id="registBtn"> 글 등록 </button>
 </div>
 
 <script type="text/javascript">

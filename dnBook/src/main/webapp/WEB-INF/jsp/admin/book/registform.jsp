@@ -30,7 +30,6 @@
 				<label>pdf파일</label>
 				<input type="file" name="pdfFile">
 				<br>
-				
 				<label>title</label>
 				<input type="text" name="title">
 				<br>
