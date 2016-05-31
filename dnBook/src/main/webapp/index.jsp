@@ -3,3 +3,4 @@
 <script>
 	location.href = "${pageContext.request.contextPath}/main.do";  
 </script>
+

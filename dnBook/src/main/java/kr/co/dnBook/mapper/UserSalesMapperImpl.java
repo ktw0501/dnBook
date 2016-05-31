@@ -15,9 +15,9 @@ public class UserSalesMapperImpl implements UserSalesMapper{
 
 	@Override
 	public List<SalesVO> selectSales(String id) throws Exception {
-		System.out.println(id);
 		
 		return session.selectList(SALES_DAO_NAMESPACE+".selectSales", id);
 	}
+	
 
 }

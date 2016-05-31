@@ -14,9 +14,10 @@
 	
 	<select id="selectSales" parameterType="string" resultMap="salesMap">
 		select b.cover_img, b.title as title, b.author as author,
-			 	b.price as price, s.sales_date
+			 	b.price as price, s.sales_date 
 		  from t_book as b, t_sales as s
 		 where b.book_code = s.book_code and id=#{id}
+		 order by salesDate desc;
 	</select>
     
 </mapper>

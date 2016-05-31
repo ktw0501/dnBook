@@ -19,4 +19,9 @@ public class UserRentMapperImpl implements UserRentMapper{
 	public List<RentVO> selectRent(String id) throws Exception {
 		return session.selectList(RENT_DAO_NAMESPACE+".selectRent", id);
 	}
+
+	@Override
+	public int selectRentCount(String id) throws Exception {
+		return session.selectOne(RENT_DAO_NAMESPACE+".selectRentCount",id);
+	}
 }

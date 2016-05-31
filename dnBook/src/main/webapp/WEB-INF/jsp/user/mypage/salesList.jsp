@@ -12,8 +12,11 @@
 	<div class="header">
 		<%@ include file="/WEB-INF/jsp/include/topMenu.jsp" %>
 	</div>	
+	<div id="mytitle">
+			<p class="navbar-text" style="font-size: 20px"><a href="${pageContext.request.contextPath}/user/mypage/myPageHome.do?id=eunhwa">My Page</a></p><br />
+			</div>
 	<div class="content">
-		<h2>My page : 구매목록</h2>
+		<h2>Shopping List</h2>
 		<hr />
 		<table>
 		<tr>

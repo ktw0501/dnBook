@@ -7,24 +7,23 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import kr.co.dnBook.mapper.UserRentMapper;
-import kr.co.dnBook.vo.RentVO;
-
+import kr.co.dnBook.mapper.UserWishMapper;
+import kr.co.dnBook.vo.WishVO;
 @Service
-public class RentServiceImpl implements RentService{
+public class WishServiceImpl implements WishService {
 	@Autowired
-	UserRentMapper dao;
+	UserWishMapper dao;
 
 	@Override
-	public Map<String, Object> rentList(String id) throws Exception {
-		List<RentVO> list = dao.selectRent(id);
-		
+	public Map<String, Object> wishList(String id) throws Exception {
+		List<WishVO> list = dao.selectWish(id);
+			
 		// 전체 게시글 카운트
-		int totalCount = dao.selectRentCount(id);
-		
+		int totalCount = dao.selectWishCount(id);
+				
 		Map<String, Object> result = new HashMap<>();
 		result.put("list", list);
 		result.put("totalCount", totalCount);
 		return result;
-	}
-}
+			}
+		}

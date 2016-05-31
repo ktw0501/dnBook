@@ -23,29 +23,29 @@
 			<p class="navbar-text" style="font-size: 20px"><a href="${pageContext.request.contextPath}/user/mypage/myPageHome.do?id=eunhwa">My Page</a></p><br />
 			</div>
 	<div class="content">
-		<h2>Rent List</h2>
+		<h2>Wish List</h2>
 		<hr />
 		<table>
 		<tr>
 			<th>책표지</th>
 			<th>제목</th>
-			<th>글쓴이</th>
-			<th>대여시작일<th>
-			<th>대여만료일</th>
-			<th>보기</th>
+			<th>글쓴이</th> 
+			<th>등록일<th>
+			<th>가격</th>
+			<th>구매하기</th>
 		</tr>
 		<c:forEach var="vo" items="${list}">
 		<tr>
 			<td>${vo.coverImg}</td>
 			<td><a href="${pageContext.request.contextPath}/book/detail.do?bookCode=${vo.bookCode}">${vo.title}</a></td>
 			<td>${vo.author}</td>
-			<td>${vo.rentDate}</td>
-			<td>${vo.expireDate}</td>
-			<th><a href="#">책보기</a></th>
+			<td>${vo.regDate}</td>
+			<td>${vo.price}</td>
+			<th><a href="#">구매</a></th>
 		</tr>
 		</c:forEach>
 		<c:if test="${empty list}">
-		<tr><td colspan="5">대여 내역이 없습니다.</td></tr>
+		<tr><td colspan="5">Wish List가  없습니다.</td></tr>
 		</c:if>
 		</table>
 		<navi:page />

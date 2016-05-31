@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.dnBook.mapper.UserWishMapper">
+	
+	<select id="selectWish" parameterType="string" resultType="wish">
+		select b.cover_img as coverImg, b.title, b.author, w.reg_date as regDate, 
+			   b.price
+		  from t_book as b, t_wish as w
+		 where b.book_code = w.book_code and id=#{id}
+		 order by regDate desc;
+	</select>
+	
+    <select id="selectWishCount" parameterType="string" resultType="int">
+    	select 	count(*)
+    	from	t_wish
+    	where	id = #{id}
+    </select>
+    
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
